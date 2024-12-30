@@ -19,7 +19,7 @@ const StepGuide = () => {
         top={"70"}
         pos={"absolute"}
       >
-         <Image src="/movers/step-bg.png" />
+         <Image src="/movers/step-bg.png" alt=""/>
       </Box>
       <Box w="100%" backgroundSize="inherit" px={" 200px  "}>
         <Box
@@ -48,7 +48,7 @@ const StepGuide = () => {
                   gap={"30px"}
                 >
                   <Box>
-                    <Image src="movers/one.png" />
+                    <Image src="movers/one.png" alt=""/>
                   </Box>
                   <Text fontSize={"24px"} color={"#fff"} fontWeight={"400"}>
                     {`To create Africa's most inclusive and efficient logistics
@@ -68,7 +68,7 @@ const StepGuide = () => {
                   gap={"30px"}
                 >
                   <Box>
-                    <Image src="movers/two.png" />
+                    <Image src="movers/two.png" alt=""/>
                   </Box>
                   <Text fontSize={"24px"} color={"#fff"} fontWeight={"400"}>
                     Verify: Complete our quick KYC process for security.
@@ -87,7 +87,7 @@ const StepGuide = () => {
                   gap={"30px"}
                 >
                   <Box>
-                    <Image src="movers/three.png" />
+                    <Image src="movers/three.png" alt=""/>
                   </Box>
                   <Text fontSize={"24px"} color={"#fff"} fontWeight={"400"}>
                     Pick Up & Deliver: Get matched with packages in your area.
@@ -106,7 +106,7 @@ const StepGuide = () => {
                   gap={"30px"}
                 >
                   <Box>
-                    <Image src="movers/four.png" />
+                    <Image src="movers/four.png" alt=""/>
                   </Box>
                   <Text fontSize={"24px"} color={"#fff"} fontWeight={"400"}>
                     Earn Instantly: Payments are credited after successful
