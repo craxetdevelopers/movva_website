@@ -15,10 +15,10 @@ const SendingGuide = () => {
   return (
     <Box w={"100%"} h="auto" backgroundColor={"#22244E"} pos={"relative"}>
       <Box left={"200px"} top={"70px"} pos={"absolute"}>
-        <Image src="/movers/step-bg.png" />
+        <Image src="/movers/step-bg.png" alt=""/>
       </Box>
       <Box right={"0px"} bottom={"0px"} pos={"absolute"}>
-        <Image src="/senders/send-arrow.png" />
+        <Image src="/senders/send-arrow.png" alt=""/>
       </Box>
 
       <Box w="100%" px={"200px"}>
@@ -44,7 +44,7 @@ const SendingGuide = () => {
                 backgroundColor={"#22244E"}
               >
                 <Box>
-                  <Image src="movers/one.png" />
+                  <Image src="movers/one.png" alt=""/>
                 </Box>
                 <Heading fontSize={"24px"} color={"#fff"} fontWeight={"600"}>
                   Book a Delivery (Movva):
@@ -65,7 +65,7 @@ const SendingGuide = () => {
                 backgroundColor={"#22244E"}
               >
                 <Box>
-                  <Image src="movers/two.png" />
+                  <Image src="movers/two.png" alt=""/>
                 </Box>
                 <Heading fontSize={"24px"} color={"#fff"} fontWeight={"600"}>
                   Get Matched:
@@ -86,7 +86,7 @@ const SendingGuide = () => {
                 backgroundColor={"#22244E"}
               >
                 <Box>
-                  <Image src="movers/three.png" />
+                  <Image src="movers/three.png" alt=""/>
                 </Box>
                 <Heading fontSize={"24px"} color={"#fff"} fontWeight={"600"}>
                   Track & Relax:
