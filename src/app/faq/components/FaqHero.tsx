@@ -1,5 +1,6 @@
-import Navbar from "@/app/components/Navbar";
+'use client'
 
+import Navbar from "@/app/components/Navbar";
 import { Box, Flex, Image, Stack, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
