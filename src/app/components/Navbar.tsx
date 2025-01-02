@@ -53,7 +53,7 @@ const Navbar = () => {
           height="auto"
           cursor="pointer"
         >
-          <Image src="/logo.png" alt="" />
+          <Image src={pathname === '/faq' ? '/logo2.png' :  "/logo.png" } alt="" />
         </Box>
         <Box
           display={{ base: "none", md: "flex" }}
@@ -67,43 +67,43 @@ const Navbar = () => {
             fontWeight={"700"}
             fontSize={"14px"}
           >
-            <ListItem style={{ color: isActiveMenu("/") ? "grey" : "#ffffff" }}>
+            <ListItem style={{ color: isActiveMenu("/") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff" }}>
               <Link href="/">Home</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/about") ? "grey" : "#ffffff",
+                color: isActiveMenu("/about") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff"   
               }}
             >
               <Link href="/about">About</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/movers") ? "grey" : "#ffffff",
+                color: isActiveMenu("/movers") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff",
               }}
             >
               <Link href="/movers">Movers</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/senders") ? "grey" : "#ffffff",
+                color: isActiveMenu("/senders") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff",
               }}
             >
               <Link href="/senders">Senders</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/business") ? "grey" : "#ffffff",
+                color: isActiveMenu("/business") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff",
               }}
             >
               <Link href="/business">Business</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/") ? "grey" : "#ffffff",
+                color: isActiveMenu("/faq") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff",
               }}
             >
-              <Link href="/help">FAQ</Link>
+              <Link href="/faq">FAQ</Link>
             </ListItem>
           </List>
 
