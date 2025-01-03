@@ -15,22 +15,27 @@ const WhyBusiness = () => {
   return (
     <Box
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
-      py={["1rem", "2rem", "6.5rem", "6.5rem"]}
+      py={["3rem", "4rem", "6.5rem", "6.5rem"]}
       color={"#fff"}
     >
       <VStack width="100%" maxW={"1249px"} mx="auto" color={"#14141A"}>
-        <Heading fontWeight={"700"} fontSize={"40px"}>
+        <Heading fontWeight={"700"} fontSize={{ base: "28px", lg: "40px" }}>
           Why Movva Works for Businesses:
         </Heading>
-        <Flex justifyContent={"space-between"} py={"90px"} w={"100%"}>
+        <Flex
+          justifyContent={{ base: "center", xl: "space-between" }}
+          py={{ base: "30px", md: "60px", lg: "90px" }}
+          w={"100%"}
+          flexWrap={"wrap"}
+          gap={{ base: "70px", md: "40px" }}
+        >
           {bWorks.map((data, idx) => (
             <VStack key={idx} gap={"40px"}>
               <Box>
                 <Image src={data.img} alt="" />
               </Box>
               <VStack
-                // w={"199px"}
-                // h={"57px"}
+               
                 px={"20px"}
                 py={"12px"}
                 bg={"#22244E"}
@@ -38,12 +43,12 @@ const WhyBusiness = () => {
                 borderRadius={"20px"}
                 justifyContent={"center"}
               >
-                <Text color={"#17D1C6"} fontSize={"24px"} fontWeight={"700"}>
+                <Text color={"#17D1C6"} fontSize={{ base: "18px", md: "24px"}} fontWeight={"700"}>
                   {data.title}
                 </Text>
               </VStack>
               <Text
-                fontSize={"20px"}
+                fontSize={{ base: "16px", md: "20px"}}
                 color={"#14141A"}
                 w={"353px"}
                 textAlign={"center"}
@@ -59,8 +64,8 @@ const WhyBusiness = () => {
             bg={"#FF7D6A"}
             borderRadius={"100px"}
             color={"#22244E"}
-            fontSize={'20px'}
-            fontWeight={'500'}
+            fontSize={"20px"}
+            fontWeight={"500"}
           >
             {" "}
             Book a Delivery Now

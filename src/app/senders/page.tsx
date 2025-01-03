@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 const Senders = () => {
   return (
     <div>
-      <Box bg={"#FFFFFF"} w={"100%"} >
+      <Box  w={"100%"} >
         <SenderHero />
         <SendMovva />
         <SendingGuide />
