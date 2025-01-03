@@ -22,7 +22,7 @@ const Footer = () => {
       bg={"#22244E"}
     >
       <VStack width="100%" maxW={"1249px"} mx="auto" alignItems={"start"}>
-        <Flex justifyContent={"space-between"} w={"100%"}>
+        <Flex justifyContent={"space-between"} w={"100%"} flexWrap={'wrap'} gap={{base: '40px', lg:'0px'}}>
           <VStack color={"#fff"} alignItems={"start"}>
             <Link>Help</Link>
             <Link>Demo</Link>
@@ -51,7 +51,7 @@ const Footer = () => {
               <form>
                 <Input
                   p={"22px"}
-                  w={"180px"}
+                  w={{base:'100%', md:"180px"}}
                   bg={"#F9F9F9"}
                   fontSize={"14px"}
                   borderRadius={"10px 0px 0px 10px"}
@@ -72,7 +72,7 @@ const Footer = () => {
           </VStack>
         </Flex>
         <Divider mt={"80px"} color={"#fff"} />
-        <Flex justifyContent={"space-between"} w={"100%"}>
+        <Flex justifyContent={"space-between"} w={"100%"} gap={{base: '20px', lg:'0px'}} flexWrap={'wrap'} >
           <Text fontSize={"13px"} color={"#17D1C6"}>
             © 2023 Movva technologies. All Right Reserved
           </Text>

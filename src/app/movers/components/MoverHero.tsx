@@ -27,19 +27,20 @@ const MoverHero = () => {
           py={["1rem", "3rem", "5rem", "5rem"]}
         >
           <Stack width="100%" maxW={"1249px"} mx="auto">
-            <Flex justifyContent={"space-between"}>
-              <VStack py={"30px"} alignItems={"start"} gap={"50px"} >
+            <Flex alignItems={'center'} justifyContent={{base:'center', lg:"space-between"}} direction={{base: 'column-reverse', lg:'row'}}>
+              <VStack py={"30px"}  alignItems={{base:'center', lg:"start"}} gap={"50px"} >
                 <Text
-                  w={{ base: "100%", md: "612px" }}
+                  w={{ base: "100%",lg: "612px" }}
                   color={"#fff"}
                   fontWeight={"700"}
                   fontSize={{ base: "38px", md: "60px", lg: "70px" }}
+                  textAlign={{base:'center', lg:"start"}}
                 >
                   Turn Your Daily Movement into Income.
                 </Text>
               </VStack>
-              <Box>
-                <Image src="movers/movers-img.png" alt="" />
+              <Box >
+                <Image src="movers/movers-img.png" alt="" w={{base:'100%', md:'525px'}}/>
               </Box>
             </Flex>
           </Stack>

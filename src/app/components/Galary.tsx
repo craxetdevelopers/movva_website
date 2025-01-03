@@ -5,7 +5,7 @@ import React from "react";
 
 const Galary = () => {
   return (
-    <Box py={["1rem", "2rem", "6.5rem", "6.5rem"]}>
+    <Box py={["1rem", "2rem", "4.5rem", "6.5rem"]}>
       <Flex justifyContent={'space-between'}>
         <Box>
           <Image src="landingpage/galary-img1.png" alt="" />

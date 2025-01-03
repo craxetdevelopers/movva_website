@@ -22,10 +22,13 @@ const OurVision = () => {
           width="100%"
           maxW={"1249px"}
           mx="auto"
-          justifyContent={"space-between"}
+          justifyContent={{base:'center', xl:"space-between"}}
+          flexWrap={'wrap'}
+          gap={{base: '40px'}}
+
         >
           {vision.map((data, idx) => (
-            <Stack
+            <VStack
               w={"541px"}
               h={"auto"}
               bg={"#17D1C6"}
@@ -34,21 +37,22 @@ const OurVision = () => {
               color={"#22244E"}
               key={idx}
             >
-              <Stack h={"400px"}>
-                <Heading fontSize={"63.75px"} fontWeight={"600"}>
+              <Stack  h={{base:'180px',md:"250px", lg:'400px'}}>
+                <Heading fontSize={{base:'30px', md:'46px', lg:"63.75px"}} fontWeight={"600"}>
                   {data.title}
                 </Heading>
-                <Text fontSize={"33.43px"} fontWeight={"400"} >
+                <Text fontSize={{base:'20px', md:'26px', lg:"33.43px"}} fontWeight={"400"} >
                   {data.details}
                 </Text>
               </Stack>
-              <VStack alignItems={"end"}>
+              <VStack alignItems={"flex-end"} w={'100%'}>
                 <Box>
-                  <Image src="about/arrow.png" alt="" />
+                  <Image src="about/arrow.png" alt="" w={{base:'20px', md:'34px', lg:'44px'}}/>
                 </Box>
               </VStack>
-            </Stack>
+            </VStack>
           ))}
+          
         </Flex>
       </Box>
     </div>

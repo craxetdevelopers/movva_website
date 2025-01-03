@@ -23,10 +23,11 @@ const AboutHero = () => {
         >
           <VStack width="100%" maxW={"1249px"} mx="auto">
             <Text
-              fontSize={"75px"}
+              fontSize={{ base: "32px", md: "55px", lg: "75px" }}
               color={"#fff"}
               fontWeight={"700"}
-              w={"900px"}
+              w={{ base: "100%", lg: "900px" }}
+             
               textAlign={"center"}
             >
               Revolutionizing Last Mile Delivery, One Mover at a Time.{" "}

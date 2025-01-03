@@ -15,7 +15,7 @@ import React from "react";
 const SendMovva = () => {
   return (
     <Box
-      h="100vh"
+      h={{base:'auto', md:"100vh"}}
       w={"100%"}
       backgroundImage="url('/senders/whysend-img.png')"
       backgroundPosition="center"
@@ -35,7 +35,7 @@ const SendMovva = () => {
             mx="auto"
             alignItems={"start"}
           >
-            <Heading fontSize={"60px"} fontWeight={"700"}>
+            <Heading fontSize={{ base: "38px", md: "45px", lg: "60px" }} fontWeight={"700"}>
               Why Send with Movva?
             </Heading>
             <VStack alignItems={"start"} pt={"50px"} gap={"50px"}>
@@ -45,10 +45,10 @@ const SendMovva = () => {
                     <Image src="senders/check-circle.png" alt="" />
                   </Box>
                   <VStack alignItems={"start"}>
-                    <Heading fontSize={"32px"} fontWeight={"600"}>
+                    <Heading fontSize={{ base: "24px", lg: "32px" }} fontWeight={"600"}>
                       {data.title}
                     </Heading>
-                    <Text fontSize={"21px"} fontWeight={"400"}>
+                    <Text fontSize={{ base: "18px", lg: "25px"}} fontWeight={"400"}>
                       {data.details}
                     </Text>
                   </VStack>
