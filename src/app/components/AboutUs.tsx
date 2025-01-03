@@ -16,10 +16,10 @@ const AboutUs = () => {
     >
       <Box
         px={["1rem", "2rem", "2rem", "2rem", "0"]}
-        py={["1rem", "2rem", "6.5rem", "6.5rem"]}
+        py={["1rem", "2rem", "4.5rem", "6.5rem"]}
       >
-        <Flex width="100%" maxW={"1249px"} mx="auto" justifyContent={'space-between'}>
-          <VStack alignItems={'start'}>
+        <Flex width="100%" maxW={"1249px"} mx="auto" justifyContent={'space-between'} direction={{base: 'column', lg:'row'}} gap={{base: '40px', lg:'0px'}}>
+          <VStack alignItems={{base:'center', lg:'start'}} display={{ base: "none", lg: "block" }}>
             <Heading
               sx={{
                 color: "transparent",
@@ -29,23 +29,25 @@ const AboutUs = () => {
               }}
               bg={"transparent"}
               opacity={"0.2"}
-              fontSize={"104px"}
+              fontSize={{ base: "38px", md: "70px", lg: "104px" }}
+              
             >
               About us
             </Heading>
             <Heading
               color={"#FFFFFF"}
               fontWeight={"700"}
-              w={"400px"}
-              fontSize={"52px"}
+              w={{base:'100%', lg:"400px"}}
+              fontSize={{ base: "28px", md: "35px", lg: "52px" }}
+              textAlign={{base:'center', lg:'start'}}
             >
               Revolutionizing Last Mile Delivery, One Mover at a Time.
             </Heading>
             <Button mt={'50px'} p={'30px 25px'} bg={'#17D1C6'} borderRadius={'100px'} color={'#22244E'}> About us</Button>
           </VStack>
-          <Box>
-            <Image src="landingpage/abt-img.png" alt=""/>
-          </Box>
+          <VStack>
+            <Image src="landingpage/abt-img.png" alt="" w={{base:'100%', md:'538px'}}/>
+          </VStack>
         </Flex>
       </Box>
     </Box>

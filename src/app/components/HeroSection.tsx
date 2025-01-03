@@ -7,41 +7,44 @@ import Navbar from "./Navbar";
 const HeroSection = () => {
   return (
     <Box
-      h="auto"
+      h="100%"
       w="100%"
       backgroundImage="url('/landingpage/hero-bg.png')"
-      backgroundPosition="center"
       backgroundRepeat="repeat"
+      pb={'3rem'}
+    
     >
-      <Stack>
+      <Stack gap={'2rem'}  h={'auto'} >
         <Navbar />
-        <Box
+        <Stack
           px={["1rem", "2rem", "2rem", "2rem", "0"]}
-          py={["1rem", "3rem", "5rem", "5rem"]}
+          // py={{base: '2rem', lg: '5rem'}}
         >
-          <Stack width="100%" maxW={"1249px"} mx="auto">
+          <Stack width="100%" maxW={"1249px"} mx="auto" >
             <Text
-              w={{ base: "100%", md: "776px" }}
+              w={{ base: "100%", lg: "776px" }}
               color={"#fff"}
               fontWeight={"700"}
               fontSize={{ base: "38px", md: "60px", lg: "81px" }}
+              textAlign={{base:'center', lg:'start'}}
+              py={{base: '1.5rem', md: '4rem'}}
             >
               Delivery, Simplified for Everyone
             </Text>
-            <Flex justifyContent={'space-between'}>
-              <VStack py={'30px'} alignItems={'start'} gap={'50px'}>
-                <Text color={'#FFFFFF'} fontWeight={'400'} w={'527px'} fontSize={'21px'}>
+            <Flex justifyContent={'space-between'} direction={{base: 'column', md:'row'}}>
+              <VStack py={'30px'} alignItems={{base:'center', lg:'start'}} gap={'50px'}>
+                <Text color={'#FFFFFF'}  textAlign={{base:'center', md:'start'}} fontWeight={'400'} w={{base:'', md:'450px', lg:'527px'}}  fontSize={'21px'}>
                   we believe everyone deserves an opportunity to earn and every
                   package deserves to arrive on time.
                 </Text>
-                <Button py={'25px'} bg={'#17D1C6'} border={'1px solid #2057C2'}>Learn more</Button>
+                <Button p={"30px 25px"} bg={'#17D1C6'} border={'1px solid #2057C2'} borderRadius={"100px"}>Learn more</Button>
               </VStack>
-              <Box>
-                <Image src="landingpage/hero-img1.png" alt=""/>
-              </Box>
+              <VStack >
+                <Image src="landingpage/hero-img1.png" alt="" w={{base:'100%', sm:'525px'}} />
+              </VStack>
             </Flex>
           </Stack>
-        </Box>
+        </Stack>
       </Stack>
     </Box>
   );

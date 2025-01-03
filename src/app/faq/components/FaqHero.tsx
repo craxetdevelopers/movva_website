@@ -15,19 +15,19 @@ const FaqHero = () => {
         >
           <Stack width="100%" maxW={"1249px"} mx="auto" color={"#22244E"}>
             <Flex justifyContent={"space-between"} pos={"relative"} alignItems={'center'}>
-              <VStack py={"30px"} alignItems={"start"} gap={"30px"}>
+              <VStack py={"30px"} textAlign={{base:'center', lg:'start'}} alignItems={{base:'center', lg:"start"}} gap={"30px"}>
                 <Text
-                  w={{ base: "100%", md: "795px" }}
+                  w={{ base: "100%", lg: "795px" }}
                   fontWeight={"700"}
                   fontSize={{ base: "38px", md: "60px", lg: "70px" }}
-                  lineHeight={'90px'}
+                  lineHeight={{base:'auto', lg:'80px'}}
                 >
                   Frequently Asked Questions (FAQs)
                 </Text>
-                <Text fontSize={'24px'}>Got Questions? We’ve Got Answers.</Text>
+                <Text fontSize={{ base: "16px", md: "24px"}}>Got Questions? We’ve Got Answers.</Text>
               </VStack>
-              <Box>
-                <Image src="faq/faq-img.png" alt="" />
+              <Box display={{ base: "none", lg: "block" }}>
+                <Image src="faq/faq-img.png" alt="" w={{base:'100%', md:'525px'}}/>
               </Box>
             </Flex>
           </Stack>

@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import {
   Drawer,
   DrawerBody,
-  DrawerCloseButton,
   DrawerContent,
   DrawerOverlay,
   Image,
@@ -32,20 +31,21 @@ const Navbar = () => {
 
   return (
     <Box
-      bg={"transparent"}
+      bg={"none"}
       color={"#fff"}
       h="72px"
       zIndex={10000000000000}
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
-      py={"4rem"}
+      
     >
       <Flex
-        h="100%"
+        h="uto"
         alignItems={"center"}
         justifyContent={"space-between"}
         width="100%"
         maxW={"1249px"}
         mx="auto"
+        pt="1rem"
       >
         <Box
           onClick={() => router.push("/")}
@@ -53,7 +53,11 @@ const Navbar = () => {
           height="auto"
           cursor="pointer"
         >
-          <Image src={pathname === '/faq' ? '/logo2.png' :  "/logo.png" } alt="" />
+          <Image
+            src={pathname === "/faq" ? "/logo2.png" : "/logo.png"}
+            alt=""
+            width={{base:'70px', md:"100px"}}
+          />
         </Box>
         <Box
           display={{ base: "none", md: "flex" }}
@@ -67,40 +71,68 @@ const Navbar = () => {
             fontWeight={"700"}
             fontSize={"14px"}
           >
-            <ListItem style={{ color: isActiveMenu("/") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff" }}>
+            <ListItem
+              style={{
+                color: isActiveMenu("/")
+                  ? "grey"
+                  : pathname === "/faq"
+                  ? "#22244E"
+                  : "#fff",
+              }}
+            >
               <Link href="/">Home</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/about") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff"   
+                color: isActiveMenu("/about")
+                  ? "grey"
+                  : pathname === "/faq"
+                  ? "#22244E"
+                  : "#fff",
               }}
             >
               <Link href="/about">About</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/movers") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff",
+                color: isActiveMenu("/movers")
+                  ? "grey"
+                  : pathname === "/faq"
+                  ? "#22244E"
+                  : "#fff",
               }}
             >
               <Link href="/movers">Movers</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/senders") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff",
+                color: isActiveMenu("/senders")
+                  ? "grey"
+                  : pathname === "/faq"
+                  ? "#22244E"
+                  : "#fff",
               }}
             >
               <Link href="/senders">Senders</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/business") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff",
+                color: isActiveMenu("/business")
+                  ? "grey"
+                  : pathname === "/faq"
+                  ? "#22244E"
+                  : "#fff",
               }}
             >
               <Link href="/business">Business</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/faq") ? "grey" : pathname === '/faq' ? '#22244E' : "#fff",
+                color: isActiveMenu("/faq")
+                  ? "grey"
+                  : pathname === "/faq"
+                  ? "#22244E"
+                  : "#fff",
               }}
             >
               <Link href="/faq">FAQ</Link>
@@ -119,16 +151,18 @@ const Navbar = () => {
           {!isOpen ? (
             <BiMenu
               color="#fff"
+              cursor={"pointer"}
+              fontSize="30px"
               onClick={() => {
-                console.log("Opening menu");
                 setIsOpen(true);
               }}
             />
           ) : (
             <BiX
               color="#fff"
+              fontSize="30px"
+              cursor={"pointer"}
               onClick={() => {
-                console.log("Closing menu menu");
                 setIsOpen(false);
               }}
             />
@@ -142,38 +176,51 @@ const Navbar = () => {
           placement="left"
         >
           <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerBody bgColor="#030c1c">
+          <DrawerContent bg={"#17D1C6"}>
+            {/* <DrawerCloseButton /> */}
+            <DrawerBody px={"2rem"}>
               <Flex direction={"column"} width={"100%"}>
-                <Box
-                  width="124.56px"
-                  height="36.76px"
-                  cursor="pointer"
-                  onClick={() => router.push("/")}
-                >
-                  <Image src="/logo.png" alt="" />
-                </Box>
                 <List
                   spacing={"1rem"}
-                  my={"2rem"}
+                  my={"9rem"}
                   style={{ listStyle: "none" }}
-                  color={"#ffffff"}
+                  color={"#22244E"}
                 >
-                  <ListItem color={"#ffffff"} onClick={() => setIsOpen(false)}>
+                  <ListItem
+                    _hover={{ color: "grey" }}
+                    onClick={() => setIsOpen(false)}
+                  >
                     <Link href="/">Home</Link>
                   </ListItem>
-                  <ListItem color={"#ffffff"} onClick={() => setIsOpen(false)}>
-                    <Link href="/hackathon">Hackathons</Link>
+                  <ListItem
+                    _hover={{ color: "grey" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link href="/about">About</Link>
                   </ListItem>
-                  <ListItem color={"#ffffff"} onClick={() => setIsOpen(false)}>
-                    <Link href="/community-view">Communities</Link>
+                  <ListItem
+                    _hover={{ color: "grey" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link href="/movers">Movers</Link>
                   </ListItem>
-                  {/* <ListItem color={'#ffffff'} onClick={() => setIsOpen(false)}>
-                    <Link href="/leaderboard">Leaderboard</Link>
-                  </ListItem> */}
-                  <ListItem onClick={() => setIsOpen(false)}>
-                    <Link href="/help">Help</Link>
+                  <ListItem
+                    _hover={{ color: "grey" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link href="/senders">Senders</Link>
+                  </ListItem>
+                  <ListItem
+                    _hover={{ color: "grey" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link href="/business">Business</Link>
+                  </ListItem>
+                  <ListItem
+                    _hover={{ color: "grey" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link href="/faq">FAQ</Link>
                   </ListItem>
                 </List>
 

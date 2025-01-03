@@ -27,38 +27,39 @@ const MoveYourWay = () => {
         py={["1rem", "2rem", "2.5rem", "2.5rem"]}
       >
         <VStack width="100%" maxW={"1249px"} mx="auto" pb={'80px'}>
-          <Heading fontSize={"60px"} color={"#000"}>
+          <Heading fontSize={{ base: "28px", md: "45px", lg: "60px" }} color={"#000"}>
             Movve your Way
           </Heading>
-          <Flex mb={'60px'} w={"100%"} mt={"50px"} justifyContent={"space-between"}>
+          <Flex mb={'60px'} w={"100%"} mt={"50px"} justifyContent={{base:'center', xl:"space-between"}} flexWrap={'wrap'} gap={{base: '40px'}}>
             {yourWay.map((data, idx) => (
               <VStack
-                h={"448px"}
-                w={"362px"}
+                h={{base:'100%', lg:"448px"}}
+                w={{base:'100%', md:"362px"}}
                 bg={data.bg}
                 borderRadius={"36px"}
                 p={"30px"}
                 alignItems={"start"}
                 key={idx}
               >
-                <Stack h={"250px"}>
+                <Stack h={{base:'auto',md:"250px"}}>
                   <Heading
                     color={data.titleColor}
-                    fontSize={"38.1px"}
+                    fontSize={{base:'29px', lg:"38.1px"}}
                     fontWeight={"600"}
                   >
                     {data.title}
                   </Heading>
                   <Text
-                    w={"257px"}
+                    w={{base:'100%', lg:"257px"}}
                     pt={"15px"}
-                    fontSize={"18px"}
+                    fontSize={{base:'18px', lg:"18px"}}
+                  
                     color={data.color}
                   >
                     {data.details}
                   </Text>
                 </Stack>
-                <Box pt={"30px"}>
+                <Box pt={{base:'10px', lg:"30px"}}>
                   <Image src={data.img} alt="" />
                 </Box>
               </VStack>

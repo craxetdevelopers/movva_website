@@ -19,12 +19,13 @@ const BusinessFeatures = () => {
         justifyContent={"space-between"}
         py={"40px"}
         alignItems={"center"}
+        direction={{base:'column', lg:'row'}}
       >
-        <Box>
+        <Box display={{ base: "none", lg: "block" }}>
           <Image src="business/business-img.png" alt="" />
         </Box>
-        <VStack color={"#14141A"} alignItems={"start"} w={"600px"}>
-          <Heading w={"499px"} fontSize={"40px"} fontWeight={"700"} mb={"40px"}>
+        <VStack color={"#14141A"} alignItems={"start"} w={{base:'100%', lg:"600px"}}>
+          <Heading w={{ base: "100%", lg: "499px" }}  fontSize={{ base: "28px", lg: "40px" }} fontWeight={"700"} mb={"40px"}>
             Key Features for Businesses:
           </Heading>
           <VStack alignItems={"start"} gap={"25px"}>
@@ -33,7 +34,7 @@ const BusinessFeatures = () => {
                 <Box>
                   <Image src="business/key-icon.png" alt="" />
                 </Box>
-                <Text fontSize={"24px"}>
+                <Text fontSize={{ base: "16px", md: "24px"}}>
                   {data.details}
                 </Text>
               </Flex>

@@ -7,26 +7,37 @@ const WhyChoose = () => {
   return (
     <Box w={"100%"} h="auto" pos={"relative"}>
       <Box
-        backgroundImage="url('/about/choose-bg.png')"
-        backgroundRepeat="no-repeat"
-        w={"100%"}
-        maxW={"1470px"}
-        h="200px"
-        right={"3"}
+        left={{ base: "10px", md: "140px", lg: "200px" }}
+        display={{ base: "none", md: "block" }}
         top={"70"}
         pos={"absolute"}
-      ></Box>
-      <Box w="100%" backgroundSize="inherit" px={" 200px  "}>
+      >
+        <Image src="/about/choose-bg.png" alt="" />
+      </Box>
+      <Box w="100%" maxW="1249px" mx={"auto"}>
         <Box
-          py={["1rem", "2rem", "10.5rem", "10.5rem"]}
+          py={["3rem", "4rem", "7.5rem", "7.5rem"]}
           px={["1rem", "2rem", "2rem", "2rem", "0"]}
+          w={"100%"}
         >
-          <VStack alignItems={"start"} width="100%" maxW="1249px">
-            <Heading fontSize={"57.65px"} color={"#000000"} fontWeight={"700"}>
-              Why Choose Movva?
-            </Heading>
-            <Flex pt={"100px"} justifyContent={"space-between"} w={"100%"}>
-              <Box>
+          <VStack alignItems={{ base: "center", lg: "start" }}>
+            <VStack textAlign={{ base: "center", lg: "start" }}>
+              <Heading
+                fontSize={{ base: "38px", md: "45px", lg: "57.65px" }}
+                color={"#000000"}
+                fontWeight={"700"}
+              >
+                Why Choose Movva?
+              </Heading>
+            </VStack>
+            <Flex
+              pt={{ base: "30px", md: "60px", lg: "100px" }}
+              justifyContent={{ base: "center", xl: "space-between" }}
+              w={"100%"}
+              flexWrap={"wrap"}
+              gap={{ base: "40px" }}
+            >
+              <Box display={{ base: "none", md: "block" }}>
                 <Image src="about/choose-img.png" alt="" />
               </Box>
               <VStack alignItems={"start"} justifyContent={"space-between"}>
@@ -40,11 +51,20 @@ const WhyChoose = () => {
                     <Box>
                       <Image src={data.img} alt="" />
                     </Box>
-                    <VStack alignItems={"start"} w={"428px"}>
-                      <Heading fontSize={"40px"} fontWeight={"700"}>
+                    <VStack
+                      alignItems={"start"}
+                      w={{ base: "100%", lg: "428px" }}
+                    >
+                      <Heading
+                        fontSize={{ base: "24px", md: "32px", lg: "40px" }}
+                        fontWeight={"700"}
+                      >
                         {data.title}
                       </Heading>
-                      <Text fontSize={"33.43px"} fontWeight={"400"}>
+                      <Text
+                        fontSize={{ base: "18px", md: "25px", lg: "33.43px" }}
+                        fontWeight={"400"}
+                      >
                         {data.details}
                       </Text>
                     </VStack>

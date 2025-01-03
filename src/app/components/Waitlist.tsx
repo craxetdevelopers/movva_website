@@ -22,13 +22,14 @@ const Waitlist = () => {
         maxW={"1249px"}
         mx="auto"
         backgroundColor={"#17D1C6"}
-        h="321px"
+        h={{base:'auto', lg:"321px"}}
         w="100%"
         backgroundImage="url('/landingpage/waitlist-bg.png')"
         backgroundPosition=""
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
-        px={["1rem", "2rem", "2rem", "2rem", "0"]}
+        px={["2rem", "4rem", "2rem", "2rem", "0"]}
+        py={["4rem", "4rem", "2rem", "2rem", "0"]}
         borderRadius={"20px"}
       >
         <Flex
@@ -44,15 +45,17 @@ const Waitlist = () => {
               justifyContent={"space-between"}
               w={"100%"}
               h={"100%"}
+              direction={{base: 'column', lg:'row'}}
               alignItems={"center"}
+              gap={{base: '40px', lg:'0px'}}
             >
               <VStack alignItems={"start"} w={"100%"} gap={'20px'}>
                 <Heading>Join the waitlist</Heading>
-                <Flex gap={'15px'}>
+                <Flex gap={'15px'} flexWrap={'wrap'}>
                   <form>
                     <Input
                       p={"22px"}
-                      w={"346px"}
+                      w={{base:'100%', sm:"346px"}}
                       bg={"#F9F9F9"}
                       fontSize={'14px'}
                       borderRadius={"28px"}
@@ -67,8 +70,8 @@ const Waitlist = () => {
                   </Button>
                 </Flex>
               </VStack>
-              <Box>
-                <Image src="landingpage/waitlist-img.png" alt="" />
+              <Box display={{ base: "none", lg: "block" }}>
+                <Image src="landingpage/waitlist-img.png" alt=""  w={{base:'100%', md:'350px'}}/>
               </Box>
             </Flex>
           </VStack>
