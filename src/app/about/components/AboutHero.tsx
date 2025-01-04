@@ -5,7 +5,6 @@ import { Box, Image, Stack, Text, VStack } from "@chakra-ui/react";
 
 import React from "react";
 
-
 const AboutHero = () => {
   return (
     <Box
@@ -27,7 +26,6 @@ const AboutHero = () => {
               color={"#fff"}
               fontWeight={"700"}
               w={{ base: "100%", lg: "900px" }}
-             
               textAlign={"center"}
             >
               Revolutionizing Last Mile Delivery, One Mover at a Time.{" "}
