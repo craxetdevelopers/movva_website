@@ -36,6 +36,22 @@ a {
   text-decoration: none;
 }
 
+.scrolling-gallery {
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50%); /* Adjust this to prevent white space */
+  }
+}
+
+
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

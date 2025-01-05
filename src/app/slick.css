@@ -1,0 +1,37 @@
+.slider-container .slick-slide {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .slider-container .slick-track {
+    display: flex;
+    gap: 0; 
+  }
+  
+  .slider-container .slick-list {
+    overflow: hidden; /* Prevent extra overflow */
+  }
+  
+  .slick-dots li {
+    margin: 0 5px; /* Adjust dots spacing */
+    width: 20px;
+  }
+  
+  .slick-dots li button:before {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 10px;
+    background-color: red; /* Default for non-active dots */
+    border-radius: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+ .slick-active button:before {
+    background-color: #17d1c6; /* Active dot color */
+    transform: scale(1.1); /* Optional: Highlight active dot with scale */
+  }
+  .slick-active {
+    outline: 2px solid red;
+    color: blue; /* Debugging: Outline active dot */
+  }

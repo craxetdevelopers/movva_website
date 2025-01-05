@@ -8,10 +8,11 @@ import MoveYourWay from "./components/MoveYourWay";
 import Waitlist from "./components/Waitlist";
 import { Box } from "@chakra-ui/react";
 
+
 export default function Home() {
   return (
     <div>
-      <Box bg={"#FFFFFF"} w={"100%"} h={"auto"}>
+      <Box bg={"#FFFFFF"}  w={"100%"} h={'auto'}>
         <HeroSection />
         <AboutUs />
         <MoveYourWay />
