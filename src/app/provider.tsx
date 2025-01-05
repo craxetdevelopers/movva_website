@@ -1,6 +1,14 @@
-import { ChakraProvider } from "@chakra-ui/react";
+"use client";
+
+import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
+
 export default function Providers({ children }: { children: ReactNode }) {
-  return <ChakraProvider>{children}</ChakraProvider>;
-};
+  return (
+    <ChakraProvider>
+      <CSSReset />
+      {children}
+    </ChakraProvider>
+  );
+}

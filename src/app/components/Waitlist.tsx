@@ -14,7 +14,7 @@ import React from "react";
 const Waitlist = () => {
   return (
     <Box
-      py={["1rem", "2rem", "6.5rem", "6.5rem"]}
+      py={["3rem", "2rem", "6.5rem", "6.5rem"]}
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
     >
       <Box
