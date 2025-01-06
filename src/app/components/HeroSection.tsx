@@ -55,7 +55,7 @@ const HeroSection = () => {
       w="100%"
       backgroundImage="url('/landingpage/hero-bg.png')"
       backgroundRepeat="repeat"
-      pb={"3rem"}
+      pb={"1.5rem"}
     >
       <Stack gap={"2rem"} h={"auto"}>
         <Navbar />
@@ -71,7 +71,7 @@ const HeroSection = () => {
                     alignItems={"start"}
                   >
                     <Text
-                      w={{ base: "100%", lg: "776px" }}
+                      w={{ base: "100%", lg: "796px" }}
                       color={"#fff"}
                       fontWeight={"700"}
                       fontSize={{ base: "38px", md: "60px", lg: "81px" }}
@@ -112,7 +112,7 @@ const HeroSection = () => {
                         <Image
                           src={data.img}
                           alt=""
-                          w={{ base: "100%", sm: "425px" }}
+                          w={{ base: "100%", sm: "405px" }}
                         
                         />
                       </VStack>
@@ -138,7 +138,7 @@ interface Hero {
 
 const hero: Hero[] = [
   {
-    title: "Delivery, Simplified for Everyone",
+    title: "Already heading somewhere? Why not earn as you go",
     img: "landingpage/hero-img1.png",
     details:
       "we believe everyone deserves an opportunity to earn and every package deserves to arrive on time.",
