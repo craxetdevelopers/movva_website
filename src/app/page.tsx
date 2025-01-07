@@ -1,6 +1,7 @@
 "use client";
 
 import AboutUs from "./components/AboutUs";
+import FaqSec from "./components/FaqSec";
 import Footer from "./components/Footer";
 import Galary from "./components/Galary";
 import HeroSection from "./components/HeroSection";
@@ -18,6 +19,7 @@ export default function Home() {
         <MoveYourWay />
         <Galary />
         <Waitlist />
+        <FaqSec />
         <Footer />
       </Box>
     </div>

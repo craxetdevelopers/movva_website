@@ -3,8 +3,6 @@
 import {
   Box,
   Button,
-  Checkbox,
-  CheckboxGroup,
   Divider,
   Flex,
   FormControl,
@@ -17,9 +15,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const AboutUs = () => {
+   const router = useRouter()
   return (
     <Box
       h="auto"
@@ -73,6 +73,7 @@ const AboutUs = () => {
               bg={"#17D1C6"}
               borderRadius={"100px"}
               color={"#22244E"}
+              onClick={() => router.push('/about')}
             >
               {" "}
               About us
@@ -133,7 +134,7 @@ const AboutUs = () => {
                       />
                     </InputGroup>
                   </FormControl>
-                  <FormControl>
+                  {/* <FormControl>
                     <FormLabel fontSize={"22px"} color={"#fff"}>
                       Preferred type
                     </FormLabel>
@@ -224,7 +225,7 @@ const AboutUs = () => {
                         </Checkbox>
                       </Flex>
                     </CheckboxGroup>
-                  </FormControl>
+                  </FormControl> */}
                   <VStack mt={"5px"} alignItems={"start"} w={"100%"}>
                     <Button
                       p={"23px 60px"}
