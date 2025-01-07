@@ -142,7 +142,7 @@ const hero: Hero[] = [
     title: "Already heading somewhere? Why not earn as you go",
     img: "landingpage/hero-img1.png",
     details:
-      "we believe everyone deserves an opportunity to earn and every package deserves to arrive on time.",
+      "We believe everyone deserves an opportunity to earn and every package deserves to arrive on time.",
   },
   {
     title: "Earn as You Go. Deliver with Movva.",
