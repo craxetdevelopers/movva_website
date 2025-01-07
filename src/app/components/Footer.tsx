@@ -74,7 +74,7 @@ const Footer = () => {
         <Divider mt={"80px"} color={"#fff"} />
         <Flex justifyContent={"space-between"} w={"100%"} gap={{base: '20px', lg:'0px'}} flexWrap={'wrap'} >
           <Text fontSize={"13px"} color={"#17D1C6"}>
-            © 2023 Movva technologies. All Right Reserved
+            © 2025 Movva technologies. All Right Reserved
           </Text>
           <Flex gap={'15px'}>
             <Flex alignItems={'center'} fontSize={"13px"} gap={'8px'} color={"#17D1C6"}>

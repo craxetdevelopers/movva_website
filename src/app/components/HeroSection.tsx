@@ -77,6 +77,7 @@ const HeroSection = () => {
                       fontSize={{ base: "38px", md: "60px", lg: "81px" }}
                       textAlign={{ base: "center", lg: "start" }}
                       py={{ base: "1rem", md: "4rem" }}
+                      lineHeight={'90px'}
                     >
                       {data.title}
                     </Text>
