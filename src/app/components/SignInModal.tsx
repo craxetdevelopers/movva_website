@@ -95,11 +95,22 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
                   gap={{ base: "30px", lg: "8px" }}
                   direction={{ base: "column", lg: "row" }}
                 >
-                  <FormControl>
+                  <FormControl position="relative">
+                    {!selectedDate && (
+                      <Text
+                        position="absolute"
+                        top="50%"
+                        left="0px"
+                        color="rgb(180, 177, 177)"
+                        pointerEvents="none"
+                        fontSize="sm"
+                      >
+                        Select Date and Time
+                      </Text>
+                    )}
                     <Input
                       type="datetime-local"
                       textAlign="start"
-                      alignItems={"start"}
                       justifyContent={"start"}
                       color={selectedDate ? "#000" : "rgb(180, 177, 177)"}
                       bg={"#F9F9F9"}
