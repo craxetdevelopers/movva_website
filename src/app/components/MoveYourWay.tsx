@@ -83,7 +83,7 @@ const MoveYourWay = () => {
             color={"#22244E"}
             onClick={() => router.push('/movers')}
           >
-            {" "}
+           
             Learn more
           </Button>
         </VStack>
