@@ -23,31 +23,6 @@ const HeroSection = () => {
     slidesToScroll: 1,
     autoplay: true,
     pauseOnHover: false,
-    // customPaging: () => (
-    //   <div
-    //     style={{
-    //       width: "30px",
-    //       height: "10px",
-    //       borderRadius: "1px",
-    //       margin: "10px 5px",
-    //       background: "transparent", // Non-active dots are transparent
-    //       border: "1px solid #ccc",
-          
-    //     }}
-    //   ></div>
-    // ),
-    // appendDots: (dots: React.ReactNode) => (
-    //   <div
-    //     style={{
-    //       display: "flex",
-    //       justifyContent: "center",
-    //       alignItems: "center",
-    //       padding: "10px 0",
-    //     }}
-    //   >
-    //     {dots}
-    //   </div>
-    // ),
   };
   return (
     <Box
@@ -76,8 +51,9 @@ const HeroSection = () => {
                       fontWeight={"700"}
                       fontSize={{ base: "38px", md: "60px", lg: "81px" }}
                       textAlign={{ base: "center", lg: "start" }}
-                      py={{ base: "1rem", md: "4rem" }}
-                      lineHeight={'90px'}
+                      pb={{ base: "2rem", md: "4rem" }}
+                      pt={{ base: "1rem", md: "4rem" }}
+                      lineHeight={{base:'50px', lg:'90px'}}
                     >
                       {data.title}
                     </Text>
@@ -95,7 +71,7 @@ const HeroSection = () => {
                           color={"#FFFFFF"}
                           textAlign={{ base: "center", md: "start" }}
                           fontWeight={"400"}
-                          w={{ base: "", md: "450px", lg: "527px" }}
+                          w={{ base: "100%", md: "450px", lg: "527px" }}
                           fontSize={"21px"}
                         >
                           {data.details}
