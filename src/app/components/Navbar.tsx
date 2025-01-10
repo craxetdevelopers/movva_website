@@ -17,10 +17,12 @@ import {
 import Link from "next/link";
 import { BiMenu, BiX } from "react-icons/bi";
 import { useRouter, usePathname } from "next/navigation";
+import SignInModal from "./SignInModal";
 // import { useAppContext } from '@/contexts/AppContext'
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -36,7 +38,6 @@ const Navbar = () => {
       h="72px"
       zIndex={10000000000000}
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
-      
     >
       <Flex
         h="uto"
@@ -56,7 +57,7 @@ const Navbar = () => {
           <Image
             src={pathname === "/faq" ? "/logo2.png" : "/logo.png"}
             alt=""
-            width={{base:'70px', md:"100px"}}
+            width={{ base: "70px", md: "100px" }}
           />
         </Box>
         <Box
@@ -140,7 +141,12 @@ const Navbar = () => {
           </List>
 
           <Flex gap={"1rem"} alignItems={"center"}>
-            <Button bg={"#FF7D6A"} color={"#CCEDEB"} _hover={{ color: "#000" }}>
+            <Button
+              bg={"#FF7D6A"}
+              color={"#CCEDEB"}
+              _hover={{ color: "#000" }}
+              onClick={() => setIsModalOpen(true)}
+            >
               Sign in
             </Button>
           </Flex>
@@ -148,13 +154,13 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <Box display={{ base: "block", md: "none" }}>
-          {!isOpen ? (
+          {!isOpenDrawer ? (
             <BiMenu
               color="#fff"
               cursor={"pointer"}
               fontSize="30px"
               onClick={() => {
-                setIsOpen(true);
+                setIsOpenDrawer(true);
               }}
             />
           ) : (
@@ -163,7 +169,7 @@ const Navbar = () => {
               fontSize="30px"
               cursor={"pointer"}
               onClick={() => {
-                setIsOpen(false);
+                setIsOpenDrawer(false);
               }}
             />
           )}
@@ -171,8 +177,8 @@ const Navbar = () => {
 
         {/* Mobile Sidebar Navigation */}
         <Drawer
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
+          isOpen={isOpenDrawer}
+          onClose={() => setIsOpenDrawer(false)}
           placement="left"
         >
           <DrawerOverlay />
@@ -188,48 +194,57 @@ const Navbar = () => {
                 >
                   <ListItem
                     _hover={{ color: "grey" }}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setIsOpenDrawer(false)}
                   >
                     <Link href="/">Home</Link>
                   </ListItem>
                   <ListItem
                     _hover={{ color: "grey" }}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setIsOpenDrawer(false)}
                   >
                     <Link href="/about">About</Link>
                   </ListItem>
                   <ListItem
                     _hover={{ color: "grey" }}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setIsOpenDrawer(false)}
                   >
                     <Link href="/movers">Movers</Link>
                   </ListItem>
                   <ListItem
                     _hover={{ color: "grey" }}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setIsOpenDrawer(false)}
                   >
                     <Link href="/senders">Senders</Link>
                   </ListItem>
                   <ListItem
                     _hover={{ color: "grey" }}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setIsOpenDrawer(false)}
                   >
                     <Link href="/business">Business</Link>
                   </ListItem>
                   <ListItem
                     _hover={{ color: "grey" }}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setIsOpenDrawer(false)}
                   >
                     <Link href="/faq">FAQ</Link>
                   </ListItem>
                 </List>
 
-                <Button>Sign in</Button>
+                <Button
+                  onClick={() => {
+                    setIsOpenDrawer(false);
+                    setIsModalOpen(true);
+                  }}
+                >
+                  Sign in
+                </Button>
               </Flex>
             </DrawerBody>
           </DrawerContent>
         </Drawer>
       </Flex>
+
+      <SignInModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </Box>
   );
 };
