@@ -55,7 +55,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
 
   const signUpMutation = useMutation({
     mutationFn: async (payload: SignUpPayload) => {
-      const res = await axios.post("https://movvaapi.onrender.com/v1/register", payload);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/register`, payload);
       return res?.data;
     },
     onSuccess: (data: SignUpPayload) => {
