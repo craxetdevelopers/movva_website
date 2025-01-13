@@ -21,9 +21,10 @@ import {
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { postRequest } from "../helpers";
+// import { postRequest } from "../helpers";
 import SuccessModal from "./SuccessModal";
 import { signUpSchema } from "../schemas";
+import axios from "axios";
 
 interface Props {
   isOpen: boolean;
@@ -54,7 +55,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
 
   const signUpMutation = useMutation({
     mutationFn: async (payload: SignUpPayload) => {
-      const res = await postRequest("/v1/register", payload);
+      const res = await axios.post("https://movvaapi.onrender.com/v1/register", payload);
       return res?.data;
     },
     onSuccess: (data: SignUpPayload) => {
@@ -258,3 +259,4 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
 };
 
 export default SignInModal;
+
