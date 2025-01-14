@@ -58,7 +58,6 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   const signUpMutation = useMutation({
     mutationFn: async (payload: SignUpPayload) => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/register`, payload);
-      console.log('hello', `${process.env.NEXT_PUBLIC_API_URL}`)
       return res?.data;
     },
     onSuccess: (data: SignUpPayload) => {

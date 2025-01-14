@@ -27,7 +27,7 @@ const SuccessModal = ({ isOpen, onClose }: Props) => {
         <ModalContent borderRadius={"48px"} p={{ base: "15px", lg: "60px" }} mt={'180px'}>
           <VStack w={"100%"}>
             <Box>
-              <Image src="/landingpage/message.png" alt="" />
+              <Image src="/landingpage/success-icon.png" alt="" />
             </Box>
             <ModalHeader
               pb={"0px"}
