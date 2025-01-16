@@ -147,7 +147,7 @@ const Navbar = () => {
               _hover={{ color: "#000" }}
               onClick={() => setIsModalOpen(true)}
             >
-              Sign in
+              Sign up
             </Button>
           </Flex>
         </Box>
@@ -236,7 +236,7 @@ const Navbar = () => {
                     setIsModalOpen(true);
                   }}
                 >
-                  Sign in
+                  Sign up
                 </Button>
               </Flex>
             </DrawerBody>

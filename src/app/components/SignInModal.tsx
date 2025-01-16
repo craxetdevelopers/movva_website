@@ -1,6 +1,7 @@
-'use client'
+"use client";
 
 import {
+  Box,
   Button,
   Divider,
   Flex,
@@ -9,6 +10,7 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  InputRightElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -27,6 +29,7 @@ import React, { useState } from "react";
 import SuccessModal from "./SuccessModal";
 import { signUpSchema } from "../schemas";
 import axios from "axios";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 interface Props {
   isOpen: boolean;
@@ -45,6 +48,7 @@ interface SignUpPayload {
 const SignInModal = ({ isOpen, onClose }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState<Record<string, string>>({});
+  const [show, setShow] = useState(false);
   const [formData, setFormData] = useState<SignUpPayload>({
     firstName: "",
     lastName: "",
@@ -57,7 +61,10 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
 
   const signUpMutation = useMutation({
     mutationFn: async (payload: SignUpPayload) => {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/register`, payload);
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/v1/register`,
+        payload
+      );
       return res?.data;
     },
     onSuccess: (data: SignUpPayload) => {
@@ -92,6 +99,9 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
     }
     signUpMutation.mutate(formData);
   };
+
+  // For password toggling
+  const handleShowPassword = () => setShow(!show);
 
   return (
     <Stack>
@@ -219,18 +229,26 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
                   <FormErrorMessage>{error.phone}</FormErrorMessage>
                 </FormControl>
                 <FormControl mt={"30px"} isInvalid={!!error.password}>
-                  <Input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    placeholder="Password*"
-                    _placeholder={{ color: "rgb(180, 177, 177)" }}
-                    bg={"#F9F9F9"}
-                    borderRadius={"12px"}
-                    p={"24px"}
-                    border={"0.2px solid rgb(180, 177, 177)"}
-                  />
+                  <InputGroup>
+                    <Input
+                      type={show? 'text' : "password"}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                      placeholder="Password*"
+                      _placeholder={{ color: "rgb(180, 177, 177)" }}
+                      bg={"#F9F9F9"}
+                      borderRadius={"12px"}
+                      p={"24px"}
+                      border={"0.2px solid rgb(180, 177, 177)"}
+                    />
+                    <InputRightElement>
+                      <Box onClick={handleShowPassword} cursor={'pointer'}>
+                        {show ? <ViewOffIcon /> : <ViewIcon />}
+                      </Box>
+                    </InputRightElement>
+                  </InputGroup>
+
                   <FormErrorMessage>{error.password}</FormErrorMessage>
                 </FormControl>
               </ModalBody>
@@ -261,4 +279,3 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
 };
 
 export default SignInModal;
-
