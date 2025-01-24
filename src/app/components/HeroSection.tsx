@@ -12,8 +12,10 @@ import {
 import React from "react";
 import Navbar from "./Navbar";
 import Slider from "react-slick";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
+  const router = useRouter()
   const settings = {
     dots: false,
     infinite: true,
@@ -81,6 +83,7 @@ const HeroSection = () => {
                           bg={"#17D1C6"}
                           border={"1px solid #2057C2"}
                           borderRadius={"100px"}
+                          onClick={() => router.push('/movers')}
                         >
                           Learn more
                         </Button>
