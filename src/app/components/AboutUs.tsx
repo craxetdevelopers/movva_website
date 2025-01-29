@@ -21,7 +21,6 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { postRequest } from "../helpers";
 
 const LOCATIONIQ_API_KEY = "pk.de23e762aa8af882acf38d8812cfb4fc";
 
@@ -43,7 +42,6 @@ const AboutUs = () => {
       const res = await axios.get(
         `https://api.locationiq.com/v1/autocomplete.php?key=${LOCATIONIQ_API_KEY}&q=${query}&limit=5&countrycodes=NG&format=json&viewbox=2.573,6.393,3.757,6.702&bounded=1`
       );
-      console.log(res.data);
       return res?.data || [];
     } catch (error) {
       console.error("Error fetching address suggestions:", error);
@@ -65,7 +63,6 @@ const AboutUs = () => {
           dropoffLng,
         }
       );
-      console.log(response.data);
       setDropoffAddress("");
       setPickupAddress("");
       return response.data;
