@@ -34,8 +34,11 @@ const AboutUs = () => {
   const [dropoffLng, setDropoffLng] = useState<number | null>(null);
   const [suggestionsPick, setSuggestionsPick] = useState<any[]>([]);
   const [suggestionsDrop, setSuggestionsDrop] = useState<any[]>([]);
-  const [quote, setQuote] = useState<any | null>('_ _ _');
-  const [showReset, setShowReset] = useState(false)
+  const [quote, setQuote] = useState<any | null>("_ _ _");
+  const [showReset, setShowReset] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedPickup, setSelectedPickup] = useState<string | null>(null);
+  const [selectedDropoff, setSelectedDropoff] = useState<string | null>(null);
 
   //  Function to fetch address fron OpenStreetMap
   const fetchAddressSuggestion = async (query: string) => {
@@ -64,8 +67,8 @@ const AboutUs = () => {
           dropoffLng,
         }
       );
-      
-      setShowReset(true)
+
+      setShowReset(true);
       return response.data;
     },
     onSuccess: (data) => {
@@ -82,6 +85,7 @@ const AboutUs = () => {
   ) => {
     const query = e.target.value;
     setPickupAddress(query);
+    setSelectedPickup(null)
 
     if (query.length > 2) {
       setTimeout(async () => {
@@ -98,6 +102,7 @@ const AboutUs = () => {
   ) => {
     const query = e.target.value;
     setDropoffAddress(query);
+    setSelectedDropoff(null)
 
     if (query.length > 2) {
       setTimeout(async () => {
@@ -115,22 +120,38 @@ const AboutUs = () => {
       setPickupAddress(suggestion.display_name);
       setPickupLat(parseFloat(suggestion.lat));
       setPickupLng(parseFloat(suggestion.lon));
+      setSelectedPickup(suggestion.display_name);
       setSuggestionsPick([]);
     } else {
       setDropoffAddress(suggestion.display_name);
       setDropoffLat(parseFloat(suggestion.lat));
       setDropoffLng(parseFloat(suggestion.lon));
+      setSelectedDropoff(suggestion.display_name);
       setSuggestionsDrop([]);
     }
   };
 
+  // Handle the submit of Quotes
+  const handleSubmit = () => {
+    if (pickupAddress.trim() === dropoffAddress.trim()) {
+      setError("Pickup and drop-off locations cannot be the same.");
+      return;
+    }
+    if (!selectedPickup || !selectedDropoff) {
+      setError("Please pick from the suggested address");
+      return;
+    }
+    setError(null);
+    mutate();
+  };
+
   // Handles Reset button
-  const handleReset =() => {
+  const handleReset = () => {
     setDropoffAddress("");
     setPickupAddress("");
-    setQuote('_ _ _')
-    setShowReset(false)
-  }
+    setQuote("_ _ _");
+    setShowReset(false);
+  };
   return (
     <Box
       h="auto"
@@ -230,6 +251,7 @@ const AboutUs = () => {
                         onChange={(e) => handlePickupAddressChange(e)}
                       />
                     </InputGroup>
+                   
                     {suggestionsPick.length > 0 && (
                       <Box
                         maxHeight="200px"
@@ -279,6 +301,11 @@ const AboutUs = () => {
                         onChange={(e) => handleDropoffAddressChange(e)}
                       />
                     </InputGroup>
+                    {error && (
+                      <Text color="red.500" fontSize="sm" mt={2}>
+                        {error}
+                      </Text>
+                    )}
                     {suggestionsDrop.length > 0 && (
                       <Box
                         maxHeight="200px"
@@ -399,7 +426,13 @@ const AboutUs = () => {
                       </Flex>
                     </CheckboxGroup>
                   </FormControl> */}
-                  <Flex mt={"5px"} gap={'10px'} justifyContent={'space-between'} alignItems={"start"} w={"100%"}>
+                  <Flex
+                    mt={"5px"}
+                    gap={"10px"}
+                    justifyContent={"space-between"}
+                    alignItems={"start"}
+                    w={"100%"}
+                  >
                     <Button
                       p={"23px 60px"}
                       bg={"#FF7D6A"}
@@ -408,27 +441,27 @@ const AboutUs = () => {
                       fontSize={"18px"}
                       fontWeight={"600"}
                       isDisabled={!pickupAddress && !dropoffAddress}
-                      onClick={() => mutate()}
+                      onClick={handleSubmit}
                       isLoading={isPending}
                     >
                       {" "}
                       Get quote
                     </Button>
-                    {showReset && 
-                    <Button
-                      p={"23px 60px"}
-                      bg={'gray'}
-                      borderRadius={"7px"}
-                      color={"#fff"}
-                      fontSize={"18px"}
-                      fontWeight={"600"}
-                      onClick={handleReset}
-                      // isLoading={isPending}
-                    >
-                      {" "}
-                      Reset
-                    </Button>
-                    }
+                    {showReset && (
+                      <Button
+                        p={"23px 60px"}
+                        bg={"gray"}
+                        borderRadius={"7px"}
+                        color={"#fff"}
+                        fontSize={"18px"}
+                        fontWeight={"600"}
+                        onClick={handleReset}
+                        // isLoading={isPending}
+                      >
+                        {" "}
+                        Reset
+                      </Button>
+                    )}
                   </Flex>
                 </VStack>
               </form>
