@@ -34,7 +34,8 @@ const AboutUs = () => {
   const [dropoffLng, setDropoffLng] = useState<number | null>(null);
   const [suggestionsPick, setSuggestionsPick] = useState<any[]>([]);
   const [suggestionsDrop, setSuggestionsDrop] = useState<any[]>([]);
-  const [quote, setQuote] = useState<number | null>(0);
+  const [quote, setQuote] = useState<any | null>('_ _ _');
+  const [showReset, setShowReset] = useState(false)
 
   //  Function to fetch address fron OpenStreetMap
   const fetchAddressSuggestion = async (query: string) => {
@@ -63,8 +64,8 @@ const AboutUs = () => {
           dropoffLng,
         }
       );
-      setDropoffAddress("");
-      setPickupAddress("");
+      
+      setShowReset(true)
       return response.data;
     },
     onSuccess: (data) => {
@@ -123,6 +124,13 @@ const AboutUs = () => {
     }
   };
 
+  // Handles Reset button
+  const handleReset =() => {
+    setDropoffAddress("");
+    setPickupAddress("");
+    setQuote('_ _ _')
+    setShowReset(false)
+  }
   return (
     <Box
       h="auto"
@@ -391,7 +399,7 @@ const AboutUs = () => {
                       </Flex>
                     </CheckboxGroup>
                   </FormControl> */}
-                  <VStack mt={"5px"} alignItems={"start"} w={"100%"}>
+                  <Flex mt={"5px"} gap={'10px'} justifyContent={'space-between'} alignItems={"start"} w={"100%"}>
                     <Button
                       p={"23px 60px"}
                       bg={"#FF7D6A"}
@@ -406,13 +414,28 @@ const AboutUs = () => {
                       {" "}
                       Get quote
                     </Button>
-                  </VStack>
+                    {showReset && 
+                    <Button
+                      p={"23px 60px"}
+                      bg={'gray'}
+                      borderRadius={"7px"}
+                      color={"#fff"}
+                      fontSize={"18px"}
+                      fontWeight={"600"}
+                      onClick={handleReset}
+                      // isLoading={isPending}
+                    >
+                      {" "}
+                      Reset
+                    </Button>
+                    }
+                  </Flex>
                 </VStack>
               </form>
               <Divider borderColor={"#17D1C6"} pt={"10px"} />
               {quote !== null && (
                 <VStack>
-                  <Text fontSize={{ base: "35px", lg: "50px" }} color={"#fff"}>
+                  <Text fontSize={{ base: "30px", lg: "50px" }} color={"#fff"}>
                     {quote}
                   </Text>
                 </VStack>
