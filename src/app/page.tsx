@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Galary from "./components/Galary";
 import HeroSection from "./components/HeroSection";
 import MoveYourWay from "./components/MoveYourWay";
+import Navbar from "./components/Navbar";
 import Waitlist from "./components/Waitlist";
 import { Box } from "@chakra-ui/react";
 
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <div>
       <Box bg={"#FFFFFF"}  w={"100%"} h={'auto'}>
+        <Navbar />
         <HeroSection />
         <AboutUs />
         <MoveYourWay />

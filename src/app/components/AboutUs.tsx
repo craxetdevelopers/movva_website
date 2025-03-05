@@ -53,6 +53,7 @@ const AboutUs = () => {
     }
   };
 
+  // Fetching the location api
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
       if (!pickupLat || !pickupLng || !dropoffLat || !dropoffLng) {

@@ -41,7 +41,7 @@ interface SignUpPayload {
   lastName: string;
   email: string;
   gender: "Male" | "Female";
-  phone: string;
+  phoneNumber: string;
   password: string;
   type: "user" | "admin";
 }
@@ -54,7 +54,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
     lastName: "",
     email: "",
     gender: "Male",
-    phone: "",
+    phoneNumber: "",
     password: "",
     type: "user",
   });
@@ -62,9 +62,10 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   const signUpMutation = useMutation({
     mutationFn: async (payload: SignUpPayload) => {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/v1/register`,
+        `${process.env.NEXT_PUBLIC_API_URL}/register`,
         payload
       );
+      console.log(res?.data)
       return res?.data;
     },
     onSuccess: (data: SignUpPayload) => {
@@ -209,13 +210,13 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
                   <FormErrorMessage>{error.gender}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={!!error.phone}>
+                <FormControl isInvalid={!!error.phoneNumber}>
                   <InputGroup>
                     <InputLeftAddon p={"24px"}>+234</InputLeftAddon>
                     <Input
                       type="tel"
                       name="phone"
-                      value={formData.phone}
+                      value={formData.phoneNumber}
                       onChange={handleInputChange}
                       color={formData.gender ? "#000" : "rgb(180, 177, 177)"}
                       placeholder="Phone number*"
@@ -226,7 +227,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
                       border={"0.2px solid rgb(180, 177, 177)"}
                     />
                   </InputGroup>
-                  <FormErrorMessage>{error.phone}</FormErrorMessage>
+                  <FormErrorMessage>{error.phoneNumber}</FormErrorMessage>
                 </FormControl>
                 <FormControl mt={"30px"} isInvalid={!!error.password}>
                   <InputGroup>

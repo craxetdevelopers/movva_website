@@ -10,11 +10,11 @@ import {
   Image,
   Box,
   Flex,
-  List,
-  ListItem,
+  // List,
+  // ListItem,
   Button,
 } from "@chakra-ui/react";
-import Link from "next/link";
+// import Link from "next/link";
 import { BiMenu, BiX } from "react-icons/bi";
 import { useRouter, usePathname } from "next/navigation";
 import SignInModal from "./SignInModal";
@@ -27,20 +27,21 @@ const Navbar = () => {
   const pathname = usePathname();
 
   // Checking for the active
-  const isActiveMenu = (path: string) => {
-    return pathname === path;
-  };
+  // const isActiveMenu = (path: string) => {
+  //   return pathname === path;
+  // };
 
   return (
     <Box
-      bg={"none"}
+      bg={"#22244E"}
       color={"#fff"}
-      h="72px"
+      h="auto"
+      pb={"25px"}
       zIndex={10000000000000}
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
     >
       <Flex
-        h="uto"
+        h="auto"
         alignItems={"center"}
         justifyContent={"space-between"}
         width="100%"
@@ -64,7 +65,7 @@ const Navbar = () => {
           display={{ base: "none", md: "flex" }}
           gap={{ base: "none", md: "20px" }}
         >
-          <List
+          {/* <List
             gap={"2rem"}
             display={"flex"}
             alignItems={"center"}
@@ -138,12 +139,20 @@ const Navbar = () => {
             >
               <Link href="/faq">FAQ</Link>
             </ListItem>
-          </List>
+          </List> */}
 
-          <Flex gap={"1rem"} alignItems={"center"}>
+          <Flex gap={"3rem"} alignItems={"center"}>
             <Button
-              bg={"#FF7D6A"}
-              color={"#CCEDEB"}
+              variant={"unstyled"}
+              color={"#ffffff"}
+              _hover={{ color: "gray" }}
+              onClick={() => setIsModalOpen(true)}
+            >
+              Sign in
+            </Button>
+            <Button
+              bg={"#ffffff"}
+              color={"#000000"}
               _hover={{ color: "#000" }}
               onClick={() => setIsModalOpen(true)}
             >
@@ -186,7 +195,7 @@ const Navbar = () => {
             {/* <DrawerCloseButton /> */}
             <DrawerBody px={"2rem"}>
               <Flex direction={"column"} width={"100%"}>
-                <List
+                {/* <List
                   spacing={"1rem"}
                   my={"9rem"}
                   style={{ listStyle: "none" }}
@@ -228,7 +237,15 @@ const Navbar = () => {
                   >
                     <Link href="/faq">FAQ</Link>
                   </ListItem>
-                </List>
+                </List> */}
+                <Button
+                  onClick={() => {
+                    setIsOpenDrawer(false);
+                    setIsModalOpen(true);
+                  }}
+                >
+                  Sign in
+                </Button>
 
                 <Button
                   onClick={() => {
