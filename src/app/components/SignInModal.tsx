@@ -21,6 +21,7 @@ import {
   Select,
   Stack,
   Text,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
@@ -41,7 +42,7 @@ interface SignUpPayload {
   lastName: string;
   email: string;
   gender: "Male" | "Female";
-  phone: string;
+  phoneNumber: string;
   password: string;
   type: "user" | "admin";
 }
@@ -49,23 +50,39 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState<Record<string, string>>({});
   const [show, setShow] = useState(false);
+  const toast = useToast()
   const [formData, setFormData] = useState<SignUpPayload>({
     firstName: "",
     lastName: "",
     email: "",
     gender: "Male",
-    phone: "",
+    phoneNumber: "",
     password: "",
     type: "user",
   });
 
   const signUpMutation = useMutation({
     mutationFn: async (payload: SignUpPayload) => {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/v1/register`,
-        payload
-      );
-      return res?.data;
+      try {
+        const res = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/v1/register`,
+          payload,
+          { timeout: 50000 }
+        );
+        return res?.data;
+      } catch(error: any) {
+        if (axios.isAxiosError(error) && error.code === "ECONNABORTED") {
+          toast({
+            title: "Request timed out",
+            description: "Request timed out. Please try again.",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          })
+        }
+        throw error;
+      }
+      
     },
     onSuccess: (data: SignUpPayload) => {
       console.log("User registered:", data);
@@ -73,7 +90,13 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
       onClose();
     },
     onError: (error: any) => {
-      console.error("Error signing up:", error);
+      toast({
+        title: "Request failed",
+        description: error?.response?.data?.errors?.messages?.errors[0]?.message || "An error occurred.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      })
     },
   });
 
@@ -98,6 +121,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
       return;
     }
     signUpMutation.mutate(formData);
+    // setFormData('')
   };
 
   // For password toggling
@@ -209,13 +233,13 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
                   <FormErrorMessage>{error.gender}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={!!error.phone}>
+                <FormControl isInvalid={!!error.phoneNumber}>
                   <InputGroup>
                     <InputLeftAddon p={"24px"}>+234</InputLeftAddon>
                     <Input
                       type="tel"
-                      name="phone"
-                      value={formData.phone}
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
                       onChange={handleInputChange}
                       color={formData.gender ? "#000" : "rgb(180, 177, 177)"}
                       placeholder="Phone number*"
@@ -226,7 +250,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
                       border={"0.2px solid rgb(180, 177, 177)"}
                     />
                   </InputGroup>
-                  <FormErrorMessage>{error.phone}</FormErrorMessage>
+                  <FormErrorMessage>{error.phoneNumber}</FormErrorMessage>
                 </FormControl>
                 <FormControl mt={"30px"} isInvalid={!!error.password}>
                   <InputGroup>
