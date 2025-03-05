@@ -22,11 +22,11 @@ interface Props {
 const SuccessModal = ({ isOpen, onClose }: Props) => {
   return (
     <Stack>
-      <Modal isOpen={isOpen} onClose={onClose} size={{base: 'xs', lg:"xl"}}>
+      <Modal isOpen={isOpen} onClose={onClose} size={{base: 'xs', lg:"xl"}} >
         <ModalOverlay />
         <ModalContent
           borderRadius={"48px"}
-          py={{ base: "25px", lg: "60px" }}
+          py={{ base: "45px", lg: "60px" }}
           px={{ base: "15px", lg: "60px" }}
           mt={{base:'70px', lg:"180px"}}
         >
