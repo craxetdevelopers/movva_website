@@ -3,488 +3,82 @@
 import {
   Box,
   Button,
-  Divider,
-  Flex,
-  FormControl,
-  FormLabel,
   Heading,
-  Image,
-  Input,
-  InputGroup,
-  InputRightElement,
-  List,
-  ListItem,
+  Stack,
+  Tag,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-
-const LOCATIONIQ_API_KEY = "pk.de23e762aa8af882acf38d8812cfb4fc";
+// import { useRouter } from "next/navigation";
+import React from "react";
 
 const AboutUs = () => {
-  const router = useRouter();
-  const [pickupAddress, setPickupAddress] = useState("");
-  const [dropoffAddress, setDropoffAddress] = useState("");
-  const [pickupLat, setPickupLat] = useState<number | null>(null);
-  const [pickupLng, setPickupLng] = useState<number | null>(null);
-  const [dropoffLat, setDropoffLat] = useState<number | null>(null);
-  const [dropoffLng, setDropoffLng] = useState<number | null>(null);
-  const [suggestionsPick, setSuggestionsPick] = useState<any[]>([]);
-  const [suggestionsDrop, setSuggestionsDrop] = useState<any[]>([]);
-  const [quote, setQuote] = useState<any | null>("_ _ _");
-  const [showReset, setShowReset] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedPickup, setSelectedPickup] = useState<string | null>(null);
-  const [selectedDropoff, setSelectedDropoff] = useState<string | null>(null);
+  // const router = useRouter();
 
-  //  Function to fetch address fron OpenStreetMap
-  const fetchAddressSuggestion = async (query: string) => {
-    try {
-      const res = await axios.get(
-        `https://api.locationiq.com/v1/autocomplete.php?key=${LOCATIONIQ_API_KEY}&q=${query}&limit=5&countrycodes=NG&format=json&viewbox=2.573,6.393,3.757,6.702&bounded=1`
-      );
-      return res?.data || [];
-    } catch (error) {
-      console.error("Error fetching address suggestions:", error);
-      return [];
-    }
-  };
-
-  // Fetching the location api
-  const { mutate, isPending } = useMutation({
-    mutationFn: async () => {
-      if (!pickupLat || !pickupLng || !dropoffLat || !dropoffLng) {
-        throw new Error("Please select valid locations");
-      }
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/v1/calculate-price`,
-        {
-          pickupLat,
-          pickupLng,
-          dropoffLat,
-          dropoffLng,
-        }
-      );
-
-      setShowReset(true);
-      return response.data;
-    },
-    onSuccess: (data) => {
-      setQuote(data.estimate);
-    },
-    onError: (err) => {
-      console.error("Error fetching data", err);
-    },
-  });
-
-  // Handling the change of the addresses
-  const handlePickupAddressChange = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const query = e.target.value;
-    setPickupAddress(query);
-    setSelectedPickup(null)
-
-    if (query.length > 2) {
-      setTimeout(async () => {
-        const suggestions = await fetchAddressSuggestion(query);
-        setSuggestionsPick(suggestions);
-      }, 300); // Debounce API calls to avoid excessive requests
-    } else {
-      setSuggestionsPick([]);
-    }
-  };
-
-  const handleDropoffAddressChange = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const query = e.target.value;
-    setDropoffAddress(query);
-    setSelectedDropoff(null)
-
-    if (query.length > 2) {
-      setTimeout(async () => {
-        const suggestions = await fetchAddressSuggestion(query);
-        setSuggestionsDrop(suggestions);
-      }, 300);
-    } else {
-      setSuggestionsDrop([]);
-    }
-  };
-
-  // Handles the picking of suggestion
-  const handleSuggestionClick = (suggestion: any, isPickup: boolean) => {
-    if (isPickup) {
-      setPickupAddress(suggestion.display_name);
-      setPickupLat(parseFloat(suggestion.lat));
-      setPickupLng(parseFloat(suggestion.lon));
-      setSelectedPickup(suggestion.display_name);
-      setSuggestionsPick([]);
-    } else {
-      setDropoffAddress(suggestion.display_name);
-      setDropoffLat(parseFloat(suggestion.lat));
-      setDropoffLng(parseFloat(suggestion.lon));
-      setSelectedDropoff(suggestion.display_name);
-      setSuggestionsDrop([]);
-    }
-  };
-
-  // Handle the submit of Quotes
-  const handleSubmit = () => {
-    if (pickupAddress.trim() === dropoffAddress.trim()) {
-      setError("Pickup and drop-off locations cannot be the same.");
-      return;
-    }
-    if (!selectedPickup || !selectedDropoff) {
-      setError("Please pick from the suggested address");
-      return;
-    }
-    setError(null);
-    mutate();
-  };
-
-  // Handles Reset button
-  const handleReset = () => {
-    setDropoffAddress("");
-    setPickupAddress("");
-    setQuote("_ _ _");
-    setShowReset(false);
-  };
   return (
-    <Box
-      h="auto"
-      w="100%"
-      backgroundImage="url('/landingpage/abt-us-bg.png')"
-      backgroundPosition=""
-      backgroundRepeat="no-repeat"
-      backgroundSize="cover"
+    <VStack
+      px={["1rem", "2rem", "2rem", "2rem", "0"]}
+      mt={{ base: "40px", md: "40px" }}
+      w={"100%"}
+      mx={"0 auto"}
     >
-      <Box
-        px={["1rem", "2rem", "2rem", "2rem", "0"]}
-        py={["1rem", "2rem", "4.5rem", "6.5rem"]}
-      >
-        <Flex
-          width="100%"
-          maxW={"1249px"}
-          mx="auto"
-          justifyContent={"space-between"}
-          direction={{ base: "column", lg: "row" }}
-          gap={{ base: "40px", lg: "0px" }}
+      <Stack maxW={"1249px"} w={"100%"}>
+        <Stack
+          h={{base:'60vh', md:'70vh', lg:"80vh"}}
+          w="100%"
+          backgroundImage="url('/about/about-bg.png')"
+          backgroundPosition=""
+          backgroundRepeat="no-repeat"
+          backgroundSize={{base: 'cover', lg:"contain"}}
+          position={"relative"}
         >
-          <VStack
-            alignItems={{ base: "center", lg: "start" }}
-            display={{ base: "none", lg: "block" }}
+          <Box
+            position={"absolute"}
+            py={["3.5rem", "3.5rem", "4.5rem", "4.5rem"]}
+            left={{base: '20px', lg:"60px"}}
           >
-            <Heading
-              sx={{
-                color: "transparent",
-                backgroundClip: "text",
-                WebkitTextStroke: "0.7px rgba(255, 255, 255, 0.5)",
-                WebkitTextFillColor: "transparent",
-              }}
-              bg={"transparent"}
-              opacity={"0.2"}
-              fontSize={{ base: "38px", md: "70px", lg: "104px" }}
-            >
-              About us
-            </Heading>
-            <Heading
-              color={"#FFFFFF"}
-              fontWeight={"700"}
-              w={{ base: "100%", lg: "400px" }}
-              fontSize={{ base: "28px", md: "35px", lg: "52px" }}
-              textAlign={{ base: "center", lg: "start" }}
-            >
-              Revolutionizing Last Mile Delivery, One Mover at a Time.
-            </Heading>
-            <Button
-              mt={"50px"}
-              p={"30px 25px"}
-              bg={"#17D1C6"}
-              borderRadius={"100px"}
-              color={"#22244E"}
-              onClick={() => router.push("/about")}
-            >
-              {" "}
-              About us
-            </Button>
-          </VStack>
-          <VStack>
-            <VStack
-              w={{ base: "100%", md: "538px" }}
-              bg={"#22244E"}
-              h={"auto"}
-              borderRadius={"15px"}
-              p={"30px"}
-              alignItems={"start"}
-            >
-              <Heading
-                fontSize={{ base: "26px", lg: "36px" }}
-                fontWeight={"600"}
-                color={"#fff"}
+            <VStack alignItems={"start"}>
+              <Tag
+                p={"8px 13px"}
+                borderRadius="full"
+                bg={"#EDEFFA"}
+                fontWeight={"normal"}
+                // w={'100%'}
+                fontSize={{base: '12px', lg:'16px'}}
               >
-                Get a Quick Quote
-              </Heading>
-              <Divider borderColor={"#17D1C6"} pt={"10px"} />
-              <form style={{ width: "100%" }}>
-                <VStack w={"100%"} gap={"30px"} pt={"30px"}>
-                  <FormControl>
-                    <FormLabel fontSize={"22px"} color={"#fff"}>
-                      Pickup Location
-                    </FormLabel>
-                    <InputGroup>
-                      <InputRightElement>
-                        <Box pt={"8px"}>
-                          <Image src="landingpage/map-location.png" alt="" />
-                        </Box>
-                      </InputRightElement>
-                      <Input
-                        type="text"
-                        name=""
-                        placeholder="Enter pickup location"
-                        _placeholder={{ color: "#848484" }}
-                        bg={"#fff"}
-                        py={"25px"}
-                        value={pickupAddress}
-                        onChange={(e) => handlePickupAddressChange(e)}
-                      />
-                    </InputGroup>
-                   
-                    {suggestionsPick.length > 0 && (
-                      <Box
-                        maxHeight="200px"
-                        overflowY="auto"
-                        bg="white"
-                        position="absolute"
-                        width="100%"
-                        boxShadow="lg"
-                        zIndex={1}
-                      >
-                        <List spacing={1} mt={2}>
-                          {suggestionsPick.map((suggestion) => (
-                            <ListItem
-                              key={suggestion.place_id}
-                              cursor="pointer"
-                              onClick={() =>
-                                handleSuggestionClick(suggestion, true)
-                              }
-                              p={2}
-                              _hover={{ bg: "#f0f0f0" }}
-                            >
-                              {suggestion.display_name}
-                            </ListItem>
-                          ))}
-                        </List>
-                      </Box>
-                    )}
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel fontSize={"22px"} color={"#fff"}>
-                      Drop off Location
-                    </FormLabel>
-                    <InputGroup>
-                      <InputRightElement>
-                        <Box pt={"8px"}>
-                          <Image src="landingpage/map-location.png" alt="" />
-                        </Box>
-                      </InputRightElement>
-                      <Input
-                        type="text"
-                        name=""
-                        placeholder="Enter drop-off location"
-                        _placeholder={{ color: "#848484" }}
-                        bg={"#fff"}
-                        py={"25px"}
-                        value={dropoffAddress}
-                        onChange={(e) => handleDropoffAddressChange(e)}
-                      />
-                    </InputGroup>
-                    {error && (
-                      <Text color="red.500" fontSize="sm" mt={2}>
-                        {error}
-                      </Text>
-                    )}
-                    {suggestionsDrop.length > 0 && (
-                      <Box
-                        maxHeight="200px"
-                        overflowY="auto"
-                        bg="white"
-                        position="absolute"
-                        width="100%"
-                        boxShadow="lg"
-                        zIndex={1}
-                      >
-                        <List spacing={1} mt={2}>
-                          {suggestionsDrop.map((suggestion) => (
-                            <ListItem
-                              key={suggestion.place_id}
-                              cursor="pointer"
-                              onClick={() =>
-                                handleSuggestionClick(suggestion, false)
-                              }
-                              p={2}
-                              _hover={{ bg: "#f0f0f0" }}
-                            >
-                              {suggestion.display_name}
-                            </ListItem>
-                          ))}
-                        </List>
-                      </Box>
-                    )}
-                  </FormControl>
-                  {/* <FormControl>
-                    <FormLabel fontSize={"22px"} color={"#fff"}>
-                      Preferred type
-                    </FormLabel>
-                    <CheckboxGroup
-                      colorScheme="green"
-                      defaultValue={["any", "bicycle"]}
-                    >
-                      <Flex
-                        flexWrap={"wrap"}
-                        color={"#fff"}
-                        gap={"20px"}
-                        w={"100%"}
-                      >
-                        <Checkbox
-                          value="any"
-                          sx={{
-                            "& .chakra-checkbox__control": {
-                              borderColor: "#17D1C6",
-                              borderWidth: "2px",
-                              _checked: {
-                                bg: "#fff",
-                                color: "#17D1C6",
-                              },
-                            },
-                          }}
-                        >
-                          Any
-                        </Checkbox>
-                        <Checkbox
-                          value="bicycle"
-                          sx={{
-                            "& .chakra-checkbox__control": {
-                              borderColor: "#17D1C6",
-                              borderWidth: "2px",
-                              _checked: {
-                                bg: "#fff",
-                                color: "#17D1C6",
-                              },
-                            },
-                          }}
-                        >
-                          Bicycle
-                        </Checkbox>
-                        <Checkbox
-                          value="on-foot"
-                          sx={{
-                            "& .chakra-checkbox__control": {
-                              borderColor: "#17D1C6",
-                              borderWidth: "2px",
-                              _checked: {
-                                bg: "#fff",
-                                color: "#17D1C6",
-                              },
-                            },
-                          }}
-                        >
-                          On foot
-                        </Checkbox>
-                        <Checkbox
-                          value="public-transport"
-                          sx={{
-                            "& .chakra-checkbox__control": {
-                              borderColor: "#17D1C6",
-                              borderWidth: "2px",
-                              _checked: {
-                                bg: "#fff",
-                                color: "#17D1C6",
-                              },
-                            },
-                          }}
-                        >
-                          Public transport
-                        </Checkbox>
-                        <Checkbox
-                          value="dispatch-rider"
-                          sx={{
-                            "& .chakra-checkbox__control": {
-                              borderColor: "#17D1C6",
-                              borderWidth: "2px",
-                              _checked: {
-                                bg: "#fff",
-                                color: "#17D1C6",
-                              },
-                            },
-                          }}
-                        >
-                          Dispatch rider
-                        </Checkbox>
-                      </Flex>
-                    </CheckboxGroup>
-                  </FormControl> */}
-                  <Flex
-                    mt={"5px"}
-                    gap={"10px"}
-                    justifyContent={"space-between"}
-                    alignItems={"start"}
-                    w={"100%"}
-                  >
-                    <Button
-                      p={"23px 60px"}
-                      bg={"#FF7D6A"}
-                      borderRadius={"7px"}
-                      color={"#fff"}
-                      fontSize={"18px"}
-                      fontWeight={"600"}
-                      isDisabled={!pickupAddress && !dropoffAddress}
-                      onClick={handleSubmit}
-                      isLoading={isPending}
-                    >
-                      {" "}
-                      Get quote
-                    </Button>
-                    {showReset && (
-                      <Button
-                        p={"23px 60px"}
-                        bg={"gray"}
-                        borderRadius={"7px"}
-                        color={"#fff"}
-                        fontSize={"18px"}
-                        fontWeight={"600"}
-                        onClick={handleReset}
-                        // isLoading={isPending}
-                      >
-                        {" "}
-                        Reset
-                      </Button>
-                    )}
-                  </Flex>
-                </VStack>
-              </form>
-              <Divider borderColor={"#17D1C6"} pt={"10px"} />
-              {quote !== null && (
-                <VStack>
-                  <Text fontSize={{ base: "30px", lg: "50px" }} color={"#fff"}>
-                    {quote}
-                  </Text>
-                </VStack>
-              )}
-
-              <Divider borderColor={"#17D1C6"} pt={"10px"} />
-              <Text color={"#fff"} fontSize={"10px"}>
-                This is just an estimated cost for your delivery. Actual price
-                may vary after requesting a movva
+                FOR MOVVA’S: TURN YOUR TRIPS INTO INCOME
+              </Tag>
+              <Stack mt={"45px"}>
+                <Heading fontSize={{base: '24px', md:"40px"}} color={"#fff"} fontWeight={"bold"}>
+                  A Marketplace
+                </Heading>
+                <Heading fontSize={{base: '24px', md:"40px"}} color={"#fff"} fontWeight={"bold"}>
+                  Where Every Journey Earns
+                </Heading>
+              </Stack>
+              <Text mt={"19px"} w={{base: '100%', lg:"422px"}} color={"#fff"}>
+                We connect people who are already moving with those that need
+                things to move
               </Text>
+              <Button
+                p={"23px 35px"}
+                color={"#fff"}
+                mt={{base: '50px', lg:"170px"}}
+                cursor={"pointer"}
+                fontWeight={'bold'}
+                bg={'transparent'}
+                border={"2px solid #fff"}
+                borderRadius={"8px"}
+                _hover={{ color: "#000", background: "#fff" }}
+                // onClick={() => router.push("/movers")}
+              >
+                Download Movva App
+              </Button>
             </VStack>
-          </VStack>
-        </Flex>
-      </Box>
-    </Box>
+          </Box>
+        </Stack>
+      </Stack>
+    </VStack>
   );
 };
 

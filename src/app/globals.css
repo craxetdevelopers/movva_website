@@ -40,6 +40,11 @@ a {
   animation: scroll 20s linear infinite;
 }
 
+.date-picker-date {
+  background-color: #F3F3F3;
+  border-radius: 6px;
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);

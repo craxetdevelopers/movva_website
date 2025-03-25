@@ -1,4 +1,4 @@
-import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
+import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import {
   Accordion,
   AccordionButton,
@@ -6,6 +6,7 @@ import {
   AccordionPanel,
   Box,
   Button,
+  Flex,
   ListItem,
   Stack,
   Text,
@@ -16,117 +17,136 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 const FaqSec = () => {
-    const router = useRouter()
+  const router = useRouter();
   return (
-    <Box h="auto" w="100%" backgroundColor={"#fff"}>
-      <Stack>
-        <Box
-          px={["1rem", "2rem", "2rem", "2rem", "0"]}
-          py={["1rem", "3rem", "3rem", "5rem"]}
-        >
-          <Stack width="100%" maxW={"1249px"} mx="auto" color={"#22244E"}>
-            <VStack
-              py={"10px"}
-              textAlign={{ base: "center", lg: "start" }}
-              alignItems={{ base: "center", lg: "start" }}
-              gap={"30px"}
+    <Box
+      px={["1rem", "2rem", "2rem", "2rem", "0"]}
+      py={["1rem", "3rem", "3rem", "5rem"]}
+      bg={"#22244E"}
+      h={"auto"}
+    >
+      <Stack width="100%" maxW={"1249px"} mx="auto" color={"#22244E"}>
+        <Flex gap={"160px"}>
+          <VStack
+            // py={"10px"}
+            textAlign={{ base: "center", lg: "start" }}
+            alignItems={{ base: "center", lg: "start" }}
+            gap={"30px"}
+          >
+            <Text
+              w={{ base: "100%", lg: "380px" }}
+              fontWeight={"700"}
+              fontSize={{ base: "24px", md: "40px" }}
+              lineHeight={{ base: "auto", lg: "80px" }}
+              color={"#fff"}
             >
-              <Text
-                w={{ base: "100%", lg: "795px" }}
-                fontWeight={"700"}
-                fontSize={{ base: "38px", md: "60px", lg: "70px" }}
-                lineHeight={{ base: "auto", lg: "80px" }}
-              >
-                Frequently Asked Questions (FAQs)
-              </Text>
-              <Text fontSize={{ base: "16px", md: "24px" }}>
-                Got Questions? We’ve Got Answers.
-              </Text>
-            </VStack>
-            <VStack
+              Got Questions? We’ve Got Answers
+            </Text>
+          </VStack>
+          <VStack
+            width="100%"
+            maxW={"1249px"}
+            mx="auto"
+            justifyContent={"space-between"}
+            // py={"40px"}
+            alignItems={"center"}
+          >
+            <Accordion
+              border={"none"}
+              allowToggle
+              defaultIndex={[0]}
               width="100%"
               maxW={"1249px"}
-              mx="auto"
-              justifyContent={"space-between"}
-              py={"40px"}
-              alignItems={"center"}
             >
-              <Accordion
-                border={"none"}
-                allowToggle
-                defaultIndex={[0]}
-                width="100%"
-                maxW={"1249px"}
-              >
-                {question.map((data, idx) => (
-                  <AccordionItem border={"none"} key={idx} mb={"20px"}>
-                    {({ isExpanded }) => (
-                      <>
-                        <h2>
-                          <AccordionButton
-                            _expanded={{ color: "#3366FF" }}
-                            _hover={{ backgroundColor: "none" }}
-                            border={"none"}
-                          >
-                            <Box
-                              as="span"
-                              flex="1"
-                              color={isExpanded ? "#3366FF" : "#6F6F6F"}
-                              textAlign="left"
-                              fontSize={{ base: "22px", lg: "36px" }}
-                              fontWeight={"700"}
-                              borderBottom={"1px solid #2E2E2E"}
-                              py={"20px"}
-                            >
-                              {data.title}
-                            </Box>
-                            {isExpanded ? (
-                              <ArrowUpIcon fontSize="32px" color={"#17D1C6"} />
-                            ) : (
-                              <ArrowDownIcon
-                                fontSize="32px"
-                                color={"#17D1C6"}
-                              />
-                            )}
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel
-                          pb={4}
-                          color={"#2E2E2E"}
-                          fontSize={{ base: "16px", lg: "24px" }}
+              {question.map((data, idx) => (
+                <AccordionItem border={"none"} key={idx} mb={"20px"}>
+                  {({ isExpanded }) => (
+                    <>
+                      <h2>
+                        <AccordionButton
+                          _expanded={{ color: "#3366FF" }}
+                          _hover={{ backgroundColor: "none" }}
+                          border={"none"}
+                          gap={"30px"}
                         >
-                          {data.details.description && (
-                            <Box mb={4}>{data.details.description}</Box>
+                          {isExpanded ? (
+                            <VStack
+                              w={"30px"}
+                              h={"30px"}
+                              bg={"#17D1C6"}
+                              borderRadius={"100px"}
+                              justifyContent={"center"}
+                            >
+                              <MinusIcon fontSize="16px" color={"#16193A"} />
+                            </VStack>
+                          ) : (
+                            <Box
+                              w={"30px"}
+                              h={"30px"}
+                              bg={"#17D1C6"}
+                              borderRadius={"100px"}
+                              justifyContent={"center"}
+                            >
+                              <AddIcon fontSize="13px" color={"#16193A"} />
+                            </Box>
                           )}
-                          {data.details.list && (
-                            <UnorderedList pl={6} spacing={3}>
-                              {data.details.list.map((item, i) => (
-                                <ListItem key={i}>{item}</ListItem>
-                              ))}
-                            </UnorderedList>
-                          )}
-                        </AccordionPanel>
-                      </>
-                    )}
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </VStack>
-            <VStack>
-              <Button
-                p={"30px 25px"}
-                bg={"#17D1C6"}
-                borderRadius={"100px"}
-                color={"#22244E"}
-                w={"fit-content"}
-                onClick={() => router.push('/faq')}
-              >
-                {" "}
-                View more
-              </Button>
-            </VStack>
-          </Stack>
-        </Box>
+                          <Box
+                            as="span"
+                            flex="1"
+                            color={isExpanded ? "#3366FF" : "#fff"}
+                            textAlign="left"
+                            fontSize={{ base: "16px", lg: "20px" }}
+                            fontWeight={"semibold"}
+                            py={"px"}
+                          >
+                            {data.title}
+                          </Box>
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel
+                        pb={4}
+                        pl={"80px"}
+                        color={"#fff"}
+                        fontSize={{ base: "16px", lg: "14px" }}
+                      >
+                        {data.details.description && (
+                          <Box mb={4}>{data.details.description}</Box>
+                        )}
+                        {data.details.list && (
+                          <UnorderedList pl={6} spacing={3}>
+                            {data.details.list.map((item, i) => (
+                              <ListItem key={i}>{item}</ListItem>
+                            ))}
+                          </UnorderedList>
+                        )}
+                      </AccordionPanel>
+                    </>
+                  )}
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </VStack>
+        </Flex>
+        <VStack>
+          <Button
+            variant={"outline"}
+            bg={"none"}
+            mt={'50px'}
+            border={"none"}
+            borderBottom={"1px solid #17D1C6"}
+            color={"#17D1C6"}
+            w={"fit-content"}
+            onClick={() => router.push("/faq")}
+            _hover={{
+              color: "#fff",
+              background: "none",
+              border: "1px solid #17D1C6",
+            }}
+          >
+            {" "}
+            View more
+          </Button>
+        </VStack>
       </Stack>
     </Box>
   );

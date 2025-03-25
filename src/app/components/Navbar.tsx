@@ -18,6 +18,7 @@ import {
 import { BiMenu, BiX } from "react-icons/bi";
 import { useRouter, usePathname } from "next/navigation";
 import SignInModal from "./SignInModal";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 // import { useAppContext } from '@/contexts/AppContext'
 
 const Navbar = () => {
@@ -65,100 +66,41 @@ const Navbar = () => {
           display={{ base: "none", md: "flex" }}
           gap={{ base: "none", md: "20px" }}
         >
-          {/* <List
-            gap={"2rem"}
-            display={"flex"}
-            alignItems={"center"}
-            flexDirection={"row"}
-            fontWeight={"700"}
-            fontSize={"14px"}
+          {pathname == "/movers" || pathname == "/senders" ? (
+            <Button
+            leftIcon={<ChevronLeftIcon />}
+            p={"15px"}
+            cursor={"pointer"}
+            color={"#000"}
+            _hover={{ color: "gray" }}
+            onClick={() => ('')}
           >
-            <ListItem
-              style={{
-                color: isActiveMenu("/")
-                  ? "grey"
-                  : pathname === "/faq"
-                  ? "#22244E"
-                  : "#fff",
-              }}
-            >
-              <Link href="/">Home</Link>
-            </ListItem>
-            <ListItem
-              style={{
-                color: isActiveMenu("/about")
-                  ? "grey"
-                  : pathname === "/faq"
-                  ? "#22244E"
-                  : "#fff",
-              }}
-            >
-              <Link href="/about">About</Link>
-            </ListItem>
-            <ListItem
-              style={{
-                color: isActiveMenu("/movers")
-                  ? "grey"
-                  : pathname === "/faq"
-                  ? "#22244E"
-                  : "#fff",
-              }}
-            >
-              <Link href="/movers">Movers</Link>
-            </ListItem>
-            <ListItem
-              style={{
-                color: isActiveMenu("/senders")
-                  ? "grey"
-                  : pathname === "/faq"
-                  ? "#22244E"
-                  : "#fff",
-              }}
-            >
-              <Link href="/senders">Senders</Link>
-            </ListItem>
-            <ListItem
-              style={{
-                color: isActiveMenu("/business")
-                  ? "grey"
-                  : pathname === "/faq"
-                  ? "#22244E"
-                  : "#fff",
-              }}
-            >
-              <Link href="/business">Business</Link>
-            </ListItem>
-            <ListItem
-              style={{
-                color: isActiveMenu("/faq")
-                  ? "grey"
-                  : pathname === "/faq"
-                  ? "#22244E"
-                  : "#fff",
-              }}
-            >
-              <Link href="/faq">FAQ</Link>
-            </ListItem>
-          </List> */}
-
-          <Flex gap={"3rem"} alignItems={"center"}>
-            <Button
-              variant={"unstyled"}
-              color={"#ffffff"}
-              _hover={{ color: "gray" }}
-              onClick={() => setIsModalOpen(true)}
-            >
-              Sign in
-            </Button>
-            <Button
-              bg={"#ffffff"}
-              color={"#000000"}
-              _hover={{ color: "#000" }}
-              onClick={() => setIsModalOpen(true)}
-            >
-              Sign up
-            </Button>
-          </Flex>
+            Go Back
+          </Button>
+          ) : (
+            <Flex gap={"2rem"} alignItems={"center"}>
+              <Button
+                p={"25px"}
+                cursor={"pointer"}
+                color={"#000"}
+                _hover={{ color: "gray" }}
+                onClick={() => setIsModalOpen(true)}
+              >
+                Download Movva App
+              </Button>
+              <Button
+                bg={"transparent"}
+                p={"25px"}
+                cursor={"pointer"}
+                border={"2px solid #17D1C6"}
+                color={"#ffffff"}
+                _hover={{ color: "gray" }}
+                onClick={() => setIsModalOpen(true)}
+              >
+                Download Sender App
+              </Button>
+            </Flex>
+          )}
         </Box>
 
         {/* MOBILE MENU */}
@@ -195,65 +137,31 @@ const Navbar = () => {
             {/* <DrawerCloseButton /> */}
             <DrawerBody px={"2rem"}>
               <Flex direction={"column"} width={"100%"}>
-                {/* <List
-                  spacing={"1rem"}
-                  my={"9rem"}
-                  style={{ listStyle: "none" }}
-                  color={"#22244E"}
-                >
-                  <ListItem
-                    _hover={{ color: "grey" }}
-                    onClick={() => setIsOpenDrawer(false)}
-                  >
-                    <Link href="/">Home</Link>
-                  </ListItem>
-                  <ListItem
-                    _hover={{ color: "grey" }}
-                    onClick={() => setIsOpenDrawer(false)}
-                  >
-                    <Link href="/about">About</Link>
-                  </ListItem>
-                  <ListItem
-                    _hover={{ color: "grey" }}
-                    onClick={() => setIsOpenDrawer(false)}
-                  >
-                    <Link href="/movers">Movers</Link>
-                  </ListItem>
-                  <ListItem
-                    _hover={{ color: "grey" }}
-                    onClick={() => setIsOpenDrawer(false)}
-                  >
-                    <Link href="/senders">Senders</Link>
-                  </ListItem>
-                  <ListItem
-                    _hover={{ color: "grey" }}
-                    onClick={() => setIsOpenDrawer(false)}
-                  >
-                    <Link href="/business">Business</Link>
-                  </ListItem>
-                  <ListItem
-                    _hover={{ color: "grey" }}
-                    onClick={() => setIsOpenDrawer(false)}
-                  >
-                    <Link href="/faq">FAQ</Link>
-                  </ListItem>
-                </List> */}
                 <Button
+                  p={"25px"}
+                  cursor={"pointer"}
+                  color={"#000"}
+                  _hover={{ color: "gray" }}
                   onClick={() => {
                     setIsOpenDrawer(false);
                     setIsModalOpen(true);
                   }}
                 >
-                  Sign in
+                  Download Movva App
                 </Button>
 
                 <Button
+                  bg={"transparent"}
+                  p={"25px"}
+                  cursor={"pointer"}
+                  border={"1px solid #17D1C6"}
+                  color={"#ffffff"}
                   onClick={() => {
                     setIsOpenDrawer(false);
                     setIsModalOpen(true);
                   }}
                 >
-                  Sign up
+                  Download Sender App
                 </Button>
               </Flex>
             </DrawerBody>
