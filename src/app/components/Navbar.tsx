@@ -13,17 +13,17 @@ import {
   // List,
   // ListItem,
   Button,
+  VStack,
 } from "@chakra-ui/react";
 // import Link from "next/link";
 import { BiMenu, BiX } from "react-icons/bi";
 import { useRouter, usePathname } from "next/navigation";
-import SignInModal from "./SignInModal";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 // import { useAppContext } from '@/contexts/AppContext'
 
 const Navbar = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -33,12 +33,12 @@ const Navbar = () => {
   // };
 
   return (
-    <Box
+    <VStack
       bg={"#22244E"}
       color={"#fff"}
       h="auto"
-      pb={"25px"}
-      zIndex={10000000000000}
+      pb={"8px"}
+      zIndex={100000000000000}
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
     >
       <Flex
@@ -68,15 +68,15 @@ const Navbar = () => {
         >
           {pathname == "/movers" || pathname == "/senders" ? (
             <Button
-            leftIcon={<ChevronLeftIcon />}
-            p={"15px"}
-            cursor={"pointer"}
-            color={"#000"}
-            _hover={{ color: "gray" }}
-            onClick={() => ('')}
-          >
-            Go Back
-          </Button>
+              leftIcon={<ChevronLeftIcon />}
+              p={"15px"}
+              cursor={"pointer"}
+              color={"#000"}
+              _hover={{ color: "gray" }}
+              onClick={() => router.push("/")}
+            >
+              Go Back
+            </Button>
           ) : (
             <Flex gap={"2rem"} alignItems={"center"}>
               <Button
@@ -84,7 +84,7 @@ const Navbar = () => {
                 cursor={"pointer"}
                 color={"#000"}
                 _hover={{ color: "gray" }}
-                onClick={() => setIsModalOpen(true)}
+                // onClick={() => setIsModalOpen(true)}
               >
                 Download Movva App
               </Button>
@@ -95,7 +95,7 @@ const Navbar = () => {
                 border={"2px solid #17D1C6"}
                 color={"#ffffff"}
                 _hover={{ color: "gray" }}
-                onClick={() => setIsModalOpen(true)}
+                // onClick={() => setIsModalOpen(true)}
               >
                 Download Sender App
               </Button>
@@ -105,23 +105,30 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <Box display={{ base: "block", md: "none" }}>
-          {!isOpenDrawer ? (
-            <BiMenu
-              color="#fff"
-              cursor={"pointer"}
-              fontSize="30px"
-              onClick={() => {
-                setIsOpenDrawer(true);
-              }}
-            />
-          ) : (
+          {pathname.includes("/movers") || pathname.includes("/senders") ? (
+            <Button
+              leftIcon={<ChevronLeftIcon />}
+              p="15px"
+              cursor="pointer"
+              color="#000"
+              _hover={{ color: "gray" }}
+              onClick={() => router.push("/")}
+            >
+              Go Back
+            </Button>
+          ) : isOpenDrawer ? (
             <BiX
               color="#fff"
               fontSize="30px"
-              cursor={"pointer"}
-              onClick={() => {
-                setIsOpenDrawer(false);
-              }}
+              cursor="pointer"
+              onClick={() => setIsOpenDrawer(false)}
+            />
+          ) : (
+            <BiMenu
+              color="#fff"
+              fontSize="30px"
+              cursor="pointer"
+              onClick={() => setIsOpenDrawer(true)}
             />
           )}
         </Box>
@@ -133,10 +140,10 @@ const Navbar = () => {
           placement="left"
         >
           <DrawerOverlay />
-          <DrawerContent bg={"#17D1C6"}>
+          <DrawerContent bg={"#22244E"}  >
             {/* <DrawerCloseButton /> */}
-            <DrawerBody px={"2rem"}>
-              <Flex direction={"column"} width={"100%"}>
+            <DrawerBody px={"2rem"} pt={"9rem"}>
+              <Flex direction={"column"} width={"100%"} gap={"30px"}>
                 <Button
                   p={"25px"}
                   cursor={"pointer"}
@@ -144,7 +151,7 @@ const Navbar = () => {
                   _hover={{ color: "gray" }}
                   onClick={() => {
                     setIsOpenDrawer(false);
-                    setIsModalOpen(true);
+                    // setIsModalOpen(true);
                   }}
                 >
                   Download Movva App
@@ -158,7 +165,7 @@ const Navbar = () => {
                   color={"#ffffff"}
                   onClick={() => {
                     setIsOpenDrawer(false);
-                    setIsModalOpen(true);
+                    // setIsModalOpen(true);
                   }}
                 >
                   Download Sender App
@@ -169,8 +176,8 @@ const Navbar = () => {
         </Drawer>
       </Flex>
 
-      <SignInModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </Box>
+      {/* <SignInModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
+    </VStack>
   );
 };
 

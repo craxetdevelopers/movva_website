@@ -5,7 +5,7 @@ import React from "react";
 import MoverHero from "./components/MoverHero";
 import MoveYourWay from "../components/MoveYourWay";
 import StepGuide from "./components/StepGuide";
-import Galary from "../components/Galary";
+import Galary from "../components/MovverGalary";
 import Footer from "../components/Footer";
 
 const Movers = () => {

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Box,
@@ -10,6 +10,9 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { motion } from "framer-motion";
+
+const MotionBox = motion(VStack);
 
 const KeyBenefit = () => {
   return (
@@ -31,19 +34,32 @@ const KeyBenefit = () => {
         >
           Key benefits
         </Heading>
-        <Flex mt={"30px"} justifyContent={"space-between"} w={"100%"} flexWrap={'wrap'} gap={'20px'}>
+        <Flex
+          mt={"30px"}
+          justifyContent={"space-between"}
+          w={"100%"}
+          flexWrap={"wrap"}
+          gap={"20px"}
+        >
           {keyBenefit.map((benefit, idx) => (
-            <VStack
+            <MotionBox
               key={idx}
-              w={{base: '100%', md:"380px"}}
-              h={{base: 'auto', md:"160px"}}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              w={{ base: "100%", md: "380px" }}
+              h={{ base: "auto", md: "160px" }}
               bg={"#F3F3F3"}
               borderRadius={"8px"}
               alignItems={"start"}
               p={"1.3rem"}
               justifyContent={"center"}
             >
-              <Flex justifyContent={"space-between"} w={"100%"} alignItems={'center'}>
+              <Flex
+                justifyContent={"space-between"}
+                w={"100%"}
+                alignItems={"center"}
+              >
                 <VStack w={"100%"} alignItems={"start"} gap={"10px"}>
                   <Text fontWeight={"semibold"}>{benefit.title}</Text>
                   <Text fontSize={"12px"} fontWeight={"normal"} w={"210px"}>
@@ -54,10 +70,14 @@ const KeyBenefit = () => {
                   </Button>
                 </VStack>
                 <Box>
-                  <Image src={benefit.img} alt="" w={{base: '100%', lg:'300px'}}/>
+                  <Image
+                    src={benefit.img}
+                    alt=""
+                    w={{ base: "100%", lg: "300px" }}
+                  />
                 </Box>
               </Flex>
-            </VStack>
+            </MotionBox>
           ))}
         </Flex>
       </VStack>

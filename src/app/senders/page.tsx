@@ -5,8 +5,8 @@ import React from "react";
 import SenderHero from "./components/SenderHero";
 import SendMovva from "./components/SendMovva";
 import SendingGuide from "./components/SendingGuide";
-import Galary from "../components/Galary";
 import Footer from "../components/Footer";
+import SenderGallary from "./components/SenderGallary";
 
 const Senders = () => {
   return (
@@ -15,7 +15,7 @@ const Senders = () => {
         <SenderHero />
         <SendMovva />
         <SendingGuide />
-        <Galary />
+        <SenderGallary />
         <Footer />
       </Box>
     </div>

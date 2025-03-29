@@ -49,7 +49,7 @@ const Footer = () => {
             <Link>Email: support@getmovva.com</Link>
           </VStack>
         </Flex>
-        <Flex justifyContent={"space-between"} w={"100%"}>
+        <Flex justifyContent={"space-between"} w={"100%"} direction={['column-reverse', 'column-reverse', 'column-reverse', 'row']} gap={{base:'60px', lg: '0px'}}>
           <HStack>
             <Box>
               <Image src="why-movva/playstore.svg" alt="" />
@@ -58,7 +58,7 @@ const Footer = () => {
               <Image src="why-movva/appstore.svg" alt="" />
             </Box>
           </HStack>
-          <HStack gap={"90px"}>
+          <HStack justifyContent={'space-between'} w={{base:'100%', lg: '500px'}}>
             <Link>
               <Image src="why-movva/facebook.svg" alt="" />
             </Link>

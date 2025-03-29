@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
@@ -21,12 +22,28 @@ import FaqSec from "./components/FaqSec";
 
 export default function Home() {
   const [showLanding, setShowLanding] = useState(false);
+
   const animationContainer = useRef<HTMLDivElement | null>(null);
   const animationWrapper = useRef<HTMLDivElement | null>(null);
   const lettersRef = useRef<(HTMLParagraphElement | null)[]>([]); // ✅ Holds all letter refs
   const lottieInstance = useRef<any>(null);
 
+  // For the start page animation
   useEffect(() => {
+    const lastShown = localStorage.getItem("lastAnimationTime");
+    const now = Date.now();
+    const twelveHours = 12 * 60 * 60 * 1000;
+
+    if (lastShown && now - parseInt(lastShown, 10) < twelveHours) {
+      // If the animation is shown within the last 12 hours, skip it
+      setShowLanding(true);
+      return;
+    }
+
+    // Store the current timestamp to prevent animation from showing again within 12 hours
+    localStorage.setItem("lastAnimationTime", now.toString());
+    setShowLanding(false);
+
     if (!animationContainer.current || !animationWrapper.current) return;
 
     // ✅ Load Lottie animation
@@ -65,10 +82,16 @@ export default function Home() {
           });
         },
         onComplete: () => {
-          gsap.to("#animation-text", { opacity: 1, duration: 1});
+          gsap.to("#animation-text", { opacity: 1, duration: 3 });
 
           setTimeout(() => {
-            gsap.to(animationWrapper.current, { x: "100vw", duration: 7,  ease: "power9.inOut", });
+            gsap.to(animationWrapper.current, {
+              // opacity: 0,
+              x: "100vw",
+              duration: 7,
+              ease: "power9.inOut",
+              // onComplete: () => setShowLanding(true),
+            });
             setTimeout(() => setShowLanding(true), 5000);
           }, 1500);
         },
@@ -97,17 +120,28 @@ export default function Home() {
           bg="#ffffff"
           zIndex="999"
         >
-          <Box id="animation-container" ref={animationContainer} width="25%" position="absolute" />
+          <Box
+            id="animation-container"
+            ref={animationContainer}
+            width="25%"
+            position="absolute"
+          />
 
           {/* MOVVA Text */}
-          <Box id="animation-text" position="absolute" left="10%" display="flex" gap="10px">
+          <Box
+            id="animation-text"
+            position="absolute"
+            left="10%"
+            display="flex"
+            gap="10px"
+          >
             {["M", "O", "V", "V", "A"].map((letter, index) => (
               <Text
                 key={index}
                 ref={(el) => {
                   if (el) lettersRef.current[index] = el; // ✅ Properly stores letter refs
                 }}
-                fontSize={{base: "6xl", lg: "8xl"}}
+                fontSize={{ base: "6xl", lg: "8xl" }}
                 fontWeight="900"
                 color="#22244E"
                 textTransform="uppercase"
@@ -131,7 +165,9 @@ export default function Home() {
           <HowItWorks />
           <MoveThings />
           <WhyMovva />
+
           <BusinessMovva />
+
           <WhyBusinessMovva />
           <Movements />
           <FaqSec />

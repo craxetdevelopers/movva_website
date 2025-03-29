@@ -3,6 +3,9 @@
 import { Box, Flex, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import HowSenderWorks from "./HowSenderWorks";
+import { motion } from "framer-motion";
+
+const MotionFlex = motion(Flex);
 
 const WhyMovva = () => {
   return (
@@ -28,7 +31,7 @@ const WhyMovva = () => {
         </Heading>
         <VStack mt={{base: '40px', lg:"80px"}} gap={{base: '15px', lg:"30px"}} w={"100%"}>
           {whyMovva.map((why, idx) => (
-            <Flex
+            <MotionFlex
               key={idx}
               w={{ base: "100%", lg: "784px" }}
               h={{ base: "auto", lg: "255px" }}
@@ -38,6 +41,9 @@ const WhyMovva = () => {
               alignItems={"center"}
               px={"2rem"}
               py={"1rem"}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.3 }}
             >
               <VStack alignItems={"start"}>
                 <Box>
@@ -56,7 +62,7 @@ const WhyMovva = () => {
               <Box>
                 <Image src={why.img} alt="" w="100%" />
               </Box>
-            </Flex>
+            </MotionFlex>
           ))}
         </VStack>
         <HowSenderWorks />

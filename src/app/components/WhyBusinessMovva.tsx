@@ -9,7 +9,10 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import React from "react";
+
+const MotionVStack = motion(VStack);
 
 const WhyBusinessMovva = () => {
   return (
@@ -39,7 +42,7 @@ const WhyBusinessMovva = () => {
           gap={"20px"}
         >
           {keyBenefit.map((benefit, idx) => (
-            <VStack
+            <MotionVStack
               key={idx}
               w={{ base: "100%", md: "380px" }}
               h={{ base: "auto", md: "160px" }}
@@ -48,6 +51,9 @@ const WhyBusinessMovva = () => {
               alignItems={"start"}
               p={"1.3rem"}
               justifyContent={"center"}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.3 }}
             >
               <Flex
                 justifyContent={"space-between"}
@@ -71,7 +77,7 @@ const WhyBusinessMovva = () => {
                   />
                 </Box>
               </Flex>
-            </VStack>
+            </MotionVStack>
           ))}
         </Flex>
       </VStack>

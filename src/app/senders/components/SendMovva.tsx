@@ -9,7 +9,10 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import React from "react";
+
+const MotionVStack = motion(VStack);
 
 const SendMovva = () => {
   return (
@@ -33,7 +36,7 @@ const SendMovva = () => {
           gap={{ base: "40px" }}
         >
           {yourWay.map((data, idx) => (
-            <VStack
+            <MotionVStack
               h={{ base: "100%", lg: "448px" }}
               w={{ base: "100%", md: "280px" }}
               bg={data.bg}
@@ -41,6 +44,9 @@ const SendMovva = () => {
               p={"30px"}
               alignItems={"start"}
               key={idx}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.99 }}
+              transition={{ duration: 0.3 }}
             >
               <Stack h={{ base: "auto", md: "250px" }}>
                 <Heading
@@ -59,9 +65,9 @@ const SendMovva = () => {
                 </Text>
               </Stack>
               <Box pt={{ base: "10px", lg: "30px" }}>
-                <Image src={data.img} alt="" />
+                <Image src={data.img} alt="" w={{base: '100px', lg:'100%'}}/>
               </Box>
-            </VStack>
+            </MotionVStack>
           ))}
         </Flex>
       </VStack>

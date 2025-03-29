@@ -10,24 +10,30 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import React from "react";
+
+const MotionBox = motion(Box);
 
 const MoverHero = () => {
   return (
     <Stack>
       <Navbar />
-      <Box
+      <MotionBox
         px={["1rem", "2rem", "2rem", "2rem", "0"]}
         py={["1rem", "3rem", "5rem", "5rem"]}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <VStack width="100%" maxW={"1249px"} mx="auto" pb={"80px"}>
           <Heading
-            fontSize={{ base: "24px", md: "50px" }}
+            fontSize={{ base: "24px", md: '38px', lg:"50px" }}
             color={"#000"}
             fontWeight={"bold"}
             w={{ base: "100%", md: "655px" }}
             textAlign={"center"}
-            lineHeight={"70px"}
+            lineHeight={{base: '', lg:"70px"}}
           >
             Turn your public Transport Trips into Extra Cash
           </Heading>
@@ -36,6 +42,7 @@ const MoverHero = () => {
             w={{ base: "100%", lg: "826px" }}
             color={"#000"}
             textAlign={"center"}
+            fontSize={{base: '14px', md: '16px'}}
           >
             Already heading somewhere? Why not earn money on the way? With
             Movva, you can make money by helping people send small packages
@@ -58,7 +65,7 @@ const MoverHero = () => {
             <Image src="movers/hero-img.png" alt="" w={"100%"} />
           </Box>
         </VStack>
-      </Box>
+      </MotionBox>
     </Stack>
   );
 };

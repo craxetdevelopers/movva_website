@@ -10,13 +10,15 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Movements = () => {
+  const router = useRouter();
   return (
     <Box
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
-      pt={["4.5rem", "4.5rem", "4.5rem", "5.5rem"]}
+      pt={["1.5rem", "2.5rem", "4.5rem", "5.5rem"]}
     >
       <VStack
         width="100%"
@@ -32,7 +34,7 @@ const Movements = () => {
           fontWeight={"normal"}
           // w={'100%'}
           fontSize={{ base: "12px", lg: "16px" }}
-          mb={"50px"}
+          mb={{base: '29px', lg:"50px"}}
         >
           ABOUT US
         </Tag>
@@ -50,6 +52,7 @@ const Movements = () => {
           w={{ base: "100%", lg: "826px" }}
           color={"#000"}
           textAlign={"center"}
+          fontSize={{base: '14px', lg:'16px'}}
         >
           At Movva, we believe that movement is valuable. By decentralizing how
           goods get from place to place, we’re turning everyday commutes into
@@ -60,7 +63,7 @@ const Movements = () => {
         <Box mt={"60px"}>
           <Image src="why-movva/move-img.png" alt="" w={"100%"} />
         </Box>
-        <Flex mt={{ base: "20px", lg: "60px" }} gap={'40px'}>
+        <Flex mt={{ base: "20px", lg: "60px" }} gap={{base: '20px', lg: "40px"}} direction={['column', 'row']} w={'100%'} justifyContent={'center'}>
           <Button
             p={"23px 35px"}
             color={"#fff"}
@@ -69,10 +72,11 @@ const Movements = () => {
             bg={"#22244E"}
             border={"1px solid #2057C2"}
             borderRadius={"8px"}
+            width={{base: '100%', md: 'fit-content'}}
             _hover={{ color: "#000", background: "#fff" }}
-            //   onClick={() => router.push("/movers")}
+            onClick={() => router.push("/movers")}
           >
-            Download Sender App
+            Download Movva App
           </Button>
           <Button
             p={"23px 35px"}
@@ -82,12 +86,13 @@ const Movements = () => {
             fontWeight={"bold"}
             bg={"#17D1C6"}
             borderRadius={"8px"}
+            width={{base: '100%', md: 'fit-content'}}
             _hover={{
               color: "#000",
               background: "none",
               border: "1px solid #17D1C6",
             }}
-            // onClick={() => router.push("/movers")}
+            onClick={() => router.push("/senders")}
           >
             Download Sender App
           </Button>

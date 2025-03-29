@@ -9,8 +9,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 // import { useRouter } from "next/navigation";
 import React from "react";
+
+const MotionVStack = motion(VStack);
 
 const MoveYourWay = () => {
   // const router = useRouter();
@@ -35,14 +38,17 @@ const MoveYourWay = () => {
           gap={{ base: "40px" }}
         >
           {yourWay.map((data, idx) => (
-            <VStack
-              h={{ base: "100%", lg: "448px" }}
+            <MotionVStack
+              h={{ base: "100%", md: "448px" }}
               w={{ base: "100%", md: "280px" }}
               bg={data.bg}
               borderRadius={"36px"}
               p={"30px"}
               alignItems={"start"}
               key={idx}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.99 }}
+              transition={{ duration: 0.3 }}
             >
               <Stack h={{ base: "auto", md: "250px" }}>
                 <Heading
@@ -55,16 +61,16 @@ const MoveYourWay = () => {
                 </Heading>
                 <Text
                   pt={"15px"}
-                  fontSize={{ base: "16px", lg: "16px" }}
+                  fontSize={{ base: "14px", lg: "16px" }}
                   color={data.color}
                 >
                   {data.details}
                 </Text>
               </Stack>
               <Box pt={{ base: "10px", lg: "30px" }}>
-                <Image src={data.img} alt="" />
+                <Image src={data.img} alt="" w={{base: '100px', lg:'100%'}}/>
               </Box>
-            </VStack>
+            </MotionVStack>
           ))}
         </Flex>
       </VStack>
