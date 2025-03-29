@@ -21,7 +21,7 @@ const SenderHero = () => {
       <Navbar />
       <MotionBox
         px={["1rem", "2rem", "2rem", "2rem", "0"]}
-        py={["1rem", "3rem", "5rem", "5rem"]}
+        py={["3rem", "3rem", "5rem", "5rem"]}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
