@@ -84,7 +84,7 @@ const Navbar = () => {
                 cursor={"pointer"}
                 color={"#000"}
                 _hover={{ color: "gray" }}
-                // onClick={() => setIsModalOpen(true)}
+                onClick={() => router.push("/movers")}
               >
                 Download Movva App
               </Button>
@@ -95,7 +95,7 @@ const Navbar = () => {
                 border={"2px solid #17D1C6"}
                 color={"#ffffff"}
                 _hover={{ color: "gray" }}
-                // onClick={() => setIsModalOpen(true)}
+                onClick={() => router.push("/senders")}
               >
                 Download Sender App
               </Button>
@@ -150,9 +150,9 @@ const Navbar = () => {
                   color={"#000"}
                   _hover={{ color: "gray" }}
                   onClick={() => {
-                    setIsOpenDrawer(false);
-                    // setIsModalOpen(true);
-                  }}
+                    // setIsOpenDrawer(false);
+                   router.push("/movers")}
+                  }
                 >
                   Download Movva App
                 </Button>
@@ -164,9 +164,9 @@ const Navbar = () => {
                   border={"1px solid #17D1C6"}
                   color={"#ffffff"}
                   onClick={() => {
-                    setIsOpenDrawer(false);
-                    // setIsModalOpen(true);
-                  }}
+                    // setIsOpenDrawer(false);
+                    router.push("/senders")}
+                  }
                 >
                   Download Sender App
                 </Button>

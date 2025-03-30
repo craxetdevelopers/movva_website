@@ -10,6 +10,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const MotionVStack = motion(VStack);
@@ -33,6 +34,7 @@ const itemVariants = {
 };
 
 const BusinessMovva = () => {
+    const router = useRouter()
   return (
     <Box
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
@@ -93,7 +95,7 @@ const BusinessMovva = () => {
             borderRadius={"8px"}
             _hover={{ color: "#000", background: "#fff" }}
             variants={itemVariants}
-            //   onClick={() => router.push("/movers")}
+              onClick={() => router.push("/senders")}
           >
             Download Sender App
           </MotionButton>

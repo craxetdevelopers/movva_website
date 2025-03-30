@@ -42,9 +42,7 @@ const MovverGalary = () => {
             <Box key={idx} w={'100%'}>
               <Image src={`movers/${img}`} alt={`Gallery Image ${idx + 1}`} w={{base:'140px', md:'300px'}}/>
             </Box>
-          ))}
-         
-          
+          ))}    
         </Slider>
       </Box>
     </div>

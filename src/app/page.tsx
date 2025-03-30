@@ -165,9 +165,7 @@ export default function Home() {
           <HowItWorks />
           <MoveThings />
           <WhyMovva />
-
           <BusinessMovva />
-
           <WhyBusinessMovva />
           <Movements />
           <FaqSec />

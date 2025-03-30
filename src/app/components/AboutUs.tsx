@@ -10,14 +10,14 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
 
 const AboutUs = () => {
-  // const router = useRouter();
+  const router = useRouter();
 
   return (
     <Box
@@ -57,7 +57,7 @@ const AboutUs = () => {
                 // w={'100%'}
                 fontSize={{ base: "12px", lg: "16px" }}
               >
-                FOR MOVVA’S: TURN YOUR TRIPS INTO INCOME
+                FOR MOVVAS: TURN YOUR TRIPS INTO INCOME
               </Tag>
               <Stack mt={"45px"}>
                 <Heading
@@ -93,7 +93,7 @@ const AboutUs = () => {
                 border={"2px solid #fff"}
                 borderRadius={"8px"}
                 _hover={{ color: "#000", background: "#fff" }}
-                // onClick={() => router.push("/movers")}
+                onClick={() => router.push("/movers")}
               >
                 Download Movva App
               </Button>

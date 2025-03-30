@@ -12,6 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const MotionVStack = motion(VStack);
@@ -37,6 +38,7 @@ const containerVariants = {
 
 
 const MoveThings = () => {
+    const router = useRouter();
   return (
     <Box
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
@@ -101,7 +103,7 @@ const MoveThings = () => {
               border: "1px solid #17D1C6",
             }}
             variants={itemVariants}
-            // onClick={() => router.push("/movers")}
+            onClick={() => router.push("/movers")}
           >
             Download Sender App
           </MotionButton>

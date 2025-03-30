@@ -10,11 +10,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const MotionVStack = motion(VStack);
 
 const WhyBusinessMovva = () => {
+  const router = useRouter();
   return (
     <Box
       px={["1rem", "2rem", "2rem", "2rem", "0"]}
@@ -65,7 +67,11 @@ const WhyBusinessMovva = () => {
                   <Text fontSize={"12px"} fontWeight={"normal"} w={"210px"}>
                     {benefit.details}
                   </Text>
-                  <Button bg={"#fff"} borderRadius={"100px"}>
+                  <Button
+                    bg={"#fff"}
+                    borderRadius={"100px"}
+                    onClick={() => router.push("/senders")}
+                  >
                     Get App
                   </Button>
                 </VStack>

@@ -16,14 +16,14 @@ import {
 import React, { useState } from "react";
 // import Navbar from "./Navbar";
 // import Slider from "react-slick";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import DatePicker from "react-datepicker";
 import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
 
 const HeroSection = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const [startDate, setStartDate] = useState<Date | null>(null);
   // const [selectedTime, setSelectedTime] = useState(null);
   return (
@@ -172,7 +172,7 @@ const HeroSection = () => {
                     border={"1px solid #2057C2"}
                     borderRadius={"8px"}
                     _hover={{ color: "#000", background: "#fff" }}
-                    // onClick={() => router.push("/movers")}
+                    onClick={() => router.push("/movers")}
                   >
                     Download Movva App
                   </Button>

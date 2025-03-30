@@ -17,7 +17,7 @@ const Footer = () => {
         mx="auto"
         alignItems={"start"}
       >
-        <Link fontSize={"24px"} fontWeight={"semibold"} color={"#fff"}>
+        <Link fontSize={"24px"} fontWeight={"semibold"} color={"#fff"} href="/">
           Movva
         </Link>
         <Link color={"#fff"}>Visit Help Center</Link>
@@ -59,19 +59,19 @@ const Footer = () => {
             </Box>
           </HStack>
           <HStack justifyContent={'space-between'} w={{base:'100%', lg: '500px'}}>
-            <Link>
+            <Link href="https://www.facebook.com/share/15ASSJGxcN/?mibextid=wwXIfr" isExternal>
               <Image src="why-movva/facebook.svg" alt="" />
             </Link>
-            <Link>
+            <Link href="https://x.com/getmovva?s=21&t=tVyR5DlJpQ_RjzWuyHEd3Q" isExternal>
               <Image src="why-movva/x.svg" alt="" />
             </Link>
-            <Link>
+            <Link href="https://youtube.com/@getmovva?si=haqdHi7nZgoLbaW7" isExternal>
               <Image src="why-movva/youtube.svg" alt="" />
             </Link>
-            <Link>
+            <Link href="https://www.linkedin.com/company/movva-technologies-inc/" isExternal>
               <Image src="why-movva/linkedin.svg" alt="" />
             </Link>
-            <Link>
+            <Link href="https://www.instagram.com/getmovva?igsh=bjJobXJhZjBpNnY5" isExternal>
               <Image src="why-movva/instagram.svg" alt="" />
             </Link>
           </HStack>
