@@ -14,9 +14,7 @@ import {
   // ListItem,
   Button,
   VStack,
-  Link,
-  List,
-  ListItem,
+
   Stack,
 } from "@chakra-ui/react";
 // import Link from "next/link";
@@ -181,25 +179,25 @@ const Navbar = () => {
                 gap={"30px"}
                 justifyContent={"space-between"}
               >
-                <List
-                  spacing={"1rem"}
+                <Box
+                  gap={"1rem"}
                   mt={"5rem"}
                   style={{ listStyle: "none" }}
                   color={"#fff"}
                 >
-                  <ListItem
+                  <Box
                     _hover={{ color: "grey" }}
                     onClick={() => setIsOpenDrawer(false)}
                   >
-                    <Link href="/movers">Movva</Link>
-                  </ListItem>
-                  <ListItem
+                    <Button variant={'unstyled'} onClick={() => router.push('/movers')}>Movva</Button>
+                  </Box>
+                  <Box
                     _hover={{ color: "grey" }}
                     onClick={() => setIsOpenDrawer(false)}
                   >
-                    <Link href="/senders">Sender</Link>
-                  </ListItem>
-                </List>
+                    <Button variant={'unstyled'} onClick={() => router.push('/senders')}>Sender</Button>
+                  </Box>
+                </Box>
                 <Stack>
                   <Button
                     p={"25px"}
