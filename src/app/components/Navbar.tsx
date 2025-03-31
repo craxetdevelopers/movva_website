@@ -17,6 +17,7 @@ import {
   Link,
   List,
   ListItem,
+  Stack,
 } from "@chakra-ui/react";
 // import Link from "next/link";
 import { BiMenu, BiX } from "react-icons/bi";
@@ -79,24 +80,20 @@ const Navbar = () => {
           >
             <ListItem
               style={{
-                color: isActiveMenu("/movers")
-                  ? "#17D1C6"
-                  : "#fff",
+                color: isActiveMenu("/movers") ? "#17D1C6" : "#fff",
               }}
             >
               <Link href="/movers">Movva</Link>
             </ListItem>
             <ListItem
               style={{
-                color: isActiveMenu("/senders")
-                  ? "#17D1C6"
-                  : "#fff",
+                color: isActiveMenu("/senders") ? "#17D1C6" : "#fff",
               }}
             >
               <Link href="/senders">Sender</Link>
             </ListItem>
-            </List>
-            </Box>
+          </List>
+        </Box>
         <Box
           display={{ base: "none", md: "flex" }}
           gap={{ base: "none", md: "20px" }}
@@ -175,36 +172,62 @@ const Navbar = () => {
           placement="left"
         >
           <DrawerOverlay />
-          <DrawerContent bg={"#22244E"}  >
+          <DrawerContent bg={"#22244E"}>
             {/* <DrawerCloseButton /> */}
-            <DrawerBody px={"2rem"} pt={"9rem"}>
-              <Flex direction={"column"} width={"100%"} gap={"30px"}>
-                <Button
-                  p={"25px"}
-                  cursor={"pointer"}
-                  color={"#000"}
-                  _hover={{ color: "gray" }}
-                  onClick={() => {
-                    // setIsOpenDrawer(false);
-                   router.push("/movers")}
-                  }
+            <DrawerBody px={"2rem"} pt={"1rem"}>
+              <Flex
+                direction={"column"}
+                width={"100%"}
+                gap={"30px"}
+                justifyContent={"space-between"}
+              >
+                <List
+                  spacing={"1rem"}
+                  mt={"5rem"}
+                  style={{ listStyle: "none" }}
+                  color={"#fff"}
                 >
-                  Download Movva App
-                </Button>
+                  <ListItem
+                    _hover={{ color: "grey" }}
+                    onClick={() => setIsOpenDrawer(false)}
+                  >
+                    <Link href="/movers">Movva</Link>
+                  </ListItem>
+                  <ListItem
+                    _hover={{ color: "grey" }}
+                    onClick={() => setIsOpenDrawer(false)}
+                  >
+                    <Link href="/senders">Sender</Link>
+                  </ListItem>
+                </List>
+                <Stack>
+                  <Button
+                    p={"25px"}
+                    cursor={"pointer"}
+                    color={"#000"}
+                    _hover={{ color: "gray" }}
+                    onClick={() => {
+                      // setIsOpenDrawer(false);
+                      router.push("/movers");
+                    }}
+                  >
+                    Download Movva App
+                  </Button>
 
-                <Button
-                  bg={"transparent"}
-                  p={"25px"}
-                  cursor={"pointer"}
-                  border={"1px solid #17D1C6"}
-                  color={"#ffffff"}
-                  onClick={() => {
-                    // setIsOpenDrawer(false);
-                    router.push("/senders")}
-                  }
-                >
-                  Download Sender App
-                </Button>
+                  <Button
+                    bg={"transparent"}
+                    p={"25px"}
+                    cursor={"pointer"}
+                    border={"1px solid #17D1C6"}
+                    color={"#ffffff"}
+                    onClick={() => {
+                      // setIsOpenDrawer(false);
+                      router.push("/senders");
+                    }}
+                  >
+                    Download Sender App
+                  </Button>
+                </Stack>
               </Flex>
             </DrawerBody>
           </DrawerContent>
