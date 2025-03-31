@@ -70,7 +70,7 @@ const Navbar = () => {
           display={{ base: "none", md: "flex" }}
           gap={{ base: "none", md: "20px" }}
         >
-          <List
+          <Box
             gap={"2rem"}
             display={"flex"}
             alignItems={"center"}
@@ -78,21 +78,21 @@ const Navbar = () => {
             fontWeight={"700"}
             fontSize={"14px"}
           >
-            <ListItem
+            <Box
               style={{
                 color: isActiveMenu("/movers") ? "#17D1C6" : "#fff",
               }}
             >
-              <Link href="/movers" >Movva</Link>
-            </ListItem>
-            <ListItem
+              <Button variant={'unstyled'} onClick={() => router.push('/movers')}>Movva</Button>
+            </Box>
+            <Box
               style={{
                 color: isActiveMenu("/senders") ? "#17D1C6" : "#fff",
               }}
             >
-              <Link href="/senders">Sender</Link>
-            </ListItem>
-          </List>
+              <Button variant={'unstyled'} onClick={() => router.push('/senders')}>Sender</Button>
+            </Box>
+          </Box>
         </Box>
         <Box
           display={{ base: "none", md: "flex" }}
