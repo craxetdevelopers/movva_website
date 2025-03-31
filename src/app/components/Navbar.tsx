@@ -83,7 +83,7 @@ const Navbar = () => {
                 color: isActiveMenu("/movers") ? "#17D1C6" : "#fff",
               }}
             >
-              <Link href="/movers">Movva</Link>
+              <Link href="/movers" >Movva</Link>
             </ListItem>
             <ListItem
               style={{
