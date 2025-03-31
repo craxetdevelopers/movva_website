@@ -14,6 +14,9 @@ import {
   // ListItem,
   Button,
   VStack,
+  Link,
+  List,
+  ListItem,
 } from "@chakra-ui/react";
 // import Link from "next/link";
 import { BiMenu, BiX } from "react-icons/bi";
@@ -28,9 +31,9 @@ const Navbar = () => {
   const pathname = usePathname();
 
   // Checking for the active
-  // const isActiveMenu = (path: string) => {
-  //   return pathname === path;
-  // };
+  const isActiveMenu = (path: string) => {
+    return pathname === path;
+  };
 
   return (
     <VStack
@@ -62,6 +65,38 @@ const Navbar = () => {
             width={{ base: "70px", md: "100px" }}
           />
         </Box>
+        <Box
+          display={{ base: "none", md: "flex" }}
+          gap={{ base: "none", md: "20px" }}
+        >
+          <List
+            gap={"2rem"}
+            display={"flex"}
+            alignItems={"center"}
+            flexDirection={"row"}
+            fontWeight={"700"}
+            fontSize={"14px"}
+          >
+            <ListItem
+              style={{
+                color: isActiveMenu("/movers")
+                  ? "#17D1C6"
+                  : "#fff",
+              }}
+            >
+              <Link href="/movers">Movva</Link>
+            </ListItem>
+            <ListItem
+              style={{
+                color: isActiveMenu("/senders")
+                  ? "#17D1C6"
+                  : "#fff",
+              }}
+            >
+              <Link href="/senders">Sender</Link>
+            </ListItem>
+            </List>
+            </Box>
         <Box
           display={{ base: "none", md: "flex" }}
           gap={{ base: "none", md: "20px" }}
