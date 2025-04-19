@@ -7,7 +7,7 @@ export const signUpSchema = z.object({
   gender: z
     .enum(["male", "female", "others"])
     .refine((val) => val !== undefined, { message: "Gender is required" }),
-  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number"),
+  phoneNumber: z.string().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number"),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters long")
