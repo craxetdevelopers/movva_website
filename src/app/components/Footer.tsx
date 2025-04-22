@@ -47,6 +47,7 @@ const Footer = () => {
               Contact
             </Text>
             <Link>Email: support@getmovva.com</Link>
+            <Link href="/admin/auth">.</Link>
           </VStack>
         </Flex>
         <Flex justifyContent={"space-between"} w={"100%"} direction={['column-reverse', 'column-reverse', 'column-reverse', 'row']} gap={{base:'60px', lg: '0px'}}>
