@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Flex, HStack, Image, Link, Text, VStack } from "@chakra-ui/react";
+
 import React from "react";
 
 const Footer = () => {
@@ -17,7 +18,7 @@ const Footer = () => {
         mx="auto"
         alignItems={"start"}
       >
-        <Link fontSize={"24px"} fontWeight={"semibold"} color={"#fff"} href="/">
+        <Link  fontSize={"24px"} fontWeight={"semibold"} color={"#fff"} href="/">
           Movva
         </Link>
         <Link color={"#fff"}>Visit Help Center</Link>
