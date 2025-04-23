@@ -5,8 +5,8 @@ import {
   Flex,
   Icon,
   Image,
-  Link,
   Text,
+  Link,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
@@ -19,6 +19,7 @@ import { GoShieldCheck } from "react-icons/go";
 import { AiOutlineAudit } from "react-icons/ai";
 import { RiSettings2Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
+
 
 const navLinks = [
   { name: "Dashboard", icon: GrHomeRounded, href: "/admin/" },
