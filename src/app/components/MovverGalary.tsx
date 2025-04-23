@@ -38,9 +38,9 @@ const MovverGalary = () => {
       <Box py={["4.5rem", "4.5rem", "4.5rem", "5.5rem"]} w={'100%'}>
         <Slider {...settings} >
         
-          {["gallary-img1.png", "gallary-img2.png", "gallary-img3.png", "gallary-img4.png","gallary-img1.png", "gallary-img2.png", "gallary-img3.png", "gallary-img4.png"].map((img, idx) => (
+          {["/gallary-img1.png", "/gallary-img2.png", "/gallary-img3.png", "/gallary-img4.png","/gallary-img1.png", "/gallary-img2.png", "/gallary-img3.png", "/gallary-img4.png"].map((img, idx) => (
             <Box key={idx} w={'100%'}>
-              <Image src={`movers/${img}`} alt={`Gallery Image ${idx + 1}`} w={{base:'140px', md:'300px'}}/>
+              <Image src={`/movers${img}`} alt={`Gallery Image ${idx + 1}`} w={{base:'140px', md:'300px'}}/>
             </Box>
           ))}    
         </Slider>

@@ -38,18 +38,18 @@ const SenderGallary = () => {
       <Box py={["4.5rem", "4.5rem", "4.5rem", "5.5rem"]} w={"100%"}>
         <Slider {...settings}>
           {[
-            "gallery-img1.png",
-            "gallery-img2.png",
-            "gallery-img3.png",
-            "gallery-img4.png",
-            "gallery-img1.png",
-            "gallery-img2.png",
-            "gallery-img3.png",
-            "gallery-img4.png",
+            "/gallery-img1.png",
+            "/gallery-img2.png",
+            "/gallery-img3.png",
+            "/gallery-img4.png",
+            "/gallery-img1.png",
+            "/gallery-img2.png",
+            "/gallery-img3.png",
+            "/gallery-img4.png",
           ].map((img, idx) => (
             <Box key={idx} w={"100%"}>
               <Image
-                src={`senders/${img}`}
+                src={`/senders${img}`}
                 alt={`Gallery Image ${idx + 1}`}
                 w={{ base: "140px", md: "300px" }}
               />

@@ -78,14 +78,14 @@ const Navbar = () => {
           >
             <Box
               style={{
-                color: isActiveMenu("/movers") ? "#17D1C6" : "#fff",
+                color: isActiveMenu("/movers/") ? "#17D1C6" : "#fff",
               }}
             >
               <Button variant={'unstyled'} onClick={() => router.push('/movers')}>Movva</Button>
             </Box>
             <Box
               style={{
-                color: isActiveMenu("/senders") ? "#17D1C6" : "#fff",
+                color: isActiveMenu("/senders/") ? "#17D1C6" : "#fff",
               }}
             >
               <Button variant={'unstyled'} onClick={() => router.push('/senders')}>Sender</Button>
@@ -113,6 +113,7 @@ const Navbar = () => {
                 p={"25px"}
                 cursor={"pointer"}
                 color={"#000"}
+                bg={'white'}
                 _hover={{ color: "gray" }}
                 onClick={() => router.push("/movers")}
               >

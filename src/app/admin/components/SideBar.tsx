@@ -52,9 +52,9 @@ const SideBar = ({
       {...rest}
     >
       <Flex h="20" alignItems="center" justifyContent="space-between" px="4">
-        <Box pl={"15px"}>
+        <Link pl={"15px"} href="/">
           <Image src="/admin/logo.svg" alt="logo" />
-        </Box>
+        </Link>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 

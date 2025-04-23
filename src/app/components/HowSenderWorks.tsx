@@ -26,7 +26,7 @@ const HowSenderWorks = () => {
             <Box>
               <Image src={senderWorks.img} alt="" w={'100%'}/>
             </Box>
-            <Text fontSize={{base: '14px', md:"20px"}}>
+            <Text color={'#000'} fontSize={{base: '14px', md:"20px"}}>
               {senderWorks.details}
             </Text>
           </VStack>

@@ -67,6 +67,7 @@ const BusinessMovva = () => {
             // w={'100%'}
             fontSize={{ base: "12px", lg: "16px" }}
             viewport={{ once: false, amount: 0.3 }}
+            color={'gray'}
           >
             FOR BUSINESSES: A SMARTER WAY TO MOVE GOODS
           </MotionTag>

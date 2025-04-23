@@ -56,6 +56,7 @@ const AboutUs = () => {
                 fontWeight={"normal"}
                 // w={'100%'}
                 fontSize={{ base: "12px", lg: "16px" }}
+                color={'gray'}
               >
                 FOR MOVVAS: TURN YOUR TRIPS INTO INCOME
               </Tag>

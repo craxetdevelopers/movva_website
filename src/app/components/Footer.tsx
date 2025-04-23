@@ -1,5 +1,6 @@
 "use client";
 
+
 import { Box, Flex, HStack, Image, Link, Text, VStack } from "@chakra-ui/react";
 
 import React from "react";
@@ -21,33 +22,33 @@ const Footer = () => {
         <Link  fontSize={"24px"} fontWeight={"semibold"} color={"#fff"} href="/">
           Movva
         </Link>
-        <Link color={"#fff"}>Visit Help Center</Link>
+        <Link href={''} color={"#fff"}>Visit Help Center</Link>
 
         <Flex w={"100%"} flexWrap={"wrap"} gap={{ base: "40px", lg: "160px" }}>
           <VStack color={"#fff"} alignItems={"start"}>
             <Text fontSize={"18px"} mb={"20px"} fontWeight={"semibold"}>
               Company
             </Text>
-            <Link>Demo</Link>
-            <Link>Impact</Link>
-            <Link>How Movva works</Link>
-            <Link>Blog</Link>
-            <Link>Career</Link>
-            <Link>Business</Link>
-            <Link>Newsroom</Link>
+            <Link href={''}>Demo</Link>
+            <Link href={''}>Impact</Link>
+            <Link href={''}>How Movva works</Link>
+            <Link href={''}>Blog</Link>
+            <Link href={''}>Career</Link>
+            <Link href={''}>Business</Link>
+            <Link href={''}>Newsroom</Link>
           </VStack>
           <VStack color={"#fff"} alignItems={"start"}>
             <Text fontSize={"18px"} mb={"20px"} fontWeight={"semibold"}>
               Our Values
             </Text>
-            <Link>Safety</Link>
-            <Link>Inclusion</Link>
+            <Link href={''}>Safety</Link>
+            <Link href={''}>Inclusion</Link>
           </VStack>
           <VStack color={"#fff"} alignItems={"start"}>
             <Text fontSize={"18px"} mb={"20px"} fontWeight={"semibold"}>
               Contact
             </Text>
-            <Link>Email: support@getmovva.com</Link>
+            <Link href={''}>Email: support@getmovva.com</Link>
             <Link href="/admin/auth/">.</Link>
           </VStack>
         </Flex>

@@ -67,6 +67,7 @@ const MoveThings = () => {
             p={"8px 13px"}
             borderRadius="full"
             bg={"#EDEFFA"}
+            color={'gray'}
             fontWeight={"normal"}
             // w={'100%'}
             fontSize={{ base: "12px", lg: "16px" }}
