@@ -9,8 +9,7 @@ import CancelledDeliveries from './components/CancelledDeliveries'
 
 const AdminDashboard = () => {
   return (
-    <DashboardLayout>
-     
+    <DashboardLayout>  
       <Statistics />
       <Flex flexWrap={'wrap'} justifyContent={'space-between'}>
         <Deliveries />

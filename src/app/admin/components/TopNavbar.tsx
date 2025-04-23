@@ -5,6 +5,7 @@ import {
   Avatar,
   Badge,
   Box,
+  Button,
   Flex,
   Heading,
   HStack,
@@ -18,12 +19,14 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FiMenu, FiMoon, FiSun } from "react-icons/fi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 
-const TopNavbar = ({ onOpen }: { onOpen: () => void }) => {
+const TopNavbar = ({ onOpen, title = "Dashboard" }: { onOpen: () => void; title?: string }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const pathname = usePathname()
   const hasNotifications = true;
   return (
     <Flex
@@ -47,7 +50,7 @@ const TopNavbar = ({ onOpen }: { onOpen: () => void }) => {
       />
 
       <Heading mb={4} fontSize={"28px"} >
-        Dashboard
+        {title}
       </Heading>
       <Spacer />
       <HStack spacing={3} w={'100%'} maxW={'600px'}>
@@ -64,6 +67,7 @@ const TopNavbar = ({ onOpen }: { onOpen: () => void }) => {
             <Input type="text" placeholder="Search..." />
           </InputGroup>
         </VStack>
+        {pathname == '/admin/movvas' && <Button bg={'#2C2F66'}>Filter</Button>}
 
         <IconButton
           icon={colorMode === "light" ? <FiMoon /> : <FiSun />}
