@@ -21,15 +21,15 @@ import { RiSettings2Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { name: "Dashboard", icon: GrHomeRounded, href: "/admin" },
-  { name: "Movvas", icon: FaRegUser, href: "/admin/movvas" },
-  { name: "Trips", icon: GrLocation, href: "/admin/trips" },
-  { name: "Payouts", icon: AiOutlineDollarCircle, href: "/admin/payouts" },
-  { name: "Insurance & Claims", icon: FiShield, href: "/admin/insurance" },
+  { name: "Dashboard", icon: GrHomeRounded, href: "/admin/" },
+  { name: "Movvas", icon: FaRegUser, href: "/admin/movvas/" },
+  { name: "Trips", icon: GrLocation, href: "/admin/trips/" },
+  { name: "Payouts", icon: AiOutlineDollarCircle, href: "/admin/payouts/" },
+  { name: "Insurance & Claims", icon: FiShield, href: "/admin/insurance/" },
   {
     name: "KYC Verification",
     icon: GoShieldCheck,
-    href: "/admin/verification",
+    href: "/admin/verification/",
   },
 ];
 
@@ -67,7 +67,7 @@ const SideBar = ({
         </VStack>
         <VStack alignItems={"start"} px={4}>
           <Link
-            href={"/admin/audit"}
+            href={"/admin/audit/"}
             display="flex"
             alignItems="center"
             gap="3"
@@ -85,7 +85,7 @@ const SideBar = ({
             <Text>Audit Logs</Text>
           </Link>
           <Link
-            href={"/admin/insurance"}
+            href={"/admin/insurance/"}
             display="flex"
             alignItems="center"
             gap="3"
