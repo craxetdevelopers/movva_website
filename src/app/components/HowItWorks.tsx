@@ -22,7 +22,7 @@ const HowItWorks = () => {
           pb={"80px"}
           alignItems={"center"}
         >
-          <Heading mb={"40px"}>How it works</Heading>
+          <Heading mb={"40px"} color={'#000'}>How it works</Heading>
 
           <VStack alignItems={"center"} gap={"30px"} w={"100%"}>
             {howItWorks.map((works, idx) => {
@@ -50,7 +50,7 @@ const HowItWorks = () => {
                   <Box>
                     <Image src={works.img} alt="" />
                   </Box>
-                  <Text fontSize={{ base: "14px", md: "16px" }}>
+                  <Text color={'#000'} fontSize={{ base: "14px", md: "16px" }}>
                     {works.details}
                   </Text>
                 </MotionHStack>

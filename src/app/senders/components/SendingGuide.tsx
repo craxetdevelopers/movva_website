@@ -52,7 +52,7 @@ const SendingGuide = () => {
       >
         <VStack>
           <MotionImage
-            src="senders/sender-step.png"
+            src="/senders/sender-step.png"
             alt=""
             w={{ base: "100%", md: "600px", lg: "100%" }}
             animate={{ rotate: [0, -10, 10, -8, 8, -5, 5, 0] }} // Bell swing motion

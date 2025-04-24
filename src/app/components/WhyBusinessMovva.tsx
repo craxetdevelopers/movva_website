@@ -63,13 +63,14 @@ const WhyBusinessMovva = () => {
                 alignItems={"center"}
               >
                 <VStack w={"100%"} alignItems={"start"} gap={"10px"}>
-                  <Text fontWeight={"semibold"}>{benefit.title}</Text>
-                  <Text fontSize={"12px"} fontWeight={"normal"} w={"210px"}>
+                  <Text color={'#000'} fontWeight={"semibold"}>{benefit.title}</Text>
+                  <Text color={'#000'} fontSize={"12px"} fontWeight={"normal"} w={"210px"}>
                     {benefit.details}
                   </Text>
                   <Button
                     bg={"#fff"}
                     borderRadius={"100px"}
+                    color={'#000'}
                     onClick={() => router.push("/senders")}
                   >
                     Get App

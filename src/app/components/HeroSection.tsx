@@ -95,6 +95,7 @@ const HeroSection = () => {
                         bg={"#F3F3F3"}
                         placeholder="Where are you going?"
                         border={"none"}
+                        _placeholder={{color: '#5E5E5E'}}
                         pl={"60px"}
                       />
                       <InputRightElement py={"25px"} pr={"20px"}>
@@ -121,6 +122,7 @@ const HeroSection = () => {
                               //
                               placeholder="Select date"
                               border="none"
+                              _placeholder={{color: '#5E5E5E'}}
                               _focus={{
                                 border: "2px solid #2057C2",
                                 outline: "none",
@@ -151,6 +153,7 @@ const HeroSection = () => {
                               bg="#F3F3F3"
                               //
                               placeholder="Select date"
+                              _placeholder={{color: '#5E5E5E'}}
                               border="none"
                               _focus={{
                                 border: "2px solid #2057C2",

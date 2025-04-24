@@ -72,11 +72,12 @@ const GetPaid = () => {
             fontWeight={"bold"}
             lineHeight={{ base: "40px", lg: "55px" }}
             variants={itemVariants}
+            color={'#000'}
           >
             Get Paid to Move. No Extra Effort Needed.{" "}
           </MotionHeading>
 
-          <MotionText variants={itemVariants}>
+          <MotionText color={'#000'} variants={itemVariants}>
             Already going somewhere? Get matched with small delivery requests
             along your route and earn
           </MotionText>

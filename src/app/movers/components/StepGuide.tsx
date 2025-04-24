@@ -52,7 +52,7 @@ const StepGuide = () => {
       >
         <VStack>
           <MotionImage
-            src="movers/movva-step.png"
+            src="/movers/movva-step.png"
             alt=""
             w={{ base: "100%", md: "600px", lg: "100%" }}
             animate={{ rotate: [0, -10, 10, -8, 8, -5, 5, 0] }} // Bell swing motion

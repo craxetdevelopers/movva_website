@@ -35,6 +35,7 @@ const Movements = () => {
           // w={'100%'}
           fontSize={{ base: "12px", lg: "16px" }}
           mb={{base: '29px', lg:"50px"}}
+          color={'gray'}
         >
           ABOUT US
         </Tag>

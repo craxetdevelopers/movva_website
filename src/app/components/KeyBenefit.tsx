@@ -61,11 +61,11 @@ const KeyBenefit = () => {
                 alignItems={"center"}
               >
                 <VStack w={"100%"} alignItems={"start"} gap={"10px"}>
-                  <Text fontWeight={"semibold"}>{benefit.title}</Text>
-                  <Text fontSize={"12px"} fontWeight={"normal"} w={"210px"}>
+                  <Text fontWeight={"semibold"} color={'#000'}>{benefit.title}</Text>
+                  <Text fontSize={"12px"} color={'#000'} fontWeight={"normal"} w={"210px"}>
                     {benefit.details}
                   </Text>
-                  <Button bg={"#fff"} borderRadius={"100px"}>
+                  <Button color={'#000'} bg={"#fff"} borderRadius={"100px"}>
                     Get App
                   </Button>
                 </VStack>

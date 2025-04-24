@@ -62,7 +62,7 @@ const SenderHero = () => {
             Download Sender App
           </Button>
           <Box mt={"60px"}>
-            <Image src="senders/sender-hero.png" alt="" w={"100%"} />
+            <Image src="/senders/sender-hero.png" alt="" w={"100%"} />
           </Box>
         </VStack>
       </MotionBox>

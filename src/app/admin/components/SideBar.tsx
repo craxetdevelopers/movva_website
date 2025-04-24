@@ -5,8 +5,8 @@ import {
   Flex,
   Icon,
   Image,
-  Link,
   Text,
+  Link,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
@@ -19,6 +19,7 @@ import { GoShieldCheck } from "react-icons/go";
 import { AiOutlineAudit } from "react-icons/ai";
 import { RiSettings2Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
+
 
 const navLinks = [
   { name: "Dashboard", icon: GrHomeRounded, href: "/admin/" },
@@ -51,9 +52,9 @@ const SideBar = ({
       {...rest}
     >
       <Flex h="20" alignItems="center" justifyContent="space-between" px="4">
-        <Box pl={"15px"}>
+        <Link pl={"15px"} href="/">
           <Image src="/admin/logo.svg" alt="logo" />
-        </Box>
+        </Link>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 

@@ -49,12 +49,13 @@ const WhyMovva = () => {
                 <Box>
                   <Image src={why.icon} alt="" w="100%" />
                 </Box>
-                <Heading fontSize={{ base: "14px", md: "20px", lg: "24px" }}>
+                <Heading color={'#000'} fontSize={{ base: "14px", md: "20px", lg: "24px" }}>
                   {why.title}
                 </Heading>
                 <Text
                   w={{ base: "200px", lg: "267px" }}
                   fontSize={{ base: "12px", lg: "16px" }}
+                  color={'#000'}
                 >
                   {why.details}
                 </Text>

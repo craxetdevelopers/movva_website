@@ -62,7 +62,7 @@ const MoverHero = () => {
             Download Movva App
           </Button>
           <Box mt={"60px"}>
-            <Image src="movers/hero-img.png" alt="" w={"100%"} />
+            <Image src="/movers/hero-img.png" alt="" w={"100%"} />
           </Box>
         </VStack>
       </MotionBox>
