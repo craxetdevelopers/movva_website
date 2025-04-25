@@ -11,11 +11,11 @@ const AdminDashboard = () => {
   return (
     <DashboardLayout>  
       <Statistics />
-      <Flex flexWrap={'wrap'} justifyContent={'space-between'}>
+      <Flex gap={'20px'} justifyContent={'space-between'}>
         <Deliveries />
         <Payouts />
       </Flex>
-      <Flex flexWrap={'wrap'} justifyContent={'space-between'}>
+      <Flex gap={'20px'} justifyContent={'space-between'}>
         <OngoingDeliveries />
         <CancelledDeliveries />
       </Flex>

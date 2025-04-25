@@ -2,15 +2,14 @@
 
 import React from 'react'
 import DashboardLayout from '../DashboardLayout'
-import MovvasTable from './components/MovvasTable'
+import { Text } from '@chakra-ui/react'
 
-
-const AdminMovvas = () => {
+const AdminSenders = () => {
   return (
     <DashboardLayout>
-        <MovvasTable />
+        <Text>Admin Senders</Text>
     </DashboardLayout>
   )
 }
 
-export default AdminMovvas
+export default AdminSenders

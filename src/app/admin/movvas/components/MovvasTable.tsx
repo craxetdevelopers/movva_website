@@ -19,14 +19,12 @@ const verificationColors: Record<string, { bg: string; color: string }> = {
   Verified: { bg: "#D1FAE5", color: "#065F46" }, // green
   Rejected: { bg: "#FEE2E2", color: "#991B1B" }, // red
   Pending: { bg: "#FEF3C7", color: "#92400E" }, // yellow
-  Completed: { bg: "#D1FAE5", color: "#065F46" },
-  Incompleted: { bg: "#E5E7EB", color: "#374151" },
 };
 
 const onboardingStatusColors: Record<string, { bg: string; color: string }> = {
-    Completed: { bg: "#D1FAE5", color: "#065F46" },
-    Incompleted: { bg: "#E5E7EB", color: "#374151" },
-  };
+  Completed: { bg: "#D1FAE5", color: "#065F46" },
+  Incompleted: { bg: "#E5E7EB", color: "#374151" },
+};
 
 const MovvasTable = () => {
   return (
@@ -36,9 +34,11 @@ const MovvasTable = () => {
         border={"0.5px solid #E4E7EC"}
       >
         <Table variant="simple">
-          <Thead bg={"#E5E7EB"} >
-            <Tr >
-              <Th py={'24px'} color={useColorModeValue("grey.400", "#000")}>Name</Th>
+          <Thead bg={"#E5E7EB"}>
+            <Tr>
+              <Th py={"24px"} color={useColorModeValue("grey.400", "#000")}>
+                Name
+              </Th>
               <Th color={useColorModeValue("grey.400", "#000")}>
                 Phone Number
               </Th>
@@ -105,7 +105,7 @@ const MovvasTable = () => {
                   <Td>{movTab.deliveryCount}</Td>
                   <Td>{movTab.doj}</Td>
                   <Td>
-                    <Link href="">View</Link>
+                    <Link href={`/admin/movvas/${movTab.id}/movva_details`}>View</Link>
                   </Td>
                 </Tr>
               );
@@ -120,6 +120,7 @@ const MovvasTable = () => {
 export default MovvasTable;
 
 interface MovvaTable {
+  id: number;
   name: string;
   phoneNumber: string;
   verification: string;
@@ -130,6 +131,7 @@ interface MovvaTable {
 
 const movvaTable: MovvaTable[] = [
   {
+    id: 1,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Verified",
@@ -138,6 +140,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 2,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Rejected",
@@ -146,6 +149,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 3,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Pending",
@@ -154,6 +158,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 4,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Verified",
@@ -162,6 +167,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 5,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Pending",
@@ -170,6 +176,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 6,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Pending",
@@ -178,6 +185,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 7,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Pending",
@@ -186,6 +194,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 8,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Verified",
@@ -194,6 +203,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 9,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Pending",
@@ -202,6 +212,7 @@ const movvaTable: MovvaTable[] = [
     doj: "19-02-2025",
   },
   {
+    id: 10,
     name: "John Adegboyega",
     phoneNumber: "+234908765431",
     verification: "Pending",
