@@ -2,12 +2,12 @@
 
 import React from 'react'
 import DashboardLayout from '../DashboardLayout'
-import { Text } from '@chakra-ui/react'
+import SendersTable from './components/SendersTable'
 
 const AdminSenders = () => {
   return (
     <DashboardLayout>
-        <Text>Admin Senders</Text>
+        <SendersTable />
     </DashboardLayout>
   )
 }

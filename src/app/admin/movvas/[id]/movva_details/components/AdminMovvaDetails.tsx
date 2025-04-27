@@ -21,7 +21,7 @@ import MovvaAuditTrail from "./MovvaAuditTrail";
 
 
 
-const AdminMovvaDetails = ({ id }: { id: number }) => {
+const AdminMovvaDetails = ({id}: {id: string}) => {
   const [tabIndex, setTabIndex] = useState(0);
   const router = useRouter()
 

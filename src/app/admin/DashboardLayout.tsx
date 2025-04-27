@@ -16,8 +16,10 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
         const normalizedPath = pathname?.replace(/\/$/, '');
         if (pathname === '/admin') return 'Dashboard';
         if (normalizedPath === `/admin/movvas/${id}/movva_details`) return 'Movvas Details';
+        if (normalizedPath === `/admin/senders/${id}/movva_details`) return 'Senders Details';
         
         if (pathname.includes('/admin/movvas')) return 'Movvas';
+        if (pathname.includes('/admin/senders')) return 'Senders';
         if (pathname.includes('/admin/trips')) return 'Trips';
         if (pathname.includes('/admin/payouts')) return 'Payouts';
         if (pathname.includes('/admin/insurance')) return 'Insurance & Claims';
