@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Box,
   Link,
@@ -22,11 +20,12 @@ const verificationColors: Record<string, { bg: string; color: string }> = {
 };
 
 const onboardingStatusColors: Record<string, { bg: string; color: string }> = {
-  Completed: { bg: "#D1FAE5", color: "#065F46" },
-  Incompleted: { bg: "#E5E7EB", color: "#374151" },
+  Active: { bg: "#D1FAE5", color: "#065F46" },
+  Inactive: { bg: "#E5E7EB", color: "#374151" },
+  Flagged: { bg: "#FEE2E2", color: "#991B1B" }
 };
 
-const MovvasTable = () => {
+const SendersTable = () => {
   return (
     <Stack>
       <TableContainer
@@ -39,14 +38,12 @@ const MovvasTable = () => {
               <Th py={"24px"} color={useColorModeValue("grey.400", "#000")}>
                 Name
               </Th>
-              <Th color={useColorModeValue("grey.400", "#000")}>
-                Phone Number
-              </Th>
+              <Th color={useColorModeValue("grey.400", "#000")}>Email</Th>
               <Th color={useColorModeValue("grey.400", "#000")}>
                 Verification
               </Th>
               <Th color={useColorModeValue("grey.400", "#000")}>
-                Onboarding status
+                Operational status
               </Th>
               <Th color={useColorModeValue("grey.400", "#000")}>
                 Delivery count
@@ -56,9 +53,9 @@ const MovvasTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {movvaTable.map((movTab, idx) => {
-              const verification = movTab.verification;
-              const status = movTab.onboardingStatus;
+            {senderTable.map((sendTab, idx) => {
+              const verification = sendTab.verification;
+              const status = sendTab.operationalStatus;
               const { bg: verificationBg, color: verificationColor } =
                 verificationColors[verification] || {
                   bg: "#E5E7EB",
@@ -72,20 +69,22 @@ const MovvasTable = () => {
                 };
               return (
                 <Tr key={idx}>
-                  <Td>{movTab.name}</Td>
-                  <Td>{movTab.phoneNumber}</Td>
+                  <Td>{sendTab.name}</Td>
+                  <Td>{sendTab.email}</Td>
                   <Td>
                     <Box
                       bg={verificationBg}
                       color={verificationColor}
                       px="2"
                       py="0.5"
+                      w={'80px'}
                       fontWeight="medium"
                       fontSize="sm"
                       borderRadius="12px"
-                      display="inline-block"
+                      display="flex"
+                      justifyContent={'center'}
                     >
-                      {movTab.verification}
+                      {sendTab.verification}
                     </Box>
                   </Td>
                   <Td>
@@ -94,18 +93,22 @@ const MovvasTable = () => {
                       color={statusColor}
                       px="2"
                       py="0.5"
+                      w={'80px'}
                       fontWeight="medium"
                       fontSize="sm"
                       borderRadius="12px"
-                      display="inline-block"
+                      display="flex"
+                      justifyContent={'center'}
                     >
-                      {movTab.onboardingStatus}
+                      {sendTab.operationalStatus}
                     </Box>
                   </Td>
-                  <Td>{movTab.deliveryCount}</Td>
-                  <Td>{movTab.doj}</Td>
+                  <Td>{sendTab.deliveryCount}</Td>
+                  <Td>{sendTab.doj}</Td>
                   <Td>
-                    <Link href={`/admin/movvas/${movTab.id}/movva_details`}>View</Link>
+                    <Link href={`/admin/senders/${sendTab.id}/sender_details`}>
+                      View
+                    </Link>
                   </Td>
                 </Tr>
               );
@@ -117,106 +120,106 @@ const MovvasTable = () => {
   );
 };
 
-export default MovvasTable;
+export default SendersTable;
 
-interface MovvaTable {
+interface SenderTable {
   id: number;
   name: string;
-  phoneNumber: string;
+  email: string;
   verification: string;
-  onboardingStatus: string;
+  operationalStatus: string;
   deliveryCount: string;
   doj: string;
 }
 
-const movvaTable: MovvaTable[] = [
+const senderTable: SenderTable[] = [
   {
     id: 1,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Verified",
-    onboardingStatus: "Completed",
+    operationalStatus: "Active",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 2,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Rejected",
-    onboardingStatus: "Incomplete",
+    operationalStatus: "Active",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 3,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Pending",
-    onboardingStatus: "Incomplete",
+    operationalStatus: "Inactive",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 4,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Verified",
-    onboardingStatus: "Completed",
+    operationalStatus: "Active",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 5,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Pending",
-    onboardingStatus: "Incomplete",
+    operationalStatus: "Inactive",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 6,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Pending",
-    onboardingStatus: "Incomplete",
+    operationalStatus: "Flagged",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 7,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Pending",
-    onboardingStatus: "Incomplete",
+    operationalStatus: "Active",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 8,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Verified",
-    onboardingStatus: "Completed",
+    operationalStatus: "Flagged",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 9,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Pending",
-    onboardingStatus: "Incomplete",
+    operationalStatus: "Active",
     deliveryCount: "189",
     doj: "19-02-2025",
   },
   {
     id: 10,
     name: "John Adegboyega",
-    phoneNumber: "+234908765431",
+    email: "JohnAA24@gmail.com",
     verification: "Pending",
-    onboardingStatus: "Incomplete",
+    operationalStatus: "Inactive",
     deliveryCount: "189",
     doj: "19-02-2025",
   },

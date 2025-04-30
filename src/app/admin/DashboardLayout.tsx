@@ -4,25 +4,32 @@ import { Box, Drawer, DrawerContent, Flex, useColorModeValue, useDisclosure } fr
 import React from 'react'
 import SideBar from './components/SideBar'
 import TopNavbar from './components/TopNavbar';
-import { usePathname } from 'next/navigation';
-
-const getTitleFromPath = (path: string): string => {
-    if (path === '/admin') return 'Dashboard';
-    if (path.includes('/admin/movvas')) return 'Movvas';
-    if (path.includes('/admin/trips')) return 'Trips';
-    if (path.includes('/admin/payouts')) return 'Payouts';
-    if (path.includes('/admin/insurance')) return 'Insurance & Claims';
-    if (path.includes('/admin/kyc')) return 'KYC Verification';
-    if (path.includes('/admin/audit')) return 'Audit Log';
-    if (path.includes('/admin/settings')) return 'Settings';
-    return 'Dashboard'; // fallback
-  };
-
+import { useParams, usePathname } from 'next/navigation';
 
 const DashboardLayout = ({children}: {children: React.ReactNode}) => {
-    const pathname = usePathname()
-    const pageTitle = getTitleFromPath(pathname)
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const pathname = usePathname();
+    const params = useParams(); // ✅ use the hook here
+    const id = params?.id;
+
+    const pageTitle = React.useMemo(() => {
+        const normalizedPath = pathname?.replace(/\/$/, '');
+        if (pathname === '/admin') return 'Dashboard';
+        if (normalizedPath === `/admin/movvas/${id}/movva_details`) return 'Movvas Details';
+        if (normalizedPath === `/admin/senders/${id}/movva_details`) return 'Senders Details';
+        
+        if (pathname.includes('/admin/movvas')) return 'Movvas';
+        if (pathname.includes('/admin/senders')) return 'Senders';
+        if (pathname.includes('/admin/trips')) return 'Trips';
+        if (pathname.includes('/admin/payouts')) return 'Payouts';
+        if (pathname.includes('/admin/insurance')) return 'Insurance & Claims';
+        if (pathname.includes('/admin/kyc')) return 'KYC Verification';
+        if (pathname.includes('/admin/audit')) return 'Audit Log';
+        
+        if (pathname.includes('/admin/settings')) return 'Settings';
+        return 'Dashboard';
+      }, [pathname, id]);
+
   return (
     <Flex minH={'100vh'} bg={useColorModeValue('#f3f3f3', 'grey 900')}>
         <SideBar display={{ base: 'none', md: 'block' }} onClose={onClose}/>

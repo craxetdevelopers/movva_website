@@ -104,7 +104,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div style={{backgroundColor: '#ffffff'}}>
       {!showLanding && (
         <Box
           id="animation-wrapper"

@@ -2,15 +2,14 @@
 
 import React from 'react'
 import DashboardLayout from '../DashboardLayout'
-import MovvasTable from './components/MovvasTable'
+import SendersTable from './components/SendersTable'
 
-
-const AdminMovvas = () => {
+const AdminSenders = () => {
   return (
     <DashboardLayout>
-        <MovvasTable />
+        <SendersTable />
     </DashboardLayout>
   )
 }
 
-export default AdminMovvas
+export default AdminSenders

@@ -13,15 +13,16 @@ import React from "react";
 
 const Statistics = () => {
   return (
-    <Flex justifyContent={"space-between"} flexWrap={'wrap'} gap={'10px'}>
+    <Flex justifyContent={"space-between"} w={'100%'} gap={'10px'}  textAlign={'center'}>
       {/* Total Deliveries completed */}
       <VStack
         border={"0.5px solid #E4E7EC"}
         borderRadius={"12px"}
         bg={useColorModeValue("#fff", "grey.400")}
         w={"100%"}
-        maxW={"420px"}
+        maxW={{base:"200px", lg: '350px',  "2xl":'420px'}}
         py={"30px"}
+       
         gap={"15px"}
       >
         <Text>Total Deliveries completed</Text>
@@ -52,7 +53,7 @@ const Statistics = () => {
         borderRadius={"12px"}
         bg={useColorModeValue("#fff", "grey.400")}
         w={"100%"}
-        maxW={"420px"}
+        maxW={{base:"200px", lg: '350px',  "2xl":'420px'}}
         py={"30px"}
         gap={"15px"}
       >
@@ -84,7 +85,7 @@ const Statistics = () => {
         borderRadius={"12px"}
         bg={useColorModeValue("#fff", "grey.400")}
         w={"100%"}
-        maxW={"420px"}
+        maxW={{base:"200px", lg: '350px',  "2xl":'420px'}}
         py={"30px"}
         gap={"15px"}
       >

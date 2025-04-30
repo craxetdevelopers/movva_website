@@ -24,6 +24,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { name: "Dashboard", icon: GrHomeRounded, href: "/admin/" },
   { name: "Movvas", icon: FaRegUser, href: "/admin/movvas/" },
+  { name: "Senders", icon: FaRegUser, href: "/admin/senders/" },
   { name: "Trips", icon: GrLocation, href: "/admin/trips/" },
   { name: "Payouts", icon: AiOutlineDollarCircle, href: "/admin/payouts/" },
   { name: "Insurance & Claims", icon: FiShield, href: "/admin/insurance/" },
