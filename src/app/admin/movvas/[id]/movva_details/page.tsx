@@ -17,10 +17,13 @@ export async function generateStaticParams() {
   ];
 }
 
+type tParams = Promise<{ id: string }>;
+
+
 // Awaiting params to handle the new structure in Next.js v15
-export default async function MovvaDetails({ params }: { params: { id: string } }) {
+export default async function MovvaDetails({ params }: { params:  tParams }) {
   // Await the params here
-  const { id } = await params;
+  const { id }: {id: string} = await params;
 
   return (
     <DashboardLayout>

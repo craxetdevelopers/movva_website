@@ -16,9 +16,11 @@ export async function generateStaticParams() {
   ];
 }
 
-export default async function SenderDetails({ params }: { params: { id: string } }) {
+type tParams = Promise<{ id: string }>;
+
+export default async function SenderDetails({ params }: { params:  tParams }) {
     // Await the params here
-    const { id } = await params;
+    const { id }: {id: string} = await params;
   
     return (
       <DashboardLayout>
