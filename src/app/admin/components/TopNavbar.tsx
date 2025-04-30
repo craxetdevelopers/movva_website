@@ -37,7 +37,6 @@ const TopNavbar = ({
   const id = params?.id;
   const hasNotifications = true;
   const backgroundColor = useColorModeValue("#f3f3f3", "grey.800");
-  console.log("foo", id);
   return (
     <Flex
       as="header"
