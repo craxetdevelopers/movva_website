@@ -60,7 +60,7 @@ const AdminSignin = () => {
       if (data?.user?.type) {
         localStorage.setItem("userType", data?.user?.type);
       }
-      console.log(data?.token?.token);
+      
       // Check if the user is an admin
       if (data?.user?.type == "admin") {
         router.push("/admin");
