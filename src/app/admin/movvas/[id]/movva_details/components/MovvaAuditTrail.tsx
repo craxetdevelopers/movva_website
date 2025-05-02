@@ -1,8 +1,12 @@
+import { Search2Icon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Flex,
   Icon,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Stack,
   Table,
   TableContainer,
@@ -12,18 +16,40 @@ import {
   Thead,
   Tr,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import MovvaAuditTrailFilter from "./MovvaAuditTrailFilter";
 
 const MovvaAuditTrail = () => {
+  const backgroundColor = useColorModeValue("#ffffff", "grey.800");
   return (
-    <Stack w={"100%"}>
-      <Flex justifyContent={"space-between"} w={"100%"}>
+    <Stack w={"100%"} mt={"20px"}>
+      <Flex w={"100%"} gap={"10px"} justifyContent={"start"}>
+        <VStack alignItems={"flex-end"}>
+          <VStack alignItems={"end"} w={"330px"} borderRadius={"9px"}>
+            <InputGroup bg={backgroundColor} borderRadius={"9px"}>
+              <InputLeftElement pointerEvents="none">
+                <Search2Icon color="gray.400" />
+              </InputLeftElement>
+              <Input
+                type="text"
+                placeholder="Search..."
+                w={"100%"}
+                maxW={"530px"}
+              />
+            </InputGroup>
+          </VStack>
+        </VStack>
+        <MovvaAuditTrailFilter />
+        <Button bg={"none"}> Clear all</Button>
+      </Flex>
+      <Flex justifyContent={"space-between"} w={"100%"} mt={"10px"}>
         <TableContainer
           w={"100%"}
           borderRadius={"12px 12px 0px 0px"}
-          border={"0.5px solid #E4E7EC"}
+          border={"1px solid #E4E7EC"}
           maxW={"840px"}
         >
           <Table variant="simple" w={"100%"}>
@@ -107,7 +133,6 @@ interface MovvaAuditTrail {
   date: string;
   admin: string;
   details: string;
-  
 }
 
 const movvaAudit: MovvaAuditTrail[] = [
@@ -165,5 +190,4 @@ const movvaAudit: MovvaAuditTrail[] = [
     admin: "Cynthia",
     details: "Insufficient funds",
   },
-  
 ];

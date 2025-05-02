@@ -1,7 +1,13 @@
 "use client";
 
+import { Search2Icon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Link,
   Stack,
   Table,
@@ -12,8 +18,10 @@ import {
   Thead,
   Tr,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import MovvaTableFilter from "./MovvaTableFilter";
 
 const verificationColors: Record<string, { bg: string; color: string }> = {
   Verified: { bg: "#D1FAE5", color: "#065F46" }, // green
@@ -27,11 +35,34 @@ const onboardingStatusColors: Record<string, { bg: string; color: string }> = {
 };
 
 const MovvasTable = () => {
+  const backgroundColor = useColorModeValue("#ffffff", "grey.800");
+
   return (
-    <Stack>
+    <Stack mt={'20px'}>
+      <Flex w={"100%"} gap={"10px"} justifyContent={"end"}>
+        <VStack alignItems={"flex-end"}>
+          <VStack alignItems={"end"} w={"430px"} borderRadius={"9px"}>
+            <InputGroup bg={backgroundColor} borderRadius={"9px"}>
+              <InputLeftElement pointerEvents="none">
+                <Search2Icon color="gray.400" />
+              </InputLeftElement>
+              <Input
+                type="text"
+                placeholder="Search..."
+                w={"100%"}
+                maxW={"530px"}
+              />
+            </InputGroup>
+          </VStack>
+        </VStack>
+        <MovvaTableFilter />
+        <Button bg={'none'}> Clear all</Button>
+      </Flex>
+
       <TableContainer
         borderRadius={"12px 12px 0px 0px"}
-        border={"0.5px solid #E4E7EC"}
+        border={"1px solid #E4E7EC"}
+        mt={"20px"}
       >
         <Table variant="simple">
           <Thead bg={"#E5E7EB"}>
@@ -105,7 +136,9 @@ const MovvasTable = () => {
                   <Td>{movTab.deliveryCount}</Td>
                   <Td>{movTab.doj}</Td>
                   <Td>
-                    <Link href={`/admin/movvas/${movTab.id}/movva_details`}>View</Link>
+                    <Link href={`/admin/movvas/${movTab.id}/movva_details`}>
+                      View
+                    </Link>
                   </Td>
                 </Tr>
               );

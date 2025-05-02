@@ -2,6 +2,11 @@
 
 import {
   Box,
+  Button,
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Stack,
   Table,
   TableContainer,
@@ -11,8 +16,12 @@ import {
   Thead,
   Tr,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
+// import MovvaTableFilter from "../../../components/MovvaTableFilter";
+import { Search2Icon } from "@chakra-ui/icons";
+import MovvaDeliveryHistoryFilter from "./MovvaDeliveryHistoryFilter";
 
 const onboardingStatusColors: Record<string, { bg: string; color: string }> = {
   Completed: { bg: "#D1FAE5", color: "#065F46" },
@@ -20,11 +29,34 @@ const onboardingStatusColors: Record<string, { bg: string; color: string }> = {
 };
 
 const DeliveryHistory = () => {
+  const backgroundColor = useColorModeValue("#ffffff", "grey.800");
+
   return (
-    <Stack>
+    <Stack mt={'20px'}>
+      <Flex w={"100%"} gap={"10px"} justifyContent={"end"}>
+        <VStack alignItems={"flex-end"}>
+          <VStack alignItems={"end"} w={"430px"} borderRadius={"9px"}>
+            <InputGroup bg={backgroundColor} borderRadius={"9px"}>
+              <InputLeftElement pointerEvents="none">
+                <Search2Icon color="gray.400" />
+              </InputLeftElement>
+              <Input
+                type="text"
+                placeholder="Search..."
+                w={"100%"}
+                maxW={"530px"}
+              />
+            </InputGroup>
+          </VStack>
+        </VStack>
+        <MovvaDeliveryHistoryFilter />
+        <Button bg={"none"}> Clear all</Button>
+      </Flex>
+
       <TableContainer
         borderRadius={"12px 12px 0px 0px"}
-        border={"0.5px solid #E4E7EC"}
+        border={"1px solid #E4E7EC"}
+        mt={'10px'}
       >
         <Table variant="simple">
           <Thead bg={"#E5E7EB"}>

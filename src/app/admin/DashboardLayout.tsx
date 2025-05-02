@@ -57,14 +57,14 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     return "Dashboard";
   }, [pathname, id]);
 
-  if (isCheckingAuth) {
+  if (isCheckingAuth && pathname == '/admin/') {
     return (
       <Center bg={'#16193A'} minH="100vh" flexDirection="column" gap={4}>
         <CircularProgress
           isIndeterminate
           color="blue.400"
           size="80px"
-          thickness="8px"
+          thickness="8px" 
         />
         <Box fontWeight="medium" fontSize="lg">
           Checking Admin Access...

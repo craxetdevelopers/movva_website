@@ -36,7 +36,10 @@ const HeroSection = () => {
       transition={{ duration: 4, ease: "easeOut" }}
     >
       <Stack gap={"2rem"} h={"auto"}>
-        <Stack px={["1rem", "2rem", "2rem", "2rem", "0"]} py={["0.5rem", "0.5rem", "4.5rem", "5.5rem"]}>
+        <Stack
+          px={["1rem", "2rem", "2rem", "2rem", "0"]}
+          py={["0.5rem", "0.5rem", "4.5rem", "5.5rem"]}
+        >
           <Stack>
             <VStack width="100%" maxW={"1249px"} mx="auto" alignItems={"start"}>
               <Flex
@@ -71,8 +74,8 @@ const HeroSection = () => {
                     w={{ base: "100%", md: "450px", lg: "564px" }}
                     fontSize={"16px"}
                   >
-                    Whenever you’re heading somewhere on public transport, earn money by
-                    helping others move things effortlessly.
+                    Whenever you’re heading somewhere on public transport, earn
+                    money by helping others move things effortlessly.
                   </Text>
                   <Stack
                     spacing={4}
@@ -95,7 +98,7 @@ const HeroSection = () => {
                         bg={"#F3F3F3"}
                         placeholder="Where are you going?"
                         border={"none"}
-                        _placeholder={{color: '#5E5E5E'}}
+                        _placeholder={{ color: "#5E5E5E" }}
                         pl={"60px"}
                       />
                       <InputRightElement py={"25px"} pr={"20px"}>
@@ -122,7 +125,7 @@ const HeroSection = () => {
                               //
                               placeholder="Select date"
                               border="none"
-                              _placeholder={{color: '#5E5E5E'}}
+                              _placeholder={{ color: "#5E5E5E" }}
                               _focus={{
                                 border: "2px solid #2057C2",
                                 outline: "none",
@@ -153,7 +156,7 @@ const HeroSection = () => {
                               bg="#F3F3F3"
                               //
                               placeholder="Select date"
-                              _placeholder={{color: '#5E5E5E'}}
+                              _placeholder={{ color: "#5E5E5E" }}
                               border="none"
                               _focus={{
                                 border: "2px solid #2057C2",
@@ -174,17 +177,18 @@ const HeroSection = () => {
                     border={"1px solid #2057C2"}
                     borderRadius={"8px"}
                     _hover={{ color: "#000", background: "#fff" }}
-                    onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSdn-zFUzqY5_sYIfjD2wp_44N75Sd6BgPw_sEApnfESnUuSVw/viewform", "_blank")}
+                    onClick={() =>
+                      window.open(
+                        "https://docs.google.com/forms/d/e/1FAIpQLSdn-zFUzqY5_sYIfjD2wp_44N75Sd6BgPw_sEApnfESnUuSVw/viewform",
+                        "_blank"
+                      )
+                    }
                   >
                     Join our waitlist
                   </Button>
                 </VStack>
                 <VStack>
-                  <Image
-                    src={"/landingpage/hero-new.png"}
-                    alt=""
-                    w="100%"
-                  />
+                  <Image src={"/landingpage/hero-new.png"} alt="" w="100%" />
                 </VStack>
               </Flex>
             </VStack>
