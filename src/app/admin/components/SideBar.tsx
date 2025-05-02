@@ -9,7 +9,7 @@ import {
   Link,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+// import React, { use } from "react";
 import { GrHomeRounded } from "react-icons/gr";
 import { FaRegUser } from "react-icons/fa6";
 import { GrLocation } from "react-icons/gr";
@@ -19,6 +19,7 @@ import { GoShieldCheck } from "react-icons/go";
 import { AiOutlineAudit } from "react-icons/ai";
 import { RiSettings2Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 
 
 const navLinks = [
@@ -42,7 +43,7 @@ const SideBar = ({
   onClose?: () => void;
   [key: string]: any;
 }) => {
-  
+  const {adminUser} = useAuth()
   return (
     <Box
       bg="#2C2F66"
@@ -108,10 +109,10 @@ const SideBar = ({
       </VStack>
       <VStack alignItems={"start"} px={4} pt={"62px"}>
         <Flex gap={"10px"}>
-          <Avatar size="sm" name="Admin User" />
+          <Avatar size="sm" name={`${adminUser?.first_name} ${adminUser?.last_name}`} />
           <VStack alignItems={"start"} gap={"0px"}>
-            <Text>Alison Eyo</Text>
-            <Text color={"#98A2B3"}>alison@gmail.com</Text>
+            <Text>{adminUser?.first_name} {adminUser?.last_name}</Text>
+            <Text color={"#98A2B3"}>{adminUser?.email}</Text>
           </VStack>
         </Flex>
       </VStack>

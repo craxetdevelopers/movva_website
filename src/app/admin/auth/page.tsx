@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Box,
   Button,
@@ -30,6 +31,7 @@ const AdminSignin = () => {
     email: "",
     password: "",
   });
+  const {setAdminUser, setToken} = useAuth()
 
   // Function that handles input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,16 +53,25 @@ const AdminSignin = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data)
 
-      // Store token in local storage
+
+
+      // Store token, user in local storage
       if (data?.token?.token) {
         localStorage.setItem("token", data?.token?.token);
+        setToken(data?.token?.token)
       }
-
       if (data?.user?.type) {
         localStorage.setItem("userType", data?.user?.type);
       }
+      if (data?.user) {
+        localStorage.setItem("admin_user", JSON.stringify(data?.user));
+        setAdminUser(data?.user)
+      }
       
+
+
       // Check if the user is an admin
       if (data?.user?.type == "admin") {
         router.push("/admin");

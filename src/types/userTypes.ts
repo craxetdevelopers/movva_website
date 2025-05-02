@@ -1,0 +1,40 @@
+export type AdminUser = {
+    bank_account_number: string;
+    bank_name: string;
+    bvn: string;
+    city: string;
+    country: string;
+    created_at: string;
+    date_of_birth: string;
+    email: string;
+    email_verified: number;
+    employment_status: null;
+    first_name: string;
+    gender: string;
+    id: number;
+    id_card_number: string;
+    id_card_photo: null;
+    id_card_type: string;
+    last_name: string;
+    marital_status: null;
+    middle_name: null;
+    national_id: null;
+    next_of_kin_address: string;
+    next_of_kin_name: string;
+    next_of_kin_phone: string;
+    next_of_kin_relation: string;
+    otp_expiry: null;
+    phone_number: string;
+    photo: null;
+    profession: null;
+    profile_language: string;
+    reset_token: null;
+    reset_token_expiry: null;
+    residential_address: string;
+    state: string;
+    status: string;
+    type: string;
+    updated_at: string;
+    verication_otp: null
+   
+}

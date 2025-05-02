@@ -1,6 +1,5 @@
 "use client";
 
-import MovvaAuditTrail from "@/app/admin/movvas/[id]/movva_details/components/MovvaAuditTrail";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Button, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
@@ -43,7 +42,7 @@ const AdminSenderDetails = ({ id }: { id: string }) => {
       onChange={(index) => setTabIndex(index)}
       isFitted
     >
-      <TabList mb={'30px'} maxW={"470px"} border={"1px solid grey"} borderRadius={"8px"} w={"100%"}>
+      <TabList mb={'30px'} maxW={"350px"} border={"1px solid grey"} borderRadius={"8px"} w={"100%"}>
         <Tab
           fontSize={"14px"}
           fontWeight={"600"}
@@ -57,23 +56,14 @@ const AdminSenderDetails = ({ id }: { id: string }) => {
         <Tab
           fontSize={"14px"}
           fontWeight={"600"}
-          borderX={"0.5px solid grey"}
-          py={"15px"}
-          _selected={{ bg: "#3366FF", color: "#fff" }}
-        >
-          Delivery History
-        </Tab>
-        
-        <Tab
-          fontSize={"14px"}
-          fontWeight={"600"}
           border={"none"}
           py={"15px"}
           borderRadius={"0px 8px 8px 0px"}
           _selected={{ bg: "#3366FF", color: "#fff" }}
         >
-          Verification
+          Delivery History
         </Tab>
+        
       </TabList>
 
       <TabPanels >
@@ -82,9 +72,6 @@ const AdminSenderDetails = ({ id }: { id: string }) => {
         </TabPanel>
         <TabPanel>
           <SenderDeliveryHistory />
-        </TabPanel>
-        <TabPanel>
-          <MovvaAuditTrail />
         </TabPanel>
       </TabPanels>
     </Tabs>

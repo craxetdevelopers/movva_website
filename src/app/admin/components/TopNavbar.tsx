@@ -1,25 +1,22 @@
 "use";
 
-import { Search2Icon } from "@chakra-ui/icons";
+import { useAuth } from "@/contexts/AuthContext";
+
 import {
   Avatar,
   Badge,
   Box,
-  Button,
+
   Flex,
   Heading,
   HStack,
   IconButton,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Spacer,
   Tooltip,
   useColorMode,
   useColorModeValue,
-  VStack,
 } from "@chakra-ui/react";
-import { useParams, usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import React from "react";
 import { FiMenu, FiMoon, FiSun } from "react-icons/fi";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -32,11 +29,13 @@ const TopNavbar = ({
   title?: string;
 }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const pathname = usePathname();
-  const params = useParams(); // ✅ use the hook here
-  const id = params?.id;
+  // const pathname = usePathname();
+  // const params = useParams(); // ✅ use the hook here
+  // const id = params?.id;
   const hasNotifications = true;
-  const backgroundColor = useColorModeValue("#f3f3f3", "grey.800");
+  // const backgroundColor = useColorModeValue("#f3f3f3", "grey.800");
+  const { adminUser } = useAuth();
+  console.log(adminUser?.bank_name);
   return (
     <Flex
       as="header"
@@ -48,8 +47,8 @@ const TopNavbar = ({
       //   position="sticky"
       //   top={0}
       justifyContent={"space-between"}
+      alignItems={'center'}
       zIndex="docked"
-     
     >
       <IconButton
         icon={<FiMenu />}
@@ -58,36 +57,14 @@ const TopNavbar = ({
         onClick={onOpen}
         display={{ base: "inline-flex", md: "none" }}
         mr={2}
-        
       />
 
-      <Heading mb={4} fontSize={"28px"} >
+      <Heading mb={4} fontSize={"28px"}>
         {title}
       </Heading>
       <Spacer />
-      <HStack spacing={3} w={"fit-content"} >
-        {pathname == `/admin/movvas/${id}/` ? (
-          ""
-        ) : (
-          <VStack bg={backgroundColor} borderRadius={"9px"}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <Search2Icon color="gray.400" />
-              </InputLeftElement>
-              <Input
-                type="text"
-                placeholder="Search..."
-                w={"100%"}
-                maxW={"630px"}
-              />
-            </InputGroup>
-          </VStack>
-        )}
+      <HStack spacing={3} w={"fit-content"}>
         <HStack alignItems={"center"}>
-          {pathname == "/admin/movvas" && (
-            <Button bg={"#2C2F66"}>Filter</Button>
-          )}
-
           <IconButton
             icon={colorMode === "light" ? <FiMoon /> : <FiSun />}
             aria-label="Toggle theme"
@@ -115,7 +92,10 @@ const TopNavbar = ({
               )}
             </Box>
           </Tooltip>
-          <Avatar size="sm" name="Admin User" />
+          <Avatar
+            size="sm"
+            name={`${adminUser?.first_name} ${adminUser?.last_name}`}
+          />
         </HStack>
       </HStack>
     </Flex>
