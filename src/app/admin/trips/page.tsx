@@ -15,6 +15,7 @@ import {
 import { Search2Icon } from "@chakra-ui/icons";
 import TripsTableFilter from "./components/TripsTableFilter";
 import TripStatistics from "./components/TripStatistics";
+import TripTable from "./components/TripTable";
 
 const AdminTrips = () => {
   const backgroundColor = useColorModeValue("#ffffff", "grey.800");
@@ -42,6 +43,7 @@ const AdminTrips = () => {
           <Button bg={"none"}> Clear all</Button>
         </Flex>
         <TripStatistics />
+        <TripTable />
       </Stack>
     </DashboardLayout>
   );
