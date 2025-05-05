@@ -17,8 +17,8 @@ import React from "react";
 import TripDetails from "./TripDetails";
 
 const onboardingStatusColors: Record<string, { bg: string; color: string }> = {
-  Completed: { bg: "#D1FAE5", color: "#065F46" },
-  Cancelled: { bg: "#FEE2E2", color: "#991B1B" },
+  Approved: { bg: "#D1FAE5", color: "#065F46" },
+  Rejected: { bg: "#FEE2E2", color: "#991B1B" },
   'In transit': { bg: "#E0F2FE", color: "#2563EB" },
 };
 
