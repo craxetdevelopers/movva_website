@@ -83,7 +83,7 @@ const SendersTable = () => {
               <Th color={useColorModeValue("grey.400", "#000")}>Actions</Th>
             </Tr>
           </Thead>
-          <Tbody>
+          <Tbody bg={backgroundColor}>
             {senderTable.map((sendTab, idx) => {
               const verification = sendTab.verification;
               const status = sendTab.operationalStatus;

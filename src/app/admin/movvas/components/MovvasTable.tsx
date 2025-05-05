@@ -86,7 +86,7 @@ const MovvasTable = () => {
               <Th color={useColorModeValue("grey.400", "#000")}>Actions</Th>
             </Tr>
           </Thead>
-          <Tbody>
+          <Tbody bg={backgroundColor}>
             {movvaTable.map((movTab, idx) => {
               const verification = movTab.verification;
               const status = movTab.onboardingStatus;
