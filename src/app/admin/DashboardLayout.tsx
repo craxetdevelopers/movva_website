@@ -50,7 +50,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     if (pathname.includes("/admin/trips")) return "Trips";
     if (pathname.includes("/admin/payouts")) return "Payouts";
     if (pathname.includes("/admin/insurance")) return "Insurance & Claims";
-    if (pathname.includes("/admin/kyc")) return "KYC Verification";
+    if (pathname.includes("/admin/verification")) return "KYC Verification";
     if (pathname.includes("/admin/audit")) return "Audit Log";
 
     if (pathname.includes("/admin/settings")) return "Settings";

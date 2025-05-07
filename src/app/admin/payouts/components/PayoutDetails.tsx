@@ -1,19 +1,28 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { Button, Divider, Icon, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverTrigger, useColorModeValue } from '@chakra-ui/react'
-import { BsThreeDots } from 'react-icons/bs'
-import ApprovePayout from './ApprovePayout'
-import RejectPayout from './RejectPayout'
-
+import React from "react";
+import {
+  Button,
+  Divider,
+  Icon,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverTrigger,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { BsThreeDots } from "react-icons/bs";
+import ApprovePayout from "./ApprovePayout";
+import RejectPayout from "./RejectPayout";
 
 // interface PayoutProps {
 //   payout: PayoutTables
 // }
 
-
 const PayoutDetails = () => {
-    const backgroundColor = useColorModeValue("#ffffff", "#1A202C");
+  const backgroundColor = useColorModeValue("#ffffff", "#1A202C");
   return (
     <Popover placement="bottom-end" closeOnBlur={false} size={"2xl"}>
       <PopoverTrigger>
@@ -40,7 +49,7 @@ const PayoutDetails = () => {
         </PopoverBody>
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};
 
-export default PayoutDetails
+export default PayoutDetails;
