@@ -1,26 +1,34 @@
-import React from 'react'
-import DashboardLayout from './DashboardLayout'
-import { Flex} from '@chakra-ui/react'
-import Statistics from './components/Statistics'
-import Deliveries from './components/Deliveries'
-import Payouts from './components/Payouts'
-import OngoingDeliveries from './components/OngoingDeliveries'
-import CancelledDeliveries from './components/CancelledDeliveries'
+"use client";
 
-const AdminDashboard = () => {
+import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { Center, CircularProgress, Box } from "@chakra-ui/react";
+
+const AdminRootRedirect = () => {
+    const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const userType = typeof window !== "undefined" ? localStorage.getItem("userType") : null;
+
+    if (token && userType === "admin" ) {
+      router.replace("/admin/dashboard");
+    } else if (!token && userType !== "admin" || pathname == '/admin/dashboard/') {
+        return router.replace("/admin/auth/");
+    } else {
+      router.replace("/admin/auth/");
+    }
+  }, []);
+
   return (
-    <DashboardLayout>  
-      <Statistics />
-      <Flex gap={'20px'} justifyContent={'space-between'}>
-        <Deliveries />
-        <Payouts />
-      </Flex>
-      <Flex gap={'20px'} justifyContent={'space-between'}>
-        <OngoingDeliveries />
-        <CancelledDeliveries />
-      </Flex>
-    </DashboardLayout>
-  )
-}
+    <Center bg="#16193A" minH="100vh" flexDirection="column" gap={4}>
+      <CircularProgress isIndeterminate color="blue.400" size="80px" thickness="8px" />
+      <Box fontWeight="medium" fontSize="lg" color={'#fff'}>
+        Redirecting...
+      </Box>
+    </Center>
+  );
+};
 
-export default AdminDashboard
+export default AdminRootRedirect;

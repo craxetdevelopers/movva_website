@@ -23,7 +23,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 
 const navLinks = [
-  { name: "Dashboard", icon: GrHomeRounded, href: "/admin/" },
+  { name: "Dashboard", icon: GrHomeRounded, href: "/admin/dashboard/" },
   { name: "Movvas", icon: FaRegUser, href: "/admin/movvas/" },
   { name: "Senders", icon: FaRegUser, href: "/admin/senders/" },
   { name: "Trips", icon: GrLocation, href: "/admin/trips/" },

@@ -30,7 +30,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     const userType =
       typeof window !== "undefined" ? localStorage.getItem("userType") : null;
 
-    if (!token || userType !== "admin") {
+    if (!token || userType !== "admin" ) {
       router.replace("/admin/auth");
     } else {
       setIsCheckingAuth(false);
@@ -39,7 +39,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const pageTitle = React.useMemo(() => {
     const normalizedPath = pathname?.replace(/\/$/, "");
-    if (pathname === "/admin") return "Dashboard";
+    if (pathname === "/admin/dashboard") return "Dashboard";
     if (normalizedPath === `/admin/movvas/${id}/movva_details`)
       return "Movvas Details";
     if (normalizedPath === `/admin/senders/${id}/movva_details`)
@@ -66,7 +66,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           size="80px"
           thickness="8px" 
         />
-        <Box fontWeight="medium" fontSize="lg">
+        <Box fontWeight="medium" color={'#fff'} fontSize="lg">
           Checking Admin Access...
         </Box>
       </Center>

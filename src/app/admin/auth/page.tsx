@@ -14,7 +14,7 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface SigninPayload {
@@ -25,6 +25,7 @@ interface SigninPayload {
 const AdminSignin = () => {
   const toast = useToast();
   const router = useRouter();
+   const pathname = usePathname();
   const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [formData, setFormData] = useState<SigninPayload>({
@@ -70,11 +71,9 @@ const AdminSignin = () => {
         setAdminUser(data?.user)
       }
       
-
-
       // Check if the user is an admin
       if (data?.user?.type == "admin") {
-        router.push("/admin");
+        router.push("/admin/dashboard");
       } else {
         throw new Error("Access denied: Not an admin");
       }
@@ -96,13 +95,13 @@ const AdminSignin = () => {
     const userType = typeof window !== 'undefined'? localStorage.getItem("userType") : null;
 
     if (token && userType === "admin") {
-      router.replace("/admin"); 
+      router.replace("/admin/dashboard"); 
     } else {
       setIsLoggedIn(false)
     }
   }, []);
 
-  if (isLoggedIn) {
+  if (isLoggedIn && pathname.includes('/admin/')) {
       return (
         <Center bg={'#16193A'} minH="100vh" flexDirection="column" gap={4}>
           <CircularProgress
@@ -111,7 +110,7 @@ const AdminSignin = () => {
             size="80px"
             thickness="8px"
           />
-          <Box fontWeight="medium" fontSize="lg">
+          <Box fontWeight="medium" fontSize="lg" color={'#fff'}>
             Checking if Admin is Loggedin...
           </Box>
         </Center>
