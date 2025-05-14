@@ -88,7 +88,7 @@ const SideBar = ({
             <Text>Audit Logs</Text>
           </Link>
           <Link
-            href={"/admin/insurance/"}
+            href={"/admin/setting/"}
             display="flex"
             alignItems="center"
             gap="3"

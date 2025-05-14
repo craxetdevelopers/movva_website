@@ -18,13 +18,46 @@ import React from "react";
 import { CiEdit } from "react-icons/ci";
 import { AiOutlineStop } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
+import ProfileSkeleton from "@/loader/ProfileSkeleton";
+import { MovvaProfileDetails } from "@/types/movvaTypes";
+import dayjs from "dayjs";
+import { MdOutlinePending } from "react-icons/md";
 
-const MovvaProfile = () => {
+const MovvaProfile = ({
+  data,
+  isError,
+  isLoading,
+  refetch,
+}: {
+  data?: MovvaProfileDetails;
+  isError: boolean;
+  isLoading: boolean;
+  refetch: () => void;
+}) => {
+  const bg = useColorModeValue("#fff", "grey.400");
+  const bg2 = useColorModeValue("#22244E", "#fff");
+  const color = useColorModeValue("#344054", "white.900");
+  const color2 = useColorModeValue("#fff", "#22244E");
+
+  if (isLoading) {
+    return <ProfileSkeleton />;
+  }
+
+  if (isError) {
+    return (
+      <VStack h={"50vh"} justifyContent={"center"} textAlign="center" py={10}>
+        <Text fontSize="md" mb={4}>
+          Something went wrong. Please try again.
+        </Text>
+        <Button onClick={() => refetch()}>Retry</Button>
+      </VStack>
+    );
+  }
   return (
     <VStack
       h={"550px"}
       borderRadius={"8px"}
-      bg={useColorModeValue("#fff", "grey.400")}
+      bg={bg}
       alignItems={"start"}
       border={"0.5px solid grey"}
       w={"100%"}
@@ -36,34 +69,25 @@ const MovvaProfile = () => {
         w={"100%"}
       >
         <HStack gap={"20px"}>
-          <Avatar size="2xl" name="Admin User" />
+          <Avatar size="2xl" name={`${data?.first_name} ${data?.last_name}`} />
           <VStack alignItems={"start"}>
-            <Heading fontSize={"24px"}>Adeshola Ayantuga</Heading>
-            <Text color={useColorModeValue("#344054", "white.900")}>
-              +234908765431
-            </Text>
-            <Text color={useColorModeValue("#344054", "white.900")}>
-              Adeshola.Ayantuga@gmail.com
-            </Text>
+            <Heading fontSize={"24px"}>
+              {data?.first_name} {data?.last_name}
+            </Heading>
+            <Text color={color}>{data?.phone_number}</Text>
+            <Text color={color}>{data?.email}</Text>
           </VStack>
         </HStack>
         <HStack>
-          <Button
-            border={"0.5px solid grey"}
-            bg={useColorModeValue("#fff", "grey.400")}
-          >
+          <Button border={"0.5px solid grey"} bg={bg}>
             <Icon mr={"10px"} as={CiEdit} fontSize="lg" /> Edit
           </Button>
-          <Button
-            color={useColorModeValue("#fff", "#22244E")}
-            border={"0.5px solid grey"}
-            bg={useColorModeValue("#22244E", "#fff")}
-          >
+          <Button color={color2} border={"0.5px solid grey"} bg={bg2}>
             <Icon mr={"10px"} as={AiOutlineStop} fontSize="lg" /> Disable
           </Button>
         </HStack>
       </Flex>
-      <Divider/>
+      <Divider />
       <Grid
         mt={"20px"}
         justifyContent={"space-between"}
@@ -73,54 +97,73 @@ const MovvaProfile = () => {
         w={"100%"}
       >
         <GridItem w="100%">
-          <Text
-            fontSize={"14px"}
-            color={useColorModeValue("#344054", "white.900")}
-          >
+          <Text fontSize={"14px"} color={color}>
             Movva ID
           </Text>
-          <Heading fontSize={"16px"}>MOV123</Heading>
+          <Heading fontSize={"16px"}>MOV{data?.id}</Heading>
         </GridItem>
         <GridItem>
-          <Text
-            fontSize={"14px"}
-            color={useColorModeValue("#344054", "white.900")}
-          >
+          <Text fontSize={"14px"} color={color}>
             Status
           </Text>
-          <Heading color={"#065F46"} fontSize={"16px"}>
-            Active
+          <Heading
+            color={data?.admin_confirmed == 1 ? "#065F46" : "#92400E"}
+            fontSize={"16px"}
+          >
+            {data?.admin_confirmed == 1 ? "Confirmed" : "Pending"}
           </Heading>
         </GridItem>
         <GridItem>
-          <Text
-            fontSize={"14px"}
-            color={useColorModeValue("#344054", "white.900")}
-          >
+          <Text fontSize={"14px"} color={color}>
             Joined Date
           </Text>
-          <Heading fontSize={"16px"}>14 Jan 2024</Heading>
+          <Heading fontSize={"16px"}>
+            {dayjs(data?.created_at).format("D-MMM-YYYY")}
+          </Heading>
         </GridItem>
         <GridItem>
-          <Text
-            fontSize={"14px"}
-            color={useColorModeValue("#344054", "white.900")}
-          >
+          <Text fontSize={"14px"} color={color}>
             Assigned Region
           </Text>
-          <Heading fontSize={"16px"}>Lagos State</Heading>
+          <Heading fontSize={"16px"}>
+            {data?.city} {data?.country}
+          </Heading>
         </GridItem>
         <GridItem>
-          <Text fontSize={"14px"} color={useColorModeValue("#344054", "white.900")}>
-          Total Deliveries
+          <Text fontSize={"14px"} color={color}>
+            Total Deliveries
           </Text>
-          <Heading fontSize={"16px"}>149</Heading>
+          <Heading fontSize={"16px"}>0</Heading>
         </GridItem>
         <GridItem>
-          <Text fontSize={"14px"} color={useColorModeValue("#344054", "white.900")}>
-          Verification
+          <Text fontSize={"14px"} color={color}>
+            Verification
           </Text>
-          <Heading color={'#1C84FF'} display={'flex'} alignItems={'center'} fontSize={"16px"}> <Icon mr={"10px"} as={MdVerified} fontSize="lg" />Verified</Heading>
+          <Heading
+            color={data?.status == "pending" ? "#92400E" : "#1C84FF"}
+            display={"flex"}
+            alignItems={"center"}
+            fontSize={"16px"}
+            mt={'2px'}
+          >
+            {" "}
+            {data?.status == "pending" ? (
+              <Icon
+                color={"#92400E"}
+                mr={"10px"}
+                as={MdOutlinePending}
+                fontSize="lg"
+              />
+            ) : (
+              <Icon
+                color={"#1C84FF"}
+                mr={"10px"}
+                as={MdVerified}
+                fontSize="lg"
+              />
+            )}
+            {data?.status}
+          </Heading>
         </GridItem>
       </Grid>
     </VStack>
