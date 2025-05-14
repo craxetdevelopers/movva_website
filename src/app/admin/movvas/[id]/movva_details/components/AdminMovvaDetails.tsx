@@ -10,28 +10,42 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 import MovvaProfile from "./MovvaProfile";
 import DeliveryHistory from "./MovvaDeliveryHistory";
 import MovvaPayoutHistory from "./MovvaPayoutHistory";
 import MovvaAuditTrail from "./MovvaAuditTrail";
-
-
+import { useQuery } from "@tanstack/react-query";
+import { MovvaDeliveryResponse } from "@/types/movvaTypes";
+import axios from "axios";
+import { useAuth } from "@/contexts/AuthContext";
 
 
 const AdminMovvaDetails = ({id}: {id: string}) => {
   const [tabIndex, setTabIndex] = useState(0);
   const router = useRouter()
+  const { token } = useAuth();
 
-  useEffect(() => {
-    // You can load tab-specific data here
-    if (tabIndex === 1) {
-      console.log("Fetch delivery history for:", id);
-      // fetchData(id)
-    }
-  }, [tabIndex, id]);
+
+  const { data, isError, isLoading, refetch } = useQuery<MovvaDeliveryResponse>({
+    queryKey: ["movvas_table"],
+    enabled: !!token,
+    queryFn: async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/v1/user/${id}/deliveries?page=1&limit=10`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(res?.data);
+      return res?.data;
+    },
+  });
+
 
   return (
     <VStack alignItems={"start"} w={"100%"}>
@@ -41,7 +55,7 @@ const AdminMovvaDetails = ({id}: {id: string}) => {
         color={useColorModeValue("#22244E", "#fff")}
         leftIcon={<ArrowBackIcon />}
         _hover={{background: 'none'}}
-        onClick={() => router.push('/admin/movvas/')}
+        onClick={() => router.back()}
       >
         Back
       </Button>
@@ -97,7 +111,7 @@ const AdminMovvaDetails = ({id}: {id: string}) => {
 
         <TabPanels >
           <TabPanel >
-            <MovvaProfile />
+            <MovvaProfile data={data?.user} isError={isError} isLoading={isLoading} refetch={refetch}/>
           </TabPanel>
           <TabPanel>
             <DeliveryHistory />

@@ -21,14 +21,16 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+
 import MovvaTableFilter from "./MovvaTableFilter";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MovvaTableSkeleton from "@/loader/MovvaTableSkeleton";
 import { MovvaTable } from "@/types/movvaTypes";
 import { useAuth } from "@/contexts/AuthContext";
+import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+
 
 const verificationColors: Record<string, { bg: string; color: string }> = {
   verified: { bg: "#D1FAE5", color: "#065F46" }, // green
@@ -42,27 +44,35 @@ const onboardingStatusColors: Record<string, { bg: string; color: string }> = {
 };
 
 const MovvasTable = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const backgroundColor = useColorModeValue("#ffffff", "grey.800");
+  const color = useColorModeValue("grey.400", "#000");
+  const { token } = useAuth();
 
-const color = useColorModeValue("grey.400", "#000")
-const {token} = useAuth()
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
 
   const { data, isError, isLoading, refetch } = useQuery<MovvaTable[]>({
     queryKey: ["movvas_table"],
+    enabled: !!token,
     queryFn: async () => {
-      
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/v1/users?page=1&limit=10&type=mover`,
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
-      console.log(res?.data?.data);
       return res?.data?.data;
     },
   });
+
+  
+  if (!isMounted) return null; // or a loader
+
   return (
     <Stack mt={"20px"}>
       <Flex w={"100%"} gap={"10px"} justifyContent={"end"}>
@@ -87,7 +97,7 @@ const {token} = useAuth()
       {isLoading ? (
         <MovvaTableSkeleton />
       ) : isError ? (
-        <VStack h={'50vh'} justifyContent={'center'} textAlign="center" py={10}>
+        <VStack h={"50vh"} justifyContent={"center"} textAlign="center" py={10}>
           <Text fontSize="md" mb={4}>
             Something went wrong. Please try again.
           </Text>
@@ -105,28 +115,19 @@ const {token} = useAuth()
                 <Th py={"24px"} color={color}>
                   Name
                 </Th>
-                <Th color={color}>
-                  Phone Number
-                </Th>
-                <Th color={color}>
-                  Verification
-                </Th>
-                <Th color={color}>
-                  Onboarding status
-                </Th>
-                <Th color={color}>
-                  Delivery count
-                </Th>
-                <Th color={color}>
-                  Joined date
-                </Th>
+                <Th color={color}>Phone Number</Th>
+                <Th color={color}>Verification</Th>
+                <Th color={color}>Onboarding status</Th>
+                <Th color={color}>Delivery count</Th>
+                <Th color={color}>Joined date</Th>
                 <Th color={color}>Actions</Th>
               </Tr>
             </Thead>
             <Tbody bg={backgroundColor}>
               {data?.map((movTab, idx) => {
                 const verification = movTab?.status;
-                const status = movTab?.admin_confirmed == 1? 'Completed': 'Incompleted';
+                const status =
+                  movTab?.admin_confirmed == 1 ? "Completed" : "Incompleted";
                 const { bg: verificationBg, color: verificationColor } =
                   verificationColors[verification] || {
                     bg: "#E5E7EB",
@@ -140,7 +141,9 @@ const {token} = useAuth()
                   };
                 return (
                   <Tr key={idx}>
-                    <Td>{movTab?.first_name} {movTab?.last_name}</Td>
+                    <Td textTransform={'capitalize'}>
+                      {movTab?.first_name} {movTab?.last_name}
+                    </Td>
                     <Td>{movTab?.phone_number}</Td>
                     <Td>
                       <Box
@@ -153,8 +156,8 @@ const {token} = useAuth()
                         borderRadius="12px"
                         w="100%"
                         maxW="100px"
-                        display={'flex'}
-                        justifyContent={'center'}
+                        display={"flex"}
+                        justifyContent={"center"}
                       >
                         {movTab?.status}
                       </Box>
@@ -169,11 +172,13 @@ const {token} = useAuth()
                         fontSize="sm"
                         borderRadius="12px"
                         w="100%"
-                      maxW="100px"
-                      display={'flex'}
-                      justifyContent={'center'}
+                        maxW="100px"
+                        display={"flex"}
+                        justifyContent={"center"}
                       >
-                        {movTab?.admin_confirmed == 1? "Completed" : "Incompleted"}
+                        {movTab?.admin_confirmed == 1
+                          ? "Completed"
+                          : "Incompleted"}
                       </Box>
                     </Td>
                     <Td>0</Td>
