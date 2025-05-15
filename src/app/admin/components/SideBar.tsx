@@ -8,6 +8,7 @@ import {
   Text,
   Link,
   VStack,
+  Divider,
 } from "@chakra-ui/react";
 // import React, { use } from "react";
 import { GrHomeRounded } from "react-icons/gr";
@@ -44,6 +45,11 @@ const SideBar = ({
   [key: string]: any;
 }) => {
   const {adminUser} = useAuth()
+  const pathname = usePathname();
+
+  const isActiveMenu = (path: string) => {
+    return pathname === path;
+  };
   return (
     <Box
       bg="#2C2F66"
@@ -68,21 +74,19 @@ const SideBar = ({
             </NavItem>
           ))}
         </VStack>
+        <Divider />
         <VStack alignItems={"start"} px={4}>
           <Link
             href={"/admin/audit/"}
             display="flex"
             alignItems="center"
             gap="3"
-            color={"#98A2B3"}
+            color={isActiveMenu("/admin/audit/")? "#17D1C6" : "#98A2B3"}
             px="3"
             py="2"
+            bg={isActiveMenu("/admin/audit/")? '#98A2B933' : ''}
             borderRadius="md"
-            _hover={{
-              bg: "gray.700",
-              color: "#17D1C6",
-              textDecoration: "none",
-            }}
+            _hover={{ bg: "gray.700", color: "#17D1C6", textDecoration: "none" }}
           >
             <Icon as={AiOutlineAudit} fontSize="lg" />
             <Text>Audit Logs</Text>
@@ -92,15 +96,12 @@ const SideBar = ({
             display="flex"
             alignItems="center"
             gap="3"
-            color={"#98A2B3"}
+            color={isActiveMenu("/admin/setting/")? "#17D1C6" : "#98A2B3"}
             px="3"
             py="2"
+            bg={isActiveMenu("/admin/setting/")? '#98A2B933' : ''}
             borderRadius="md"
-            _hover={{
-              bg: "gray.700",
-              color: "#17D1C6",
-              textDecoration: "none",
-            }}
+            _hover={{ bg: "gray.700", color: "#17D1C6", textDecoration: "none" }}
           >
             <Icon as={RiSettings2Line} fontSize="lg" />
             <Text>Settings</Text>
