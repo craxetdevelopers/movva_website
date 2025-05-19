@@ -26,7 +26,7 @@ interface TripDetailsProps {
 }
 
 const TripDetails = ({ delivery }: TripDetailsProps) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onClose } = useDisclosure();
   const backgroundColor = useColorModeValue("#ffffff", "#1A202C");
   return (
     <Popover placement="bottom-end" closeOnBlur={false} size={"2xl"}>
@@ -48,7 +48,7 @@ const TripDetails = ({ delivery }: TripDetailsProps) => {
           gap={"20px"}
           flexDirection={"column"}
         >
-          <ViewDetails delivery = {delivery}/>
+          <ViewDetails onClose={onClose} delivery = {delivery}/>
           <Divider />
           <EditTripInfo />
           <Divider />
