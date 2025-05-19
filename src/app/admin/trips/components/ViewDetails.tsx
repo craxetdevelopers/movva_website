@@ -21,14 +21,18 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FiEye } from "react-icons/fi";
-import { TripDelivHistory } from "./TripTable";
+import { TripItem } from "@/types/tripTypes";
+import dayjs from "dayjs";
+import { useRouter } from "next/navigation";
 
 interface ViewDetailsProps {
-  delivery: TripDelivHistory;
+  delivery: TripItem;
+  onClose: () => void;
 }
 
-const ViewDetails = ({ delivery }: ViewDetailsProps) => {
+const ViewDetails = ({ delivery, onClose }: ViewDetailsProps) => {
   const backgroundColor = useColorModeValue("#ffffff", "#1A202C");
+  const router = useRouter()
   return (
     <Popover
       placement="left-start"
@@ -71,26 +75,42 @@ const ViewDetails = ({ delivery }: ViewDetailsProps) => {
               Delivery Details
             </PopoverHeader>
             <PopoverBody>
-              <Text>Delivery ID: {delivery?.delievryId}</Text>
+              <Text mb={"8px"}>Delivery ID: DR{delivery?.id}</Text>
+              <Flex gap={"8px"}>
+                <Text>Status: </Text>
+                <Text
+                  textTransform={"capitalize"}
+                  color={
+                    delivery?.status == "confirmed" ? "#065F46" : "#92400E"
+                  }
+                >
+                  {delivery?.status}
+                </Text>
+              </Flex>
               <Divider my={"30px"} w={"100%"} />
               <VStack alignItems={"start"} w={"100%"} maxW={"300px"}>
                 <Text fontWeight={"700"}>Delivery Info</Text>
                 <Text fontSize={"14px"}>
-                  Pickup Location: {delivery?.pickupLocation}
+                  Pickup Location: {delivery?.pickup_address}
                 </Text>
                 <Text fontSize={"14px"}>
-                  Dropoff Location: {delivery?.dropoffLocation}
+                  Dropoff Location: {delivery?.dropoff_address}
                 </Text>
-                <Text fontSize={"14px"}>Delivery Date: October 1, 2025</Text>
+                <Text fontSize={"14px"}>
+                  Delivery Date:{" "}
+                  {delivery?.accepted_at
+                    ? dayjs(delivery.accepted_at).format("MMM D, YYYY h:mma")
+                    : "N/A"}
+                </Text>
               </VStack>
               <Divider my={"30px"} w={"100%"} />
               <VStack alignItems={"start"}>
                 <Text fontWeight={"700"}>Movva Info</Text>
                 <Flex gap={"10px"}>
-                  <Avatar size="sm" name={`${delivery?.movva}`} />
+                  <Avatar size="sm" name={`${delivery?.mover?.first_name} ${delivery?.mover?.last_name}`} />
                   <VStack alignItems={"start"} gap={"0px"}>
-                    <Text>{delivery?.movva}</Text>
-                    <Text>+234 810 231 5643</Text>
+                    <Text>{delivery?.mover?.first_name} {delivery?.mover?.last_name}</Text>
+                    <Text>{delivery?.mover?.phone_number}</Text>
                   </VStack>
                 </Flex>
               </VStack>
@@ -106,16 +126,17 @@ const ViewDetails = ({ delivery }: ViewDetailsProps) => {
           bg={"none"}
           border={"1px solid #E4E7EC"}
           color={"#3366FF"}
+          onClick={() => router.push(`/admin/movvas/${delivery?.mover_id}/movva_details/`)}
         >
           View profile
         </Button>
         <VStack alignItems={"start"} w={"100%"} maxW={"300px"}>
           <Text fontWeight={"700"}>Sender Info</Text>
-          <Text fontSize={"14px"}>Name: {delivery?.movva}</Text>
-          <Text fontSize={"14px"}>Phone no: +234 810 987 6543</Text>
-          <Text fontSize={"14px"}>Address: 31, Allen Avenue, Lagos</Text>
+          <Text fontSize={"14px"}>Name: {delivery?.sender?.first_name} {delivery?.sender?.last_name}</Text>
+          <Text fontSize={"14px"}>Phone no: {delivery?.sender?.phone_number}</Text>
+          <Text fontSize={"14px"}>Address: {delivery?.sender?.residential_address}</Text>
         </VStack>
-        <Button my={"20px"} w={"100%"} bg={"none"} border={"1px solid #E4E7EC"}>
+        <Button my={"20px"} w={"100%"} bg={"none"} border={"1px solid #E4E7EC"} onClick={onClose}>
           close
         </Button>
       </PopoverContent>
