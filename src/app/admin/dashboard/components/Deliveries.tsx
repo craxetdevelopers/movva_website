@@ -1,12 +1,18 @@
 "use client";
 
+import { useAuth } from "@/contexts/AuthContext";
+import LineChartSkeleton from "@/loader/LineChartSkeleton";
 import {
+  Button,
   Flex,
   Heading,
   Select,
+  Text,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
 import {
   Area,
@@ -17,18 +23,30 @@ import {
   YAxis,
 } from "recharts";
 
-const data = [
-    { name: 'Sun', deliveries: 10000 },
-    { name: 'Mon', deliveries: 20000 },
-    { name: 'Tue', deliveries: 10000 },
-    { name: 'Wed', deliveries: 40000 },
-    { name: 'Thu', deliveries: 20000 },
-    { name: 'Fri', deliveries: 60000 },
-    { name: 'Sat', deliveries: 70000 },
-    
-];
-
 const Deliveries = () => {
+  const { token } = useAuth();
+
+  const { data, isError, isLoading, refetch } = useQuery({
+    queryKey: ["deliveries_chart"],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/v1/admin/deliveries-over-time`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return res?.data ?? [];
+    },
+  });
+
+  const charData =
+    data?.map((item: { day: string; total: number }) => ({
+      name: item?.day,
+      deliveries: item?.total,
+    })) ?? [];
+
   //   const bgColor = useColorModeValue("#fff", "gray.700");
   const areaStroke = useColorModeValue("#03C95A", "#03C95A");
   const areaFill = useColorModeValue(
@@ -62,30 +80,41 @@ const Deliveries = () => {
           <option value="Yearly">Yearly</option>
         </Select>
       </Flex>
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data}>
-          <defs>
-            <linearGradient id="colorDeliveries" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor={areaStroke} stopOpacity={0.4} />
-              <stop offset="95%" stopColor={areaStroke} stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="name" axisLine={false} tickLine={false} />
-          <YAxis
-            tickFormatter={(value) => `${value}k`}
-            tick={{ fontSize: 12 }}
-            stroke="#A0AEC0"
-          />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="deliveries"
-            stroke={areaStroke}
-            fillOpacity={1}
-            fill={areaFill}
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+      {isLoading ? (
+        <LineChartSkeleton />
+      ) : isError ? (
+        <VStack h={"50vh"} justifyContent={"center"} textAlign="center" py={10}>
+          <Text fontSize="md" mb={4}>
+            Something went wrong. Please try again.
+          </Text>
+          <Button onClick={() => refetch()}>Retry</Button>
+        </VStack>
+      ) : (
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={charData}>
+            <defs>
+              <linearGradient id="colorDeliveries" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={areaStroke} stopOpacity={0.4} />
+                <stop offset="95%" stopColor={areaStroke} stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="name" axisLine={false} tickLine={false} />
+            <YAxis
+              tickFormatter={(value) => `${value}k`}
+              tick={{ fontSize: 12 }}
+              stroke="#A0AEC0"
+            />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="deliveries"
+              stroke={areaStroke}
+              fillOpacity={1}
+              fill={areaFill}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      )}
     </VStack>
   );
 };
