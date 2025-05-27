@@ -124,9 +124,10 @@ const ViewDetails = ({ delivery, onClose }: ViewDetailsProps) => {
           my={"20px"}
           w={"100%"}
           bg={"none"}
+          
           border={"1px solid #E4E7EC"}
           color={"#3366FF"}
-          onClick={() => router.push(`/admin/movvas/${delivery?.mover_id}/movva_details/`)}
+          onClick={() =>  router.push(`/admin/movvas/${delivery?.mover_id}/movva_details/`)}
         >
           View profile
         </Button>

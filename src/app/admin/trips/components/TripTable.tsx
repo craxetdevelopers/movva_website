@@ -39,7 +39,7 @@ const TripTable = () => {
     enabled: !!token,
     queryFn: async () => {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/v1/admin/deliveries?page=1&limit=20&status=confirmed`,
+        `${process.env.NEXT_PUBLIC_API_URL}/v1/admin/deliveries?page=1&limit=20`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -99,7 +99,7 @@ const TripTable = () => {
                   };
                 return (
                   <Tr key={idx} fontSize={"14px"}>
-                    <Td w={'100px'}>DR{tripTab?.id}</Td>
+                    <Td w={'100px'}>{tripTab?.id}</Td>
                     <Td>{tripTab?.mover?.first_name} {tripTab?.mover?.last_name}</Td>
                     <Td>{tripTab?.sender?.first_name} {tripTab?.sender?.last_name}</Td>
                     <Td>
