@@ -27,7 +27,7 @@ const Navbar = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   // const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
 
   // Checking for the active
   const isActiveMenu = (path: string) => {
