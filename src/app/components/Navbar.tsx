@@ -136,7 +136,7 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <Box display={{ base: "block", md: "none" }}>
-          {pathname.includes("/movers") || pathname.includes("/senders") ? (
+          {pathname?.includes("/movers") || pathname?.includes("/senders") ? (
             <Button
               leftIcon={<ChevronLeftIcon />}
               p="15px"

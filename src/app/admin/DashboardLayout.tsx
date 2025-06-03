@@ -17,7 +17,7 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
   const router = useRouter();
   const params = useParams(); // ✅ use the hook here
   const id = params?.id;

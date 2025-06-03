@@ -44,7 +44,9 @@ interface Props {
 }
 
 const TripMap = ({ deliveryCode }: Props) => {
-    const [directionsPath, setDirectionsPath] = useState<{ lat: number; lng: number }[]>([]);
+  const [directionsPath, setDirectionsPath] = useState<
+    { lat: number; lng: number }[]
+  >([]);
   const [position, setPosition] = useState<{
     lat: number;
     lng: number;
@@ -70,7 +72,6 @@ const TripMap = ({ deliveryCode }: Props) => {
     enabled: !!deliveryCode, // avoids fetching when deliveryCode is undefined
   });
 
-
   useEffect(() => {
     const fetchRouteWithRESTAPI = async () => {
       if (
@@ -81,33 +82,30 @@ const TripMap = ({ deliveryCode }: Props) => {
       ) {
         const origin = `${driverInfo.pickup_latitude},${driverInfo.pickup_longitude}`;
         const destination = `${driverInfo.dropoff_latitude},${driverInfo.dropoff_longitude}`;
-        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
 
         try {
-            const response = await axios.get("/api/route", {
-              params: {
-                origin: origin,
-                destination: destination,
-                key: apiKey,
-              },
-            });
+          const response = await axios.get("/api/route", {
+            params: {
+              origin: origin,
+              destination: destination,
+            },
+          });
+
+          const encodedPolyline =
+            response.data.routes[0]?.overview_polyline?.points;
           
-            console.log("Route data:", response.data);
-          
-            const encodedPolyline = response.data.routes[0]?.overview_polyline?.points;
-          
-            if (encodedPolyline) {
-              const decodedPath = polyline.decode(encodedPolyline).map((point: number[]) => ({
+          if (encodedPolyline) {
+            const decodedPath = polyline
+              .decode(encodedPolyline)
+              .map((point: number[]) => ({
                 lat: point[0],
                 lng: point[1],
               }));
-          
-              setDirectionsPath(decodedPath);
-            }
-          } catch (error) {
-            console.error("Error fetching route from backend:", error);
+            setDirectionsPath(decodedPath);
           }
+        } catch (error) {
+          console.error("Error fetching route from backend:", error);
+        }
       }
     };
 
@@ -134,12 +132,6 @@ const TripMap = ({ deliveryCode }: Props) => {
           lat: dataF?.location?.latitude,
           lng: dataF?.location?.longitude,
         });
-        console.log(
-          "Latitude:",
-          dataF?.location?.latitude,
-          "Longitude:",
-          dataF?.location?.longitude
-        );
       } else {
         console.warn("Latitude and/or longitude missing in document data.");
       }
@@ -148,7 +140,7 @@ const TripMap = ({ deliveryCode }: Props) => {
     return () => unsub();
   }, [deliveryCode]);
 
-  if (!isLoaded || isLoading) return <Text>Loading map...</Text>;
+  if (!isLoaded || isLoading) return <Text color={'black'}>Loading map...</Text>;
   if (error) return <Text>Error loading delivery info</Text>;
 
   return (
@@ -157,7 +149,7 @@ const TripMap = ({ deliveryCode }: Props) => {
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={position ? 15 : 10}
-          center={position || defaultCenter}
+          center={directionsPath?.[0] || position || defaultCenter}
         >
           <VStack
             w="350px"
@@ -247,13 +239,12 @@ const TripMap = ({ deliveryCode }: Props) => {
             </HStack>
           </VStack>
           {/* Route Polyline */}
-          {directionsPath.length > 0 && (
+          {directionsPath?.length > 0 && (
             <Polyline
               path={directionsPath}
               options={{
                 strokeColor: "#FF0000",
-                strokeOpacity: 0.8,
-                strokeWeight: 7,
+                strokeWeight: 4,
               }}
             />
           )}
@@ -272,20 +263,6 @@ const TripMap = ({ deliveryCode }: Props) => {
             label="Dropoff"
           />
 
-          {/* <Marker
-            position={simplePath[0]} // pickup lat/lng
-            icon={{
-              url: "/man.png", // you can replace this with your pickup icon path
-              scaledSize: new google.maps.Size(30, 30),
-            }}
-          />
-          <Marker
-            position={simplePath[1]} // destination lat/lng
-            icon={{
-              url: "/man.png", // existing icon for dropoff
-              scaledSize: new google.maps.Size(30, 30),
-            }}
-          /> */}
         </GoogleMap>
       </Box>
     </Stack>

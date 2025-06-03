@@ -5,8 +5,6 @@ import React from "react";
 import AdminMovvaDetails from "./components/AdminMovvaDetails";
 import axios from "axios";
 
-// Ensure params is handled correctly as per Next.js v15 changes
-// export const dynamicParams = true;
 
 // No changes needed here for static generation
 export async function generateStaticParams() {
@@ -28,8 +26,6 @@ export async function generateStaticParams() {
     return [];
   }
 }
-
-// type tParams = Promise<{ id: string }>;
 
 // Awaiting params to handle the new structure in Next.js v15
 export default async function MovvaDetails({
