@@ -25,14 +25,17 @@ import MovvaTableSkeleton from "@/loader/MovvaTableSkeleton";
 
 const onboardingStatusColors: Record<string, { bg: string; color: string }> = {
   confirmed: { bg: "#D1FAE5", color: "#065F46" },
+  completed: { bg: "#D1FAE5", color: "#065F46" },
+  accepted: { bg: "#800080", color: "" },
   Rejected: { bg: "#FEE2E2", color: "#991B1B" },
-  "In transit": { bg: "#E0F2FE", color: "#2563EB" },
+  in_transit: { bg: "#E0F2FE", color: "#2563EB" },
+  pending: { bg: "#E0F2FE", color: "#2563EB" },
 };
 
 const TripTable = () => {
   const { token } = useAuth();
   const bg = useColorModeValue("#ffffff", "grey.800");
-  const color = useColorModeValue("grey.400", "#000")
+  const color = useColorModeValue("grey.400", "#000");
 
   const { data, isError, isLoading, refetch } = useQuery<TripItem[]>({
     queryKey: ["movvas_table"],
@@ -46,7 +49,6 @@ const TripTable = () => {
           },
         }
       );
-      console.log(res?.data?.data);
       return res?.data?.data;
     },
   });
@@ -76,17 +78,10 @@ const TripTable = () => {
                 </Th>
                 <Th color={color}>Movva</Th>
                 <Th color={color}>Sender</Th>
-                <Th color={color}>
-                  Pickup Location
-                </Th>
-                <Th color={color}>
-                  Drop off Location
-                </Th>
+                <Th color={color}>Pickup Location</Th>
+                <Th color={color}>Drop off Location</Th>
                 <Th color={color}>Status</Th>
-                <Th
-                  w={"150px"}
-                  color={color}
-                ></Th>
+                <Th w={"150px"} color={color}></Th>
               </Tr>
             </Thead>
             <Tbody bg={bg}>
@@ -99,9 +94,15 @@ const TripTable = () => {
                   };
                 return (
                   <Tr key={idx} fontSize={"14px"}>
-                    <Td w={'100px'}>{tripTab?.id}</Td>
-                    <Td>{tripTab?.mover?.first_name} {tripTab?.mover?.last_name}</Td>
-                    <Td>{tripTab?.sender?.first_name} {tripTab?.sender?.last_name}</Td>
+                    <Td w={"100px"}>{tripTab?.id}</Td>
+                    <Td>
+                    {tripTab?.status == "pending"
+                      ? "Awaiting..."
+                      : `${tripTab?.mover?.first_name} ${tripTab?.mover?.last_name}`}
+                    </Td>
+                    <Td>
+                      {tripTab?.sender?.first_name} {tripTab?.sender?.last_name}
+                    </Td>
                     <Td>
                       <Box
                         fontWeight="medium"
@@ -115,7 +116,6 @@ const TripTable = () => {
                         {tripTab?.pickup_address}
                       </Box>
                     </Td>
-
                     <Td>
                       <Box
                         fontWeight="medium"
@@ -140,7 +140,7 @@ const TripTable = () => {
                         fontSize="sm"
                         borderRadius="12px"
                         w="100%"
-                        textTransform={'capitalize'}
+                        textTransform={"capitalize"}
                         maxW="200px"
                         display={"flex"}
                         justifyContent={"center"}

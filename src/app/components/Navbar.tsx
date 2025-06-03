@@ -27,7 +27,7 @@ const Navbar = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   // const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
 
   // Checking for the active
   const isActiveMenu = (path: string) => {
@@ -136,7 +136,7 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <Box display={{ base: "block", md: "none" }}>
-          {pathname.includes("/movers") || pathname.includes("/senders") ? (
+          {pathname?.includes("/movers") || pathname?.includes("/senders") ? (
             <Button
               leftIcon={<ChevronLeftIcon />}
               p="15px"

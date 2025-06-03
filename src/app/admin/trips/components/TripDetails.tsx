@@ -23,6 +23,7 @@ import { TripItem } from "@/types/tripTypes";
 
 interface TripDetailsProps {
   delivery: TripItem
+  
 }
 
 const TripDetails = ({ delivery }: TripDetailsProps) => {

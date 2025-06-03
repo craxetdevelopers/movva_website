@@ -16,8 +16,11 @@ import { Search2Icon } from "@chakra-ui/icons";
 import PayoutExport from "./components/PayoutExport";
 import PayoutTableFilter from "./components/PayoutTableFilter";
 import PayoutTable from "./components/PayoutTable";
+// import { useAuth } from "@/contexts/AuthContext";
 
 const AdminPayout = () => {
+  
+
   const backgroundColor = useColorModeValue("#ffffff", "grey.800");
   return (
     <DashboardLayout>

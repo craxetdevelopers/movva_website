@@ -25,7 +25,7 @@ interface SigninPayload {
 const AdminSignin = () => {
   const toast = useToast();
   const router = useRouter();
-   const pathname = usePathname();
+   const pathname = usePathname() || "";
   const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [formData, setFormData] = useState<SigninPayload>({
@@ -54,7 +54,6 @@ const AdminSignin = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data)
 
 
 
