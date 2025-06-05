@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-const RejectPayout = ({
+const PaidPayout = ({
   mutate,
   isLoading,
 }: {
@@ -28,10 +28,11 @@ const RejectPayout = ({
   const [comment, setComment] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  //   handle the submit reject payment details
-  const handleReject = () => {
-    mutate({ status: "rejected", comment });
+//   handle the submit paid payment details
+  const handlePay = () => {
+    mutate({ status: "paid", comment });
   };
+
 
   return (
     <Popover
@@ -40,21 +41,21 @@ const RejectPayout = ({
       placement="left-start"
       closeOnBlur={false}
       size={"2xl"}
-     
+      
     >
       <PopoverTrigger>
         <Button _hover={{ background: "none" }} bg={"none"}>
-          Reject
+          Paid
         </Button>
       </PopoverTrigger>
       <PopoverContent bg={backgroundColor} p={5} maxW="400px" w={"100%"}>
         <PopoverArrow />
-        <PopoverCloseButton onClick={onClose} />
+        <PopoverCloseButton onClick={onClose}/>
         <PopoverHeader fontSize={"20px"} fontWeight={"700"} border={"none"}>
-          Reject Payment
+          Paid Payment
         </PopoverHeader>
         <PopoverBody fontSize="14px">
-          <Text mb={"30px"}>Are you sure you want to reject this payment</Text>
+          <Text mb={"30px"}>Are you sure you want to approve this payment</Text>
           <Textarea
             placeholder="Additional comments (optional)"
             value={comment}
@@ -71,8 +72,8 @@ const RejectPayout = ({
           <Button bg={"none"} border={"1px solid grey"} onClick={onClose}>
             Cancel
           </Button>
-          <Button bg={"#AD3307"} color={"#fff"} onClick={handleReject} isLoading={isLoading}>
-            Reject
+          <Button bg={"green"} color={"#fff"} onClick={handlePay} isLoading={isLoading}>
+            Pay
           </Button>
         </PopoverFooter>
       </PopoverContent>
@@ -80,4 +81,4 @@ const RejectPayout = ({
   );
 };
 
-export default RejectPayout;
+export default PaidPayout;
