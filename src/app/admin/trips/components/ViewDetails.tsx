@@ -32,21 +32,18 @@ interface ViewDetailsProps {
   onClose: () => void;
 }
 
-const verificationColors: Record<string, { bg: string}> = {
+const verificationColors: Record<string, { bg: string }> = {
   confirmed: { bg: "#065F46" },
   in_transit: { bg: "blue" },
   pending: { bg: "#92400E" },
   accepted: { bg: "#800080" },
 };
 
-const ViewDetails = ({ delivery}: ViewDetailsProps) => {
+const ViewDetails = ({ delivery }: ViewDetailsProps) => {
   const backgroundColor = useColorModeValue("#ffffff", "#1A202C");
   const router = useRouter();
-
   const verification = delivery?.status;
-  const { bg: verificationBg } = verificationColors[
-    verification
-  ] || {
+  const { bg: verificationBg } = verificationColors[verification] || {
     bg: "#000",
   };
 
@@ -110,75 +107,68 @@ const ViewDetails = ({ delivery}: ViewDetailsProps) => {
           </PopoverHeader>
           <Divider my={"20px"} w={"100%"} />
           <PopoverBody w={"100%"}>
-            <VStack w={"100%"} fontSize={'14px'}>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'10px'}>
+            <VStack w={"100%"} fontSize={"14px"}>
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"10px"}>
                 <Text>Pickup Date </Text>
                 <Text>
                   {dayjs(delivery?.accepted_at).format("MMMM D, YYYY, hh:mm A")}
                 </Text>
               </Flex>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'5px'}>
-                <Text px={'10px'} py={'4px'} borderRadius={'8px'} bg={verificationBg}>{delivery?.status}</Text>
-                <Text>
-                  {delivery?.delivery_code}
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"5px"}>
+                <Text
+                  px={"10px"}
+                  py={"4px"}
+                  borderRadius={"8px"}
+                  bg={verificationBg}
+                >
+                  {delivery?.status}
                 </Text>
+                <Text>{delivery?.delivery_code}</Text>
               </Flex>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'10px'}>
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"10px"}>
                 <Text>Sender</Text>
                 <Text>
                   {delivery?.sender?.first_name} {delivery?.sender?.last_name}
                 </Text>
               </Flex>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'10px'}>
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"10px"}>
                 <Text>Receipiant</Text>
-                <Text>
-                  How am i suppose to know
-                </Text>
+                <Text>How am i suppose to know</Text>
               </Flex>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'10px'}>
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"10px"}>
                 <Text>Pickup Address</Text>
-                <Text>
-                  {delivery?.pickup_address}
-                </Text>
+                <Text>{delivery?.pickup_address}</Text>
               </Flex>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'10px'}>
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"10px"}>
                 <Text>Dropoff Address</Text>
-                <Text>
-                  {delivery?.dropoff_address}
-                </Text>
+                <Text>{delivery?.dropoff_address}</Text>
               </Flex>
             </VStack>
             <Divider my={"30px"} w={"100%"} />
-            <VStack w={'100%'} fontSize={'14px'} alignItems={'start'}>
-              <Heading fontSize={'16px'}>Price Breakdown </Heading>
-              <Flex justifyContent={"space-between"} w={"100%"} my={'10px'}>
+            <VStack w={"100%"} fontSize={"14px"} alignItems={"start"}>
+              <Heading fontSize={"16px"}>Price Breakdown </Heading>
+              <Flex justifyContent={"space-between"} w={"100%"} my={"10px"}>
                 <Text>Total Delivery Fee</Text>
-                <Text>
-                  {delivery?.price}
-                </Text>
+                <Text>{delivery?.price}</Text>
               </Flex>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'10px'}>
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"10px"}>
                 <Text>Movva Earnings</Text>
-                <Text>
-                  {delivery?.price}
-                </Text>
+                <Text>{delivery?.price}</Text>
               </Flex>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'10px'}>
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"10px"}>
                 <Text>Insurance Fee</Text>
-                <Text>
-                  {delivery?.price}
-                </Text>
+                <Text>{delivery?.price}</Text>
               </Flex>
-              <Flex justifyContent={"space-between"} w={"100%"} mb={'10px'}>
+              <Flex justifyContent={"space-between"} w={"100%"} mb={"10px"}>
                 <Text>Platform Fee</Text>
-                <Text>
-                  {delivery?.price}
-                </Text>
+                <Text>{delivery?.price}</Text>
               </Flex>
             </VStack>
             <Divider my={"30px"} w={"100%"} />
-            <VStack alignItems={"start"} fontSize={'14px'}>
-              <Heading fontWeight={"700"} fontSize={'16px'}>Movva Info</Heading>
+            <VStack alignItems={"start"} fontSize={"14px"}>
+              <Heading fontWeight={"700"} fontSize={"16px"}>
+                Movva Info
+              </Heading>
               <Flex gap={"10px"}>
                 <Avatar
                   size="sm"

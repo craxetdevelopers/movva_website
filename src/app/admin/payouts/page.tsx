@@ -16,12 +16,31 @@ import { Search2Icon } from "@chakra-ui/icons";
 import PayoutExport from "./components/PayoutExport";
 import PayoutTableFilter from "./components/PayoutTableFilter";
 import PayoutTable from "./components/PayoutTable";
-// import { useAuth } from "@/contexts/AuthContext";
+import { PayoutResponse } from "@/types/payoutTypes";
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/contexts/AuthContext";
+import axios from "axios";
 
 const AdminPayout = () => {
-  
-
+  const { token } = useAuth();
   const backgroundColor = useColorModeValue("#ffffff", "grey.800");
+  
+  const { data, isError, isLoading, refetch } = useQuery<PayoutResponse>({
+    queryKey: ["payouts"],
+    enabled: !!token,
+    queryFn: async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/v1/admin/withdrawals?page=1&limit=10`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return res?.data;
+    },
+  });
+  
   return (
     <DashboardLayout>
       <Stack>
@@ -47,7 +66,7 @@ const AdminPayout = () => {
             <Button bg={"none"}> Clear all</Button>
           </Flex>
         </Flex>
-        <PayoutTable />
+        <PayoutTable data={data?.data || []} isError={isError} isLoading={isLoading} refetch={refetch}/>
       </Stack>
     </DashboardLayout>
   );

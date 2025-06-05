@@ -24,7 +24,7 @@ import DatePicker from "react-datepicker";
 import { CiCalendar, CiFilter } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
 
-const InsuranceTableFilter = () => {
+const LiveInsuredFilter = () => {
   const initialRef = React.useRef(null);
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
@@ -48,18 +48,15 @@ const InsuranceTableFilter = () => {
         <PopoverCloseButton />
         <PopoverBody>
           <FormControl mt={4}>
-            <FormLabel>Claim Type</FormLabel>
-            <Select
-            //   value={filter}
-            //   onChange={handleChange}
-            >
-              <option value="This month">Item Loss</option>
-              <option value="Quarterly">Damaged</option>
-              <option value="Quarterly">Wrong package</option>
-            </Select>
+            <FormLabel>Sender</FormLabel>
+            <Input placeholder="John Adenuga" />
           </FormControl>
           <FormControl mt={4}>
-            <FormLabel>Insurance Status</FormLabel>
+            <FormLabel>Movva</FormLabel>
+            <Input placeholder="John Adenuga" />
+          </FormControl>
+          <FormControl mt={4}>
+            <FormLabel>Status</FormLabel>
             <Select
             //   value={filter}
             //   onChange={handleChange}
@@ -70,17 +67,12 @@ const InsuranceTableFilter = () => {
             </Select>
           </FormControl>
           <FormControl mt={4}>
-            <FormLabel>Refund Status</FormLabel>
-            <Select
-            //   value={filter}
-            //   onChange={handleChange}
-            >
-              <option value="This month">Refunded</option>
-              <option value="Quarterly">No refund</option>
-            </Select>
+            <FormLabel>Delivery ID</FormLabel>
+            <Input placeholder="John Adenuga" />
           </FormControl>
+          
           <FormControl mt={4}>
-            <FormLabel>Custom Date</FormLabel>
+            <FormLabel>Date range</FormLabel>
             <Flex gap={"20px"} w={"100%"}>
               <InputGroup zIndex={1000}>
                 <DatePicker
@@ -150,4 +142,4 @@ const InsuranceTableFilter = () => {
   );
 };
 
-export default InsuranceTableFilter;
+export default LiveInsuredFilter;
