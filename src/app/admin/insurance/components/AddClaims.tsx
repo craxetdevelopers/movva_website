@@ -34,7 +34,7 @@ const AddClaims = () => {
       ]}
     >
       <PopoverTrigger>
-        <Button _hover={{ background: "gray" }} bg={"#2C2F66"} color={"#fff"}>
+        <Button px={'35px'} _hover={{ background: "gray" }} bg={"#2C2F66"} color={"#fff"}>
           Add Claim
           <Icon as={FiPlus} fontSize="lg" ml={"10px"} />
         </Button>

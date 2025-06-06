@@ -12,6 +12,8 @@ import {
 } from "@chakra-ui/react";
 
 import LiveInsured from "./components/liveInsuredComponent/LiveInsured";
+import InsuredPremium from "./components/insuredPremiumComponent/InsuredPremium";
+import ReportedClaims from "./components/reportedClaims/ReportedClaims";
 
 const AdminInsurance = () => {
   //
@@ -79,7 +81,12 @@ const AdminInsurance = () => {
             <TabPanel>
               <LiveInsured />
             </TabPanel>
-            <TabPanel>{/* <SenderDeliveryHistory /> */}</TabPanel>
+            <TabPanel>
+              <InsuredPremium />
+            </TabPanel>
+            <TabPanel>
+              <ReportedClaims />
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </Stack>
